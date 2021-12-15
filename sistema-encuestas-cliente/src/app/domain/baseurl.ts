@@ -1,0 +1,1 @@
+export const baseURL = 'https://mr87187.azurewebsites.net/api/';

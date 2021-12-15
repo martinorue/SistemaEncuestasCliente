@@ -1,0 +1,19 @@
+<div *ngIf="encuesta">{{encuesta.id}} - {{encuesta.Denominacion}}
+
+    <div>Estado: {{encuesta.Estado}}</div>
+    <div>Inicio: {{encuesta.FechaInicio | date}}</div>
+    <div>Finalización: {{encuesta.FechaFin | date}}</div>
+
+    <button (click)="verResultados(encuesta.id)">Ver Resultados</button>
+
+    <div *ngIf="resultadoEncuesta">
+        <div>Cantidad de encuestados: {{resultadoEncuesta.CantidadEncuestados}}</div>
+        <div *ngFor="let pregunta of resultadoEncuesta.Preguntas">
+            {{pregunta.TextoPregunta}}
+            <div *ngFor="let result of pregunta.Resultados">
+                {{result.Texto}}: {{result.Valor}}
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,18 @@
+<div fxFlex *ngIf="encuestas">
+    <mat-grid-list cols="6" rowHeight="100px">
+        <mat-grid-tile *ngFor="let encuesta of encuestas" 
+        [routerLink]="['/Encuestas', encuesta.EncuestaID]"
+            appHighLight>
+            <mat-grid-tile-footer>
+                <h1>{{ encuesta.Denominacion | uppercase }}</h1>
+            </mat-grid-tile-footer>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+
+<!-- 
+    1- flex-layout
+    2- material
+    3- importar en app.module
+    4- configuración de rutas
+-->
