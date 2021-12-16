@@ -14,8 +14,8 @@ export class ResultadosService {
 
   constructor(private http: HttpClient) { }
 
-  getResultados(id: number): Observable<ResultadoEncuesta | undefined> {
+  getResultados(id: number): Observable<ResultadoEncuesta> {
     console.log(id);
-    return this.http.get<ResultadoEncuesta | undefined>(this.url_local + '/' + id);
+    return this.http.get<ResultadoEncuesta>(this.url_local + '/' + id);
   }
 }

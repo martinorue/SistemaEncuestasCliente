@@ -1,5 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
 import { switchMap } from 'rxjs/operators';
 import { Encuesta } from '../domain/encuesta';
 import { ResultadoEncuesta } from '../domain/resultadoEncuesta';
@@ -15,14 +16,14 @@ export class EncuestaResultadoComponent implements OnInit {
 
   encuestaIds!: string[];
   encuesta!: Encuesta;
-  resultadoEncuesta!: ResultadoEncuesta | undefined;
-
-  constructor(private encuestasService: EncuestasService, private resultadosService: ResultadosService, private route: ActivatedRoute, @Inject('BaseURL') private BaseURL: string) { }
+  @Input() resultadoEncuesta!: ResultadoEncuesta;
+  constructor(private encuestasService: EncuestasService, private resultadosService: ResultadosService, private route: ActivatedRoute, private location: Location, @Inject('BaseURL') private BaseURL: string) { }
 
   ngOnInit(): void {
     this.encuestasService.getEncuestaIds().subscribe(encuestaIds => this.encuestaIds = encuestaIds);
     this.route.params
       .pipe(switchMap((params: Params) => {
+        this.resultadosService.getResultados(params['id']).subscribe(resultadoEncuesta => this.resultadoEncuesta = resultadoEncuesta);
         return this.encuestasService.getEncuesta(params['id']);
       }))
       .subscribe(encuesta => {
@@ -31,8 +32,8 @@ export class EncuestaResultadoComponent implements OnInit {
 
   }
 
-  verResultados(id: number) {
-    this.resultadosService.getResultados(id).subscribe(resultadoEncuesta => this.resultadoEncuesta = resultadoEncuesta);
+  volver(): void {
+    this.location.back();
   }
 
 }

@@ -1,18 +1,12 @@
-<div fxFlex *ngIf="encuestas">
-    <mat-grid-list cols="6" rowHeight="100px">
-        <mat-grid-tile *ngFor="let encuesta of encuestas" 
-        [routerLink]="['/Encuestas', encuesta.EncuestaID]"
-            appHighLight>
-            <mat-grid-tile-footer>
-                <h1>{{ encuesta.Denominacion | uppercase }}</h1>
-            </mat-grid-tile-footer>
-        </mat-grid-tile>
-    </mat-grid-list>
-</div>
-
-<!-- 
-    1- flex-layout
-    2- material
-    3- importar en app.module
-    4- configuración de rutas
--->
+    <h1>Resultados de Encuestas</h1>
+    <div *ngIf="encuestas" class="container" fxLayout="row" fxLayout.sm="column" 
+    fxLayout.xs="column" fxLayoutAlign=""
+        fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <mat-card class="card-encuesta" *ngFor="let encuesta of encuestas" appHighLight
+            [routerLink]="['/Encuestas', encuesta.EncuestaID]">
+            <div>{{ encuesta.Denominacion}}</div>
+            <div>Estado: {{encuesta.Estado}}</div>
+            <div>Inicio: {{encuesta.FechaInicio | date}}</div>
+            <div>Finalización: {{encuesta.FechaFin | date}}</div>
+        </mat-card>
+    </div>

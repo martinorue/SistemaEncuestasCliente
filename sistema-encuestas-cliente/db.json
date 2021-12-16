@@ -6,7 +6,7 @@
             "Denominacion": "Encuesta Opinión General",
             "FechaInicio": "2021-12-05T00:00:00",
             "FechaFin": "2021-12-24T00:00:00",
-            "CantidadEncuestados": 0,
+            "CantidadEncuestados": 287,
             "Estado": "BORRADOR",
             "Objetivo": "Comprobar el estado de satisfacción de nuestros comensales.",
             "Preguntas": [
@@ -95,6 +95,93 @@
             "FechaFin": "2022-01-15T00:00:00",
             "CantidadEncuestados": 0,
             "Estado": "EN CURSO",
+            "Objetivo": "Comprobar el estado de satisfacción de nuestros comensales.",
+            "Preguntas": [
+                {
+                    "PreguntaID": 1,
+                    "TextoPregunta": "¿Cómo te atendimos hoy?",
+                    "Tipo": "TEXTOLIBRE",
+                    "Orden": 1,
+                    "EncuestaID": 1,
+                    "Requerida": true,
+                    "Opciones": null
+                },
+                {
+                    "PreguntaID": 2,
+                    "TextoPregunta": "¿Qué platillos te gustaron más?",
+                    "Tipo": "OPCIONMULTIPLE",
+                    "Orden": 2,
+                    "EncuestaID": 1,
+                    "Requerida": true,
+                    "Opciones": [
+                        {
+                            "OpcionID": 1,
+                            "OpcionTexto": "Huevos Rotos"
+                        },
+                        {
+                            "OpcionID": 2,
+                            "OpcionTexto": "Croquetas de Papa"
+                        },
+                        {
+                            "OpcionID": 3,
+                            "OpcionTexto": "Tapas de Jamón Serrano"
+                        }
+                    ]
+                },
+                {
+                    "PreguntaID": 3,
+                    "TextoPregunta": "¿Qué cepas de vino te gustaron más?",
+                    "Tipo": "OPCIONMULTIPLE",
+                    "Orden": 3,
+                    "EncuestaID": 1,
+                    "Requerida": true,
+                    "Opciones": [
+                        {
+                            "OpcionID": 4,
+                            "OpcionTexto": "Tannat"
+                        },
+                        {
+                            "OpcionID": 5,
+                            "OpcionTexto": "Syrah"
+                        },
+                        {
+                            "OpcionID": 6,
+                            "OpcionTexto": "Carmenere"
+                        }
+                    ]
+                },
+                {
+                    "PreguntaID": 4,
+                    "TextoPregunta": "¿Qué mozo te atendió?",
+                    "Tipo": "OPCIONSIMPLE",
+                    "Orden": 4,
+                    "EncuestaID": 1,
+                    "Requerida": true,
+                    "Opciones": [
+                        {
+                            "OpcionID": 7,
+                            "OpcionTexto": "Roberto"
+                        },
+                        {
+                            "OpcionID": 8,
+                            "OpcionTexto": "Tatiana"
+                        },
+                        {
+                            "OpcionID": 9,
+                            "OpcionTexto": "Matías"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "EncuestaID": 1,
+            "Denominacion": "Encuesta Opinión General",
+            "FechaInicio": "2021-12-05T00:00:00",
+            "FechaFin": "2021-12-24T00:00:00",
+            "CantidadEncuestados": 0,
+            "Estado": "BORRADOR",
             "Objetivo": "Comprobar el estado de satisfacción de nuestros comensales.",
             "Preguntas": [
                 {
