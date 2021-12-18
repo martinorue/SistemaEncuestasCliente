@@ -21,8 +21,4 @@ export class DashboardEncuestasComponent implements OnInit {
     this.servicioEncuestas.getEncuestas().subscribe(encuestas => this.encuestas = encuestas);
   }
 
-  verResultados(id: number) {
-    this.resultadosService.getResultados(id).subscribe(resultadoEncuesta => this.resultadoEncuesta = resultadoEncuesta);
-  }
-
 }

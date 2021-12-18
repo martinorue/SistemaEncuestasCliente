@@ -1,34 +1,36 @@
-<div *ngIf="encuesta" class="container" fxLayout="column" fxLayout.sm="column" 
-    fxLayout.xs="column" fxLayoutAlign="center center"
-        fxLayoutGap="10px" fxLayoutGap.xs="0" style="padding-top: 15px;">
-        <mat-card-title>
-            Resultados de: {{encuesta.Denominacion}}
-        </mat-card-title>
+<div *ngIf="encuesta" 
+class="container" 
+fxLayout="column" fxLayout.sm="column" fxLayout.xs="column"
+fxLayoutAlign="center center" fxLayoutGap="10px" fxLayoutGap.xs="0" 
+style="padding-top: 15px;">
+    <mat-card-title>
+        Resultados de: {{encuesta.Denominacion}}
+    </mat-card-title>
 
-        <h2>Total de encuestados: {{encuesta.CantidadEncuestados}}</h2>
-
-
-    <div *ngIf="!resultadoEncuesta">Por el momento no existen resultados para esta encuesta.
-
+    <h2>Total de encuestados: {{encuesta.CantidadEncuestados}}</h2>
+    
+    <div *ngIf="!resultadoEncuesta">
+        Por el momento no existen resultados para esta encuesta.
     </div>
 
-    <div *ngIf="resultadoEncuesta">
-        <mat-tab-group>
-            <div *ngFor="let pregunta of resultadoEncuesta.Preguntas">
-                <mat-tab label={{pregunta.TextoPregunta}}>
-                    <mat-card>
-                        <h4>
-                            Tipo: {{pregunta.Tipo}}
-                        </h4>
-                        <div *ngFor="let result of pregunta.Resultados">
-                            {{result.Texto}}: {{result.Valor}}
-                        </div>
-                    </mat-card>
-                </mat-tab>
-            </div>
-        </mat-tab-group>
+</div>
+    
+<div>
+    <mat-card *ngIf="resultadoEncuesta" style="width: 75%;">
+        <div *ngFor="let pregunta of resultadoEncuesta.Preguntas" 
+        style="max-width: 150px;"
+        fxLayoutAlign="start"
+        >
+            <mat-card style="margin: 5px;">
+                <mat-card-title>{{pregunta.TextoPregunta}}</mat-card-title>
+                <mat-card-subtitle>Tipo: {{pregunta.Tipo}}</mat-card-subtitle>
+                <span *ngFor="let result of pregunta.Resultados" style="margin: 1px;">
+                    {{result.Texto}}: {{result.Valor}}
+                </span>
+            </mat-card>
+        </div>
 
         <!-- GO BACK -->
-    </div>
         <button mat-raised-button (click)="volver()">Volver</button>
+    </mat-card>
 </div>

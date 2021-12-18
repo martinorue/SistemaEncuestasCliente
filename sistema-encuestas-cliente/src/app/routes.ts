@@ -5,6 +5,6 @@ import { EncuestaResultadoComponent } from './encuesta-resultado/encuesta-result
 
 export const routes: Routes = [
     { path: 'Encuestas/:id', component: EncuestaResultadoComponent },
-    //{ path: 'app-encuesta-resultado', component: EncuestaResultadoComponent },
-    { path: '', component: DashboardEncuestasComponent, pathMatch: 'full' }
+    { path: '', component: DashboardEncuestasComponent, pathMatch: 'full' },
+    {path: 'dashboard', component: DashboardEncuestasComponent}
 ];

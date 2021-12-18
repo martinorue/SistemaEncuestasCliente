@@ -4,8 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardEncuestasComponent } from './dashboard-encuestas/dashboard-encuestas/dashboard-encuestas.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EncuestaResultadoComponent } from './encuesta-resultado/encuesta-resultado.component';
+import { HeaderComponent } from './header/header.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { baseURL } from './domain/baseurl';
 
@@ -19,8 +21,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { EncuestasService } from './services/encuestas.service';
-import { EncuestaResultadoComponent } from './encuesta-resultado/encuesta-resultado.component';
 import { HighlightDirective } from './highlight.directive';
 import { MatTabsModule } from '@angular/material/tabs';
 
@@ -30,7 +32,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     AppComponent,
     DashboardEncuestasComponent,
     EncuestaResultadoComponent,
-    HighlightDirective
+    HighlightDirective,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatButtonModule,
     MatProgressBarModule,
     MatDividerModule,
+    MatToolbarModule,
     MatTabsModule,
     HttpClientModule,
     FlexLayoutModule

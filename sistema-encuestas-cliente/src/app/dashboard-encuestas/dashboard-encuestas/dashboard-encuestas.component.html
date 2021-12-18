@@ -1,12 +1,14 @@
-    <h1>Resultados de Encuestas</h1>
-    <div *ngIf="encuestas" class="container" fxLayout="row" fxLayout.sm="column" 
-    fxLayout.xs="column" fxLayoutAlign=""
-        fxLayoutGap="10px" fxLayoutGap.xs="0">
-        <mat-card class="card-encuesta" *ngFor="let encuesta of encuestas" appHighLight
-            [routerLink]="['/Encuestas', encuesta.EncuestaID]">
-            <div>{{ encuesta.Denominacion}}</div>
-            <div>Estado: {{encuesta.Estado}}</div>
-            <div>Inicio: {{encuesta.FechaInicio | date}}</div>
-            <div>Finalización: {{encuesta.FechaFin | date}}</div>
-        </mat-card>
-    </div>
+
+<h1 style="text-align: center;">Resultados de Encuestas</h1>
+
+<div *ngIf="encuestas" class="container" fxLayoutGap="10px" fxLayout="row" fxLayout.sm="column" 
+fxLayout.xs="column" fxLayoutAlign="center center"  fxLayoutGap.xs="0">
+    
+    <mat-card class="card-encuesta" *ngFor="let encuesta of encuestas" appHighLight
+        [routerLink]="['/Encuestas', encuesta.EncuestaID]">
+        <mat-card-title>{{ encuesta.Denominacion}}</mat-card-title>
+        <div>Estado: {{encuesta.Estado}}</div>
+        <div>Inicio: {{encuesta.FechaInicio | date}}</div>
+        <div>Finalización: {{encuesta.FechaFin | date}}</div>
+    </mat-card>
+</div>
