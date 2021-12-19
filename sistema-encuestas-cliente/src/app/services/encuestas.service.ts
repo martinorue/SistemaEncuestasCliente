@@ -19,11 +19,11 @@ export class EncuestasService {
   }
 
   getEncuestas(): Observable<Encuesta[]> {
-    return this.http.get<Encuesta[]>(this.url_local);
+    return this.http.get<Encuesta[]>(this.url_azure);
   }
 
   getEncuesta(id: string): Observable<Encuesta> {
-    return this.http.get<Encuesta>(this.url_local + '/' + id);
+    return this.http.get<Encuesta>(this.url_azure + '/' + id);
   }
 
   getEncuestaIds(): Observable<string[] | any> {
