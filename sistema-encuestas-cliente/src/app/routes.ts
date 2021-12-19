@@ -4,7 +4,7 @@ import { DashboardEncuestasComponent } from './dashboard-encuestas/dashboard-enc
 import { EncuestaResultadoComponent } from './encuesta-resultado/encuesta-resultado.component';
 
 export const routes: Routes = [
-    { path: 'Encuestas/:id', component: EncuestaResultadoComponent },
+    { path: 'Resultados/:id', component: EncuestaResultadoComponent },
     { path: '', component: DashboardEncuestasComponent, pathMatch: 'full' },
     {path: 'dashboard', component: DashboardEncuestasComponent}
 ];

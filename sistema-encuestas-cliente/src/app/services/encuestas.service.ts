@@ -11,8 +11,9 @@ import { Encuesta } from '../domain/encuesta';
 })
 export class EncuestasService {
   
-  private url_local = 'http://localhost:3000/Encuestas';
+  private url_local_jsonServer = 'http://localhost:3000/EncuestaResultados';
   private url_azure = 'https://mr87187.azurewebsites.net/api/Encuestas';
+  private url_local = 'https://localhost:44384/api/Encuestas';
 
   constructor(private http: HttpClient) {
   }
@@ -27,6 +28,6 @@ export class EncuestasService {
 
   getEncuestaIds(): Observable<string[] | any> {
     return this.getEncuestas()
-      .pipe(map(encuestas => encuestas.map(encuesta => encuesta.id)));
+      .pipe(map(encuestas => encuestas.map(encuesta => encuesta.EncuestaID)));
   }
 }

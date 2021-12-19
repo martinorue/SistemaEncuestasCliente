@@ -1,7 +1,7 @@
 import { Pregunta } from "./pregunta";
 
 export class Encuesta{
-    id!: number;
+    //id!: number;
     EncuestaID!: number;
     Denominacion!: string;
     FechaInicio!: string;

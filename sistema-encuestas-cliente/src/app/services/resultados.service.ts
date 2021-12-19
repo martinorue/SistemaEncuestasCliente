@@ -9,13 +9,14 @@ import { ResultadoEncuesta } from '../domain/resultadoEncuesta';
 })
 export class ResultadosService {
 
-  private url_local = 'http://localhost:3000/EncuestaResultados';
+  private url_local_jsonServer = 'http://localhost:3000/EncuestaResultados';
   private url_azure = 'https://mr87187.azurewebsites.net/api/Encuestas';
+  private url_local = 'https://localhost:44384/api/Resultados?id=';
 
   constructor(private http: HttpClient) { }
 
   getResultados(id: number): Observable<ResultadoEncuesta> {
     console.log(id);
-    return this.http.get<ResultadoEncuesta>(this.url_local + '/' + id);
+    return this.http.get<ResultadoEncuesta>(this.url_local + id);
   }
 }

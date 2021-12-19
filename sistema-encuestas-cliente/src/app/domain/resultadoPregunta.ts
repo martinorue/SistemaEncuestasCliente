@@ -1,7 +1,7 @@
 import { Resultado } from "./resultado";
 
 export class ResultadoPregunta {
-    id!: number;
+    //id!: number;
     PreguntaID!: number;
     TextoPregunta!: string;
     Tipo!: string;

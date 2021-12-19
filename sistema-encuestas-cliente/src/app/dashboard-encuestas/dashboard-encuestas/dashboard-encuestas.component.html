@@ -5,7 +5,7 @@
 fxLayout.xs="column" fxLayoutAlign="center center"  fxLayoutGap.xs="0">
     
     <mat-card class="card-encuesta" *ngFor="let encuesta of encuestas" appHighLight
-        [routerLink]="['/Encuestas', encuesta.EncuestaID]">
+        [routerLink]="['/Resultados', encuesta.EncuestaID]">
         <mat-card-title>{{ encuesta.Denominacion}}</mat-card-title>
         <div>Estado: {{encuesta.Estado}}</div>
         <div>Inicio: {{encuesta.FechaInicio | date}}</div>

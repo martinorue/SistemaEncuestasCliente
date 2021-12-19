@@ -1,7 +1,7 @@
 import { ResultadoPregunta } from "./resultadoPregunta";
 
 export class ResultadoEncuesta {
-    id!: number;
+    //id!: number;
     EncuestaID!: number;
     Denominacion!: string;
     FechaInicio!: string;
