@@ -24,9 +24,9 @@ style="padding-top: 15px;">
             <mat-card style="margin: 5px;">
                 <mat-card-title>{{pregunta.TextoPregunta}}</mat-card-title>
                 <mat-card-subtitle>Tipo: {{pregunta.Tipo}}</mat-card-subtitle>
-                <span *ngFor="let result of pregunta.Resultados" style="margin: 1px;">
+                <p *ngFor="let result of pregunta.Resultados" style="margin: 1px;">
                     {{result.Texto}}: {{result.Valor}}
-                </span>
+                </p>
             </mat-card>
         </div>
 
