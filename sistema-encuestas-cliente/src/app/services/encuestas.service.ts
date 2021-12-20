@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { Pregunta } from '../domain/pregunta';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Encuesta } from '../domain/encuesta';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -11,19 +11,17 @@ import { Encuesta } from '../domain/encuesta';
 })
 export class EncuestasService {
   
-  private url_local_jsonServer = 'http://localhost:3000/EncuestaResultados';
-  private url_azure = 'https://mr87187.azurewebsites.net/api/Encuestas';
-  private url_local = 'https://localhost:44384/api/Encuestas';
+  //private url_local_jsonServer = 'http://localhost:3000/EncuestaResultados';
 
   constructor(private http: HttpClient) {
   }
 
   getEncuestas(): Observable<Encuesta[]> {
-    return this.http.get<Encuesta[]>(this.url_azure);
+    return this.http.get<Encuesta[]>(`${environment.baseUri}/api/Encuestas`);
   }
 
   getEncuesta(id: string): Observable<Encuesta> {
-    return this.http.get<Encuesta>(this.url_azure + '/' + id);
+    return this.http.get<Encuesta>(`${environment.baseUri}/api/Encuestas` + '/' + id);
   }
 
   getEncuestaIds(): Observable<string[] | any> {
