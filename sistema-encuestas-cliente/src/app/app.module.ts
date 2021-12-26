@@ -25,6 +25,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { EncuestasService } from './services/encuestas.service';
 import { HighlightDirective } from './highlight.directive';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 
 @NgModule({
@@ -46,6 +48,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatDividerModule,
     MatToolbarModule,
     MatTabsModule,
+    MatProgressSpinnerModule,
     HttpClientModule,
     FlexLayoutModule
   ],

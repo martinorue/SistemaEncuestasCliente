@@ -1,9 +1,13 @@
+<div *ngIf="!encuestas" class="spinner-wrapper">
+    <mat-spinner color="warn" class="mat-spinner"></mat-spinner>
+    <h4>Cargando encuestas...</h4>
+</div>
 
 <h1 style="text-align: center;">Resultados de Encuestas</h1>
 
-<div *ngIf="encuestas" class="container" fxLayoutGap="10px" fxLayout="row" fxLayout.sm="column" 
-fxLayout.xs="column" fxLayoutAlign="center center"  fxLayoutGap.xs="0">
-    
+<div *ngIf="encuestas" class="container" fxLayoutGap="10px" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
+    fxLayoutAlign="center center" fxLayoutGap.xs="0">
+
     <mat-card class="card-encuesta" *ngFor="let encuesta of encuestas" appHighLight
         [routerLink]="['/Resultados', encuesta.EncuestaID]">
         <mat-card-title>{{ encuesta.Denominacion}}</mat-card-title>

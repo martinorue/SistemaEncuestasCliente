@@ -1,3 +1,8 @@
+<div *ngIf="!encuesta" class="spinner-wrapper">
+    <mat-spinner color="warn" class="mat-spinner"></mat-spinner>
+    <h4>Cargando resultados...</h4>
+</div>
+
 <div *ngIf="encuesta" 
 class="container" 
 fxLayout="column" fxLayout.sm="column" fxLayout.xs="column"
