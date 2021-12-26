@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,8 +14,6 @@ import { baseURL } from './domain/baseurl';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-
-
 /*Angular Material*/
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,6 +25,10 @@ import { EncuestasService } from './services/encuestas.service';
 import { HighlightDirective } from './highlight.directive';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoginComponent } from './login/login.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 
@@ -35,12 +38,15 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     DashboardEncuestasComponent,
     EncuestaResultadoComponent,
     HighlightDirective,
-    HeaderComponent
+    HeaderComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
@@ -49,6 +55,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatToolbarModule,
     MatTabsModule,
     MatProgressSpinnerModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
     HttpClientModule,
     FlexLayoutModule
   ],
