@@ -1,19 +1,22 @@
 <mat-toolbar color="primary">
   <div>
     <a mat-button routerLink="/dashboard" routerLinkActive="active">
-      <img class="logo" src="https://winenot.com.uy/wp-content/uploads/2020/12/Transp-1.png" />
+      <img
+        class="logo"
+        src="https://winenot.com.uy/wp-content/uploads/2020/12/Transp-1.png"
+        height="50px"
+        width="50px"
+      />
     </a>
   </div>
-  
-    <a mat-button routerLink="/dashboard" routerLinkActive="active">
-      <mat-icon>dashboard</mat-icon> 
-      Dashboard Encuestas
-    </a>
-    <a mat-button>Cerrar Sesión</a>
-    <!-- <a mat-button routerLink="/crear-encuesta" routerLinkActive="active"
-      ><span class="fa fa-list fa-lg"></span> Crear Encuesta</a
-    > -->
-    <!-- <a mat-button routerLink="/" routerLinkActive="active"
-      ><span class="fa fa-info fa-lg"></span> Resultados</a
-    > -->
+
+  <a mat-button routerLink="/dashboard" routerLinkActive="active">
+    <mat-icon>dashboard</mat-icon>
+    Encuestas
+  </a>
+  <span class="flex-spacer"></span>
+  <a mat-button routerLink="/login" routerLinkActive="active">
+    <mat-icon>exit_to_app</mat-icon>
+    Cerrar Sesión
+  </a>
 </mat-toolbar>

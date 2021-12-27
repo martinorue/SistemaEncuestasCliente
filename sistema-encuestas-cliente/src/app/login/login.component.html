@@ -3,17 +3,17 @@
     <h4>Cargando resultados...</h4>
 </div>
 
-<div class="container" fxLayoutGap="10px" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column"
+<div class="container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column"
 fxLayoutAlign="center center" fxLayoutGap.xs="0">
 	<div>
 		<img src="https://winenot.com.uy/wp-content/uploads/2020/12/Transp-1.png" alt="Wine Not?" height="300px" width="300px"/>
 	</div>
 	<form #myFormLogin="ngForm" fxLayout="column">
 		<mat-form-field appearance="outline">
-			<mat-label>User Name</mat-label>
+			<mat-label>Usuario</mat-label>
 			<input
 				matInput
-				placeholder="Placeholder"
+				placeholder="Ingrese nombre de usuario"
 				name="username"
 				[(ngModel)]="dataLoginForm.userName"
 				required
@@ -25,11 +25,11 @@ fxLayoutAlign="center center" fxLayoutGap.xs="0">
 			</mat-error>
 		</mat-form-field>
 		<mat-form-field appearance="outline">
-			<mat-label>Password</mat-label>
+			<mat-label>Contraseña</mat-label>
 			<input
 				type="password"
 				matInput
-				placeholder="Placeholder"
+				placeholder="Ingrese su contraseña"
 				name="password"
 				[(ngModel)]="dataLoginForm.password"
 				required
@@ -43,14 +43,16 @@ fxLayoutAlign="center center" fxLayoutGap.xs="0">
 
 		<button
 			mat-raised-button
-			color="primary"
+			color="warn"
 			[disabled]="!myFormLogin.valid"
 			(click)="clickLogin()"
 		>
-			Login
+			Ingresar
 		</button>
 		
 	</form>
 
 	<!-- <pre>{{ myFormLogin.value | json }} </pre> -->
 </div>
+
+

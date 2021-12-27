@@ -1,16 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-.spinner-wrapper{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 20px);
+html,
+body {
+  height: 100%;
 }
 
-.mat-spinner{
-    color: white;
-    padding: 12px;
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 20px);
+}
+
+.mat-spinner {
+  color: white;
+  padding: 12px;
+}
+
+.highlight {
+  z-index: 1;
+  transform: scale(1.01);
+}
+
+.flex-spacer {
+  flex: 1 1 auto;
 }

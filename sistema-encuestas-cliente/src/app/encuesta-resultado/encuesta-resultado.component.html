@@ -1,36 +1,61 @@
 <app-header></app-header>
 
 <div *ngIf="!encuesta" class="spinner-wrapper">
-    <mat-spinner color="warn" class="mat-spinner"></mat-spinner>
-    <h4>Cargando resultados...</h4>
+  <mat-spinner color="warn" class="mat-spinner"></mat-spinner>
+  <h4>Cargando resultados...</h4>
 </div>
 
-<div *ngIf="encuesta" class="container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column"
-    fxLayoutAlign="center center" fxLayoutGap="10px" fxLayoutGap.xs="0" style="padding-top: 15px;">
-    <h1>Resultados de: {{encuesta.Denominacion}}</h1>
+<div
+  *ngIf="encuesta"
+  class="container"
+  fxLayout="column"
+  fxLayout.sm="column"
+  fxLayout.xs="column"
+  fxLayoutAlign="center center"
+  fxLayoutGap="10px"
+  fxLayoutGap.xs="0"
+  style="padding-top: 15px"
+>
+  <h1>Resultados de: {{ encuesta.Denominacion }}</h1>
 
-    <h2>Total de encuestados: {{encuesta.CantidadEncuestados}}</h2>
-    
-    <div *ngIf="!resultadoEncuesta">
-        Por el momento no existen resultados para esta encuesta.
-    </div>
-    
-    <!-- GO BACK -->
-    <button mat-raised-button class="volver-button" (click)="volver()">Volver</button>
+  <h2>Total de encuestados: {{ encuesta.CantidadEncuestados }}</h2>
+
+  <div *ngIf="!resultadoEncuesta">
+    Por el momento no existen resultados para esta encuesta.
+  </div>
+
+  <!-- GO BACK -->
+  <button mat-raised-button class="volver-button" (click)="volver()">
+    Volver
+  </button>
 </div>
 
 <div>
-    <mat-card *ngIf="resultadoEncuesta" style="width: 75%;">
-        <div *ngFor="let pregunta of resultadoEncuesta.Preguntas" style="max-width: 150px;" fxLayoutAlign="start">
-            <mat-card class="card-resultado">
-                <mat-card-title>{{pregunta.TextoPregunta}}</mat-card-title>
-                <mat-card-subtitle>Tipo: {{pregunta.Tipo}}</mat-card-subtitle>
-                <p *ngFor="let result of pregunta.Resultados" style="margin: 1px;">
-                    {{result.Texto}}: {{result.Valor}}
-                </p>
-            </mat-card>
+  <div *ngIf="resultadoEncuesta">
+    <div
+      *ngFor="let pregunta of resultadoEncuesta.Preguntas"
+      style="max-width: 150px"
+      fxLayoutAlign="start"
+    >
+      <mat-card class="card-resultado" appHighlight>
+        <mat-card-title>{{ pregunta.TextoPregunta }}</mat-card-title>
+        <mat-card-subtitle>Tipo: {{ pregunta.Tipo }}</mat-card-subtitle>
+        <div>
+          <p *ngFor="let result of pregunta.Resultados" style="margin: 1px">
+            <mat-icon *ngIf="result.Texto == 'POSITIVO'"
+              >sentiment_very_satisfied</mat-icon
+            >
+            <mat-icon *ngIf="result.Texto == 'NEGATIVO'"
+              >sentiment_very_dissatisfied</mat-icon
+            >
+            <mat-icon
+              *ngIf="result.Texto == 'MIXTO' || result.Texto == 'NEUTRO'"
+              >sentiment_satisfied</mat-icon
+            >
+            {{ result.Texto }}: {{ result.Valor }}
+          </p>
         </div>
-
-
-    </mat-card>
+      </mat-card>
+    </div>
+</div>
 </div>
