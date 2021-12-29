@@ -9,7 +9,7 @@ import { EncuestaResultadoComponent } from './encuesta-resultado/encuesta-result
 import { HeaderComponent } from './header/header.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { baseURL } from './domain/baseurl';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -28,7 +28,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoginComponent } from './login/login.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { EncuestasInterceptor } from './interceptors/encuestas-interceptor';
 
 
 
@@ -58,12 +60,18 @@ import {MatInputModule} from '@angular/material/input';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSnackBarModule,
     HttpClientModule,
     FlexLayoutModule
   ],
   providers: [
     EncuestasService,
-    { provide: 'BaseURL', useValue: baseURL }
+    { provide: 'BaseURL', useValue: baseURL },
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:EncuestasInterceptor,
+      multi:true
+    }
   ],
   bootstrap: [AppComponent]
 })

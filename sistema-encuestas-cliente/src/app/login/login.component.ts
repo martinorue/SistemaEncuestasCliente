@@ -35,11 +35,11 @@ export class LoginComponent {
 		// 	void this._router.navigateByUrl('/dashboard');
 		// });
 
-		// const user: IRQLogin = { username: this.userName, password: this.password };
+		const user: IRQLogin = { username: this.userName, password: this.password };
 
-		// this._loginService.login(user).subscribe((data) => {
-		// 	console.log(data);
-		// });
+		this._loginService.login(user).subscribe((data) => {
+			console.log(data);
+		});
 
 
 		void this._router.navigateByUrl('/dashboard');
