@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PieChart } from '../domain/pie-chart';
+import { Resultado } from '../domain/resultado';
 import { ResultadoEncuesta } from '../domain/resultadoEncuesta';
 
 @Component({
@@ -13,8 +14,8 @@ export class PieChartComponent implements OnInit {
   }
 
   data: PieChart[] = [];
-  view: [number, number] = [700, 400];
-  @Input() resultadoEncuesta!: ResultadoEncuesta;
+  @Input() preguntaResultados!: Resultado[];
+  view: [number, number] = [600, 350];
 
   // options
   gradient: boolean = true;
@@ -24,20 +25,18 @@ export class PieChartComponent implements OnInit {
   legendPosition = 'below';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#5AA454', '#AAAAAA', '#C7B42C', '#A10A28']
   };
 
   ngOnInit(): void {
-    let data_chart: PieChart[] = [];
-    this.resultadoEncuesta.Preguntas.map(pregunta => {
-      if (pregunta.Tipo == 'TEXTOLIBRE') {
-        pregunta.Resultados.map(resultado => 
-          data_chart.push(new PieChart(resultado.Texto, resultado.Valor)));
-      }
-    });
-    
-    this.data = data_chart;
+   
+    let result: PieChart[] = [];
 
+    this.preguntaResultados.map(resultado => {
+      result.push(new PieChart(resultado.Texto, resultado.Valor));
+    })
+    
+    this.data = result;
   }
 
 
