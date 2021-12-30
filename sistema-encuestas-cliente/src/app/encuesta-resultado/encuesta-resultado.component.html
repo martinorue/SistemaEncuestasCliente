@@ -37,25 +37,29 @@
       style="max-width: 150px"
       fxLayoutAlign="start"
     >
-      <mat-card class="card-resultado" appHighlight>
+      <mat-card class="card-resultado">
         <mat-card-title>{{ pregunta.TextoPregunta }}</mat-card-title>
         <mat-card-subtitle>Tipo: {{ pregunta.Tipo }}</mat-card-subtitle>
         <div>
-          <p *ngFor="let result of pregunta.Resultados" style="margin: 1px">
-            <mat-icon *ngIf="result.Texto == 'POSITIVO'"
-              >sentiment_very_satisfied</mat-icon
-            >
-            <mat-icon *ngIf="result.Texto == 'NEGATIVO'"
-              >sentiment_very_dissatisfied</mat-icon
-            >
-            <mat-icon
-              *ngIf="result.Texto == 'MIXTO' || result.Texto == 'NEUTRO'"
-              >sentiment_satisfied</mat-icon
-            >
-            {{ result.Texto }}: {{ result.Valor }}
-          </p>
+            <p *ngFor="let result of pregunta.Resultados" style="margin: 1px">
+                <mat-icon *ngIf="result.Texto == 'POSITIVO'"
+                >sentiment_very_satisfied</mat-icon
+                >
+                <mat-icon *ngIf="result.Texto == 'NEGATIVO'"
+                >sentiment_very_dissatisfied</mat-icon
+                >
+                <mat-icon
+                *ngIf="result.Texto == 'MIXTO' || result.Texto == 'NEUTRO'"
+                >sentiment_satisfied</mat-icon
+                >
+                {{ result.Texto }}: {{ result.Valor }}
+            </p>
+            <div *ngIf="pregunta.Tipo == 'TEXTOLIBRE'" appHighlight>
+                <app-pie-chart [resultadoEncuesta] = "resultadoEncuesta"></app-pie-chart>
+            </div>
         </div>
       </mat-card>
     </div>
 </div>
 </div>
+

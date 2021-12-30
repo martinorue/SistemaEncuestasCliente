@@ -32,6 +32,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EncuestasInterceptor } from './interceptors/encuestas-interceptor';
 
+/*ngx-Charts*/
+import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 
 
 @NgModule({
@@ -41,7 +45,8 @@ import { EncuestasInterceptor } from './interceptors/encuestas-interceptor';
     EncuestaResultadoComponent,
     HighlightDirective,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    PieChartComponent
   ],
   imports: [
     BrowserModule,
@@ -62,15 +67,16 @@ import { EncuestasInterceptor } from './interceptors/encuestas-interceptor';
     MatInputModule,
     MatSnackBarModule,
     HttpClientModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgxChartsModule,
   ],
   providers: [
     EncuestasService,
     { provide: 'BaseURL', useValue: baseURL },
     {
-      provide:HTTP_INTERCEPTORS,
-      useClass:EncuestasInterceptor,
-      multi:true
+      provide: HTTP_INTERCEPTORS,
+      useClass: EncuestasInterceptor,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

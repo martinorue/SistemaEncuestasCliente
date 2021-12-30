@@ -15,7 +15,6 @@ export class ResultadosService {
   constructor(private http: HttpClient) { }
 
   getResultados(id: number): Observable<ResultadoEncuesta> {
-    console.log(id);
     return this.http.get<ResultadoEncuesta>(`${environment.baseUri}/api/Resultados?id=` + id);
   }
 }
