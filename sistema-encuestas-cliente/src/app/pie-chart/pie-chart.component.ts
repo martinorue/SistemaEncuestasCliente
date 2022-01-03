@@ -19,7 +19,7 @@ export class PieChartComponent implements OnInit {
 
   // options
   gradient: boolean = true;
-  showLegend: boolean = true;
+  showLegend: boolean = false;
   showLabels: boolean = true;
   isDoughnut: boolean = true;
   legendPosition = 'below';
