@@ -21,28 +21,28 @@
     </button>
 </div>
 
-<div>
-    <div *ngIf="resultadoEncuesta">
-        <div *ngFor="let pregunta of resultadoEncuesta.Preguntas" style="max-width: 150px" fxLayoutAlign="start">
-            <mat-card class="card-resultado">
-                <mat-card-title>{{ pregunta.TextoPregunta }}</mat-card-title>
-                <mat-card-subtitle>Tipo: {{ pregunta.Tipo }}</mat-card-subtitle>
-                <div fxLayout="row">
-                    <div>
-                        <p *ngFor="let result of pregunta.Resultados" style="margin: 1px">
-                            <mat-icon *ngIf="result.Texto == 'POSITIVO'">sentiment_very_satisfied</mat-icon>
-                            <mat-icon *ngIf="result.Texto == 'NEGATIVO'">sentiment_very_dissatisfied</mat-icon>
-                            <mat-icon *ngIf="result.Texto == 'MIXTO' || result.Texto == 'NEUTRO'">sentiment_satisfied
-                            </mat-icon>
-                            {{ result.Texto }}: {{ result.Valor }}
-                        </p>
-                    </div>
-                    <div>
-                        <app-pie-chart [preguntaResultados]="pregunta.Resultados"></app-pie-chart>
-                    </div>
+<div *ngIf="resultadoEncuesta">
+    <div *ngFor="let pregunta of resultadoEncuesta.Preguntas" 
+    fxLayoutAlign="center"
+    fxLayout.xs="column">
+        <mat-card class="card-resultado">
+            <mat-card-title>{{ pregunta.TextoPregunta }}</mat-card-title>
+            <mat-card-subtitle>Tipo: {{ pregunta.Tipo }}</mat-card-subtitle>
+            <div fxLayout="row" fxLayout.xs="column">
+                <div class="resultados-container">
+                    <p *ngFor="let result of pregunta.Resultados" style="margin: 1px">
+                        <mat-icon *ngIf="result.Texto == 'POSITIVO'">sentiment_very_satisfied</mat-icon>
+                        <mat-icon *ngIf="result.Texto == 'NEGATIVO'">sentiment_very_dissatisfied</mat-icon>
+                        <mat-icon *ngIf="result.Texto == 'MIXTO' || result.Texto == 'NEUTRO'">sentiment_satisfied
+                        </mat-icon>
+                        {{ result.Texto }}: {{ result.Valor }}
+                    </p>
                 </div>
+                <div  id="pie-chart-parent">
+                    <app-pie-chart [preguntaResultados]="pregunta.Resultados"></app-pie-chart>
+                </div>
+            </div>
 
-            </mat-card>
-        </div>
+        </mat-card>
     </div>
 </div>

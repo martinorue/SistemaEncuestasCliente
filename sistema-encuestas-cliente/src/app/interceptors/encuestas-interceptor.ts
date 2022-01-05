@@ -18,7 +18,8 @@ export class EncuestasInterceptor implements HttpInterceptor {
 		// const token = localStorage.getItem('acces_token')!;
 		// let requestClone = req;
 
-		// if (!this.isLogin(req.url)) {
+		//definir a quién queremos enviar los encabezados, ej: authorization
+		// if (!this.isLogin(req.url)) {//que agregue el authorization solo si la url no contiene login
 		// 	requestClone = req.clone({
 		// 		headers: req.headers.set('Authorization', `Bearer ${token}`)
 		// 	});
@@ -39,16 +40,16 @@ export class EncuestasInterceptor implements HttpInterceptor {
 	private errorHandler(error: HttpErrorResponse): Observable<never> {
 		if (error instanceof HttpErrorResponse) {
 			if (error.error instanceof ErrorEvent) {
-				this.messageService.showError('ERROR DE CLIENTE', 'top right');
+				this.messageService.showError('Error de conexión', 'top right');
 			} else {
 				if (error.status === 401) {
 					this.messageService.showError('No cuenta con permisos para ingresar', 'top right');
 				} else {
-					this.messageService.showError('ERROR DE SERVIDOR', 'top right');
+					this.messageService.showError('Error de servidor', 'top right');
 				}
 			}
 		} else {
-			this.messageService.showError('OTRO TIPO DE ERROR', 'top right');
+			this.messageService.showError('Error', 'top right');
 		}
 		return throwError(error);
 	}

@@ -3,7 +3,7 @@
 	box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
 	border-radius: 10px;
     border-left: 5px solid #bc1710;
-    width: 75%;
+    /* width: 75%; */
 }
 
 /* div mat-icon{
@@ -12,4 +12,10 @@
 .volver-button{
     margin: 5px;
 	box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+}
+
+#pie-chart-parent { display: grid; }
+
+.resultados-container{
+    margin-right: 50px;
 }

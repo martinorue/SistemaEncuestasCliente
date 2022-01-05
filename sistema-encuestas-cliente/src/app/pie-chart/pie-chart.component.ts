@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PieChart } from '../domain/pie-chart';
 import { Resultado } from '../domain/resultado';
-import { ResultadoEncuesta } from '../domain/resultadoEncuesta';
 
 @Component({
   selector: 'app-pie-chart',
@@ -15,13 +14,14 @@ export class PieChartComponent implements OnInit {
 
   data: PieChart[] = [];
   @Input() preguntaResultados!: Resultado[];
-  view: [number, number] = [600, 350];
+  //view: [number, number] = [600, 350];
 
   // options
   gradient: boolean = true;
-  showLegend: boolean = false;
+  showLegend: boolean = true;
   showLabels: boolean = true;
   isDoughnut: boolean = true;
+  legendTitle: string = "";
   legendPosition = 'below';
 
   colorScheme = {

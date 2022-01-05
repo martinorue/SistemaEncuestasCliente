@@ -30,3 +30,9 @@ body {
 .flex-spacer {
   flex: 1 1 auto;
 }
+
+
+.chart-legend .legend-labels {
+  white-space: normal !important;
+  width: auto !important;
+}

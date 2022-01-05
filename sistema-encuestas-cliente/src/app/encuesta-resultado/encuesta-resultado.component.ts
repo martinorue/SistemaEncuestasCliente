@@ -14,16 +14,18 @@ import { ResultadosService } from '../services/resultados.service';
 })
 export class EncuestaResultadoComponent implements OnInit {
 
-  encuestaIds!: string[];
+  private _encuestaIds!: string[];
   encuesta!: Encuesta;
   resultadoEncuesta!: ResultadoEncuesta;
-  constructor(private _encuestasService: EncuestasService,
+
+  constructor(
+    private _encuestasService: EncuestasService,
     private _resultadosService: ResultadosService,
     private _route: ActivatedRoute,
     private _location: Location, @Inject('BaseURL') private _BaseURL: string) { }
 
   ngOnInit(): void {
-    this._encuestasService.getEncuestaIds().subscribe(encuestaIds => this.encuestaIds = encuestaIds);
+    this._encuestasService.getEncuestaIds().subscribe(encuestaIds => this._encuestaIds = encuestaIds);
     this._route.params
       .pipe(switchMap((params: Params) => {
         this._resultadosService.getResultados(params['id']).subscribe(resultadoEncuesta => this.resultadoEncuesta = resultadoEncuesta);

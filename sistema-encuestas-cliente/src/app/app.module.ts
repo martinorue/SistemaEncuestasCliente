@@ -35,6 +35,7 @@ import { EncuestasInterceptor } from './interceptors/encuestas-interceptor';
 /*ngx-Charts*/
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { EncuestaGuard } from './guards/encuesta.guard';
 
 
 
@@ -77,7 +78,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
       provide: HTTP_INTERCEPTORS,
       useClass: EncuestasInterceptor,
       multi: true
-    }
+    }, EncuestaGuard
   ],
   bootstrap: [AppComponent]
 })
