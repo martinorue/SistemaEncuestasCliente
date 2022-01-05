@@ -30,22 +30,17 @@ export class LoginComponent {
 
 
 	clickLogin(): void {
-		const user: IRQLogin = {
+		//Cuando esté listo el backend
+		/*const user: IRQLogin = {
 			username: this.dataLoginForm.userName,
 			password: this.dataLoginForm.password
 		};
 		this._loginService.login(user).subscribe((data) => {
 			this._jwtAuthService.login(data.accessToken);
 			void this._router.navigateByUrl('/dashboard');
-		});
+		});*/
 
-		/*const user: IRQLogin = { username: this.userName, password: this.password };
-
-		this._loginService.login(user).subscribe((data) => {
-			console.log(data);
-		});
-
-		void this._router.navigateByUrl('/dashboard');*/
+		void this._router.navigateByUrl('/dashboard');
 	}
 
 }
