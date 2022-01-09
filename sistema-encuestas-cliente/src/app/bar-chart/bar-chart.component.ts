@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BarChart } from '../domain/bar-chart';
 import { Resultado } from '../domain/resultado';
+import { multi } from '../domain/data';
 
 @Component({
   selector: 'app-bar-chart',
@@ -10,20 +11,22 @@ import { Resultado } from '../domain/resultado';
 export class BarChartComponent implements OnInit {
   @Input() preguntaResultados!: Resultado[];
   data: BarChart[] = [];
+  multi!: any[];
+  view: [number, number] = [700, 400];
 
-  constructor() { }
+  constructor() {
+    Object.assign(this, { multi })
+   }
 
   ngOnInit(): void {
-    let result: BarChart[] = [];
+    // let result: BarChart[] = [];
 
-    this.preguntaResultados.map(resultado => {
-      result.push(new BarChart());
-    })
+    // this.preguntaResultados.map(resultado => {
+    //   result.push(new BarChart());
+    // })
     
-    this.data = result;
+    // this.data = result;
   }
-
-  view: [number, number] = [700, 400];
 
   // options
   showXAxis: boolean = true;
@@ -35,9 +38,10 @@ export class BarChartComponent implements OnInit {
   showYAxisLabel: boolean = true;
   yAxisLabel: string = 'Menciones';
   legendTitle: string = 'Tags';
+  yScaleMax: number = 1000;
 
   colorScheme = {
-    domain: ['#5AA454', '#C7B42C', '#AAAAAA']
+    domain: ['#5AA454', '#C7B42C', '#AAAAAA', '#FF5733', '#33A4FF']
   };
 
  

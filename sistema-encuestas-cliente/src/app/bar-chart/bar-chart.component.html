@@ -1,7 +1,7 @@
 <ngx-charts-bar-vertical-2d
   [view]="view"
   [scheme]="colorScheme"
-  [results]="data"
+  [results]="multi"
   [gradient]="gradient"
   [xAxis]="showXAxis"
   [yAxis]="showYAxis"
@@ -10,8 +10,7 @@
   [showYAxisLabel]="showYAxisLabel"
   [xAxisLabel]="xAxisLabel"
   [yAxisLabel]="yAxisLabel"
-  [legendTitle]="legendTitle">
+  [legendTitle]="legendTitle"
+  [yScaleMax]="yScaleMax"
+  >
 </ngx-charts-bar-vertical-2d>
-<!-- (select)="onSelect($event)"
-  (activate)="onActivate($event)"
-  (deactivate)="onDeactivate($event)" -->
