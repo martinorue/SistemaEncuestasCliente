@@ -36,6 +36,7 @@ import { EncuestasInterceptor } from './interceptors/encuestas-interceptor';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { EncuestaGuard } from './guards/encuesta.guard';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
 
 
 
@@ -47,7 +48,8 @@ import { EncuestaGuard } from './guards/encuesta.guard';
     HighlightDirective,
     HeaderComponent,
     LoginComponent,
-    PieChartComponent
+    PieChartComponent,
+    BarChartComponent
   ],
   imports: [
     BrowserModule,
