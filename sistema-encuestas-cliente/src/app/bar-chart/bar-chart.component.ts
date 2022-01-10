@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BarChart } from '../domain/bar-chart';
-import { Resultado } from '../domain/resultado';
 import { Serie } from '../domain/bar-chart';
-import { ResultadoML } from '../domain/resultadoML';
+import { IResultadoML } from '../domain/resultadoEncuesta';
 
 @Component({
   selector: 'app-bar-chart',
@@ -10,7 +9,7 @@ import { ResultadoML } from '../domain/resultadoML';
   styleUrls: ['./bar-chart.component.css']
 })
 export class BarChartComponent implements OnInit {
-  @Input() preguntaResultados!: ResultadoML[];
+  @Input() preguntaResultados!: IResultadoML[];
   data: BarChart[] = [];
   view: [number, number] = [700, 400];
 
@@ -22,7 +21,6 @@ export class BarChartComponent implements OnInit {
     let datos: BarChart[] = [];
 
     this.preguntaResultados.map(resultado => {
-      console.log(resultado);
       
       let series: Serie[] = [];
 

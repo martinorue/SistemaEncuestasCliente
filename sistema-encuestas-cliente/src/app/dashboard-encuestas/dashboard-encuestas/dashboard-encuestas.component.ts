@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Encuesta } from 'src/app/domain/encuesta';
-import { ResultadoEncuesta } from 'src/app/domain/resultadoEncuesta';
+import { IEncuesta } from 'src/app/domain/pregunta';
+import { IResultadoEncuesta } from 'src/app/domain/resultadoEncuesta';
 import { EncuestasService } from 'src/app/services/encuestas.service';
 import { ResultadosService } from 'src/app/services/resultados.service';
 
@@ -11,8 +11,8 @@ import { ResultadosService } from 'src/app/services/resultados.service';
 })
 export class DashboardEncuestasComponent implements OnInit {
 
-  encuestas!: Encuesta[];
-  resultadoEncuesta!: ResultadoEncuesta;
+  encuestas!: IEncuesta[];
+  resultadoEncuesta!: IResultadoEncuesta;
 
 
   constructor(private servicioEncuestas: EncuestasService, private resultadosService: ResultadosService, @Inject('BaseURL') private BaseURL: string) { }

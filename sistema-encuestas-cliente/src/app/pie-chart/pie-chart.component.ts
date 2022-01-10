@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PieChart } from '../domain/pie-chart';
-import { Resultado } from '../domain/resultado';
+import { IPieChart } from '../domain/pie-chart';
+import { IResultado } from '../domain/resultadoEncuesta';
 
 @Component({
   selector: 'app-pie-chart',
@@ -12,8 +12,8 @@ export class PieChartComponent implements OnInit {
 
   }
 
-  data: PieChart[] = [];
-  @Input() preguntaResultados!: Resultado[];
+  data: IPieChart[] = [];
+  @Input() preguntaResultados!: IResultado[];
   //view: [number, number] = [600, 350];
 
   // options
@@ -30,14 +30,16 @@ export class PieChartComponent implements OnInit {
 
   ngOnInit(): void {
    
-    let result: PieChart[] = [];
+    let datos: IPieChart[] = [];
 
     this.preguntaResultados.map(resultado => {
-      result.push(new PieChart(resultado.Texto, resultado.Valor));
-    })
-    
-    this.data = result;
+      datos.push({
+        name: resultado.Texto,
+        value: resultado.Valor
+      });
+    });
 
+    this.data = datos;
     
   }
 

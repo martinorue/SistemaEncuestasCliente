@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Encuesta } from '../domain/encuesta';
 import { environment } from 'src/environments/environment';
+import { IEncuesta } from '../domain/pregunta';
 
 
 @Injectable({
@@ -16,12 +16,12 @@ export class EncuestasService {
   constructor(private http: HttpClient) {
   }
 
-  getEncuestas(): Observable<Encuesta[]> {
-    return this.http.get<Encuesta[]>(`${environment.baseUri}/api/Encuestas`);
+  getEncuestas(): Observable<IEncuesta[]> {
+    return this.http.get<IEncuesta[]>(`${environment.baseUri}/api/Encuestas`);
   }
 
-  getEncuesta(id: string): Observable<Encuesta> {
-    return this.http.get<Encuesta>(`${environment.baseUri}/api/Encuestas` + '/' + id);
+  getEncuesta(id: string): Observable<IEncuesta> {
+    return this.http.get<IEncuesta>(`${environment.baseUri}/api/Encuestas` + '/' + id);
   }
 
   getEncuestaIds(): Observable<string[] | any> {

@@ -2,10 +2,10 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { switchMap } from 'rxjs/operators';
-import { Encuesta } from '../domain/encuesta';
-import { ResultadoEncuesta } from '../domain/resultadoEncuesta';
 import { EncuestasService } from '../services/encuestas.service';
 import { ResultadosService } from '../services/resultados.service';
+import { IResultadoEncuesta } from '../domain/resultadoEncuesta';
+import { IEncuesta } from '../domain/pregunta';
 
 @Component({
   selector: 'app-encuesta-resultado',
@@ -15,8 +15,8 @@ import { ResultadosService } from '../services/resultados.service';
 export class EncuestaResultadoComponent implements OnInit {
 
   private _encuestaIds!: string[];
-  encuesta!: Encuesta;
-  resultadoEncuesta!: ResultadoEncuesta;
+  encuesta!: IEncuesta;
+  resultadoEncuesta!: IResultadoEncuesta;
 
   constructor(
     private _encuestasService: EncuestasService,
