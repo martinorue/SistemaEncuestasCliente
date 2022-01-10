@@ -1,9 +1,9 @@
 export interface BarChart {
   name: string;
-  series: Series[];
+  series: Serie[];
 }
 
-export interface Series {
+export interface Serie {
   name: string;
   value: number;
 }

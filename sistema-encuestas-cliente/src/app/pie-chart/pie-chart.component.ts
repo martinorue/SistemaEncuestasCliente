@@ -37,6 +37,8 @@ export class PieChartComponent implements OnInit {
     })
     
     this.data = result;
+
+    
   }
 
 

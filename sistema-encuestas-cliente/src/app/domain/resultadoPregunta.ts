@@ -1,4 +1,5 @@
 import { Resultado } from "./resultado";
+import { ResultadoML } from "./resultadoML";
 
 export class ResultadoPregunta {
     //id!: number;
@@ -9,4 +10,5 @@ export class ResultadoPregunta {
     Requerida!: true;
     Opciones!: null;
     Resultados!: Resultado[];
+    ResultadosML!: ResultadoML[];
 }

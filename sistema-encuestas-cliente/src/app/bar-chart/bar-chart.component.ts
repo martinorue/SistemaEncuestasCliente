@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BarChart } from '../domain/bar-chart';
 import { Resultado } from '../domain/resultado';
-import { multi } from '../domain/data';
+import { Serie } from '../domain/bar-chart';
+import { ResultadoML } from '../domain/resultadoML';
 
 @Component({
   selector: 'app-bar-chart',
@@ -9,23 +10,37 @@ import { multi } from '../domain/data';
   styleUrls: ['./bar-chart.component.css']
 })
 export class BarChartComponent implements OnInit {
-  @Input() preguntaResultados!: Resultado[];
+  @Input() preguntaResultados!: ResultadoML[];
   data: BarChart[] = [];
-  multi!: any[];
   view: [number, number] = [700, 400];
 
   constructor() {
-    Object.assign(this, { multi })
-   }
+  }
 
   ngOnInit(): void {
-    // let result: BarChart[] = [];
 
-    // this.preguntaResultados.map(resultado => {
-    //   result.push(new BarChart());
-    // })
+    let datos: BarChart[] = [];
+
+    this.preguntaResultados.map(resultado => {
+      console.log(resultado);
+      
+      let series: Serie[] = [];
+
+      const serie: Serie = {
+        name: resultado.Texto,
+        value: resultado.Valor
+      }
+      series.push(serie);
+      const dato: BarChart = {
+        name: resultado.Etiqueta,
+        series: series
+      }
+      datos.push(dato);
+
+    })
+
+    this.data = datos
     
-    // this.data = result;
   }
 
   // options
@@ -44,6 +59,6 @@ export class BarChartComponent implements OnInit {
     domain: ['#5AA454', '#C7B42C', '#AAAAAA', '#FF5733', '#33A4FF']
   };
 
- 
+
 
 }
