@@ -41,7 +41,7 @@
                 <div  id="pie-chart-parent">
                     <app-pie-chart [preguntaResultados]="pregunta.Resultados"></app-pie-chart>
                 </div>  
-                <div>
+                <div *ngIf="pregunta.Tipo == 'TEXTOLIBRE'">
                     <app-bar-chart></app-bar-chart>
                 </div>
             </div>
