@@ -15,7 +15,7 @@ export class BarChartComponent implements OnInit {
 
   constructor() {
     console.log(innerWidth);
-    
+
     this.view = [innerWidth / 2, 400];
   }
 
@@ -32,6 +32,8 @@ export class BarChartComponent implements OnInit {
         value: resultado.Valor
       }
       series.push(serie);
+
+      this.yScaleMax = this.getMaximoMenciones(series.map(serie => serie.value));
 
       const dato: BarChart = {
         name: resultado.Texto,
@@ -56,15 +58,30 @@ export class BarChartComponent implements OnInit {
   xAxisLabel: string = 'Sentimientos';
   showYAxisLabel: boolean = true;
   yAxisLabel: string = 'Menciones';
-  yScaleMax: number = 100;
+  yScaleMax!: number;
 
   colorScheme = {
     domain: ['#5AA454', '#C7B42C', '#AAAAAA', '#FF5733', '#33A4FF']
   };
 
   onResize(event: UIEvent) {
-    const w = event.target as Window; 
+    const w = event.target as Window;
     this.view = [w.innerWidth / 2, 400];
+  }
+
+  getMaximoMenciones(seriesValues: number[]) {
+    let maxCantMencions: number = Math.max(...seriesValues);
+    return this.getScaleMax(maxCantMencions);
+  }
+
+  getScaleMax(maxCantMencion: number) {
+    const numero = maxCantMencion.toString();
+    const cifras = numero.length;
+    let scaleMax: number = 1;
+    for (let index = 1; index < cifras; index++) {
+      scaleMax = scaleMax * 10;
+    }
+    return scaleMax;
   }
 
 }
