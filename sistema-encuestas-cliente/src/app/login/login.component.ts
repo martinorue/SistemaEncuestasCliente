@@ -15,7 +15,7 @@ export class LoginComponent {
 
 
 	constructor(private _router: Router, 
-		private _loginService: AuthService, 
+		private _authService: AuthService, 
 		private _jwtAuthService: JwtAuthService
 		) { }
 
@@ -28,17 +28,16 @@ export class LoginComponent {
 	};
 
 
-
 	clickLogin(): void {
 		//Cuando esté listo el backend
-		/*const user: IRQLogin = {
+		const user: IRQLogin = {
 			username: this.dataLoginForm.userName,
 			password: this.dataLoginForm.password
 		};
-		this._loginService.login(user).subscribe((data) => {
+		this._authService.login(user).subscribe((data) => {
 			this._jwtAuthService.login(data.accessToken);
 			void this._router.navigateByUrl('/dashboard');
-		});*/
+		});
 
 		void this._router.navigateByUrl('/dashboard');
 	}
