@@ -15,8 +15,6 @@ export class BarChartComponent implements OnInit {
   view: [number, number] = [700, 400];
   opciones = OpcionesBarChart;
   constructor() {
-    console.log(innerWidth);
-
     this.view = [innerWidth / 2, 400];
   }
 
@@ -55,19 +53,20 @@ export class BarChartComponent implements OnInit {
 
   getMaximoMenciones(seriesValues: number[]) {
     let maxCantMencions: number = Math.max(...seriesValues);
-    console.log(maxCantMencions);
 
     return this.getScaleMax(maxCantMencions);
   }
 
   getScaleMax(maxCantMencion: number) {
-    const numero = maxCantMencion.toString();
-    const cifras = numero.length;
-    let scaleMax: number = 1;
-    for (let index = 0; index < cifras; index++) {
-      scaleMax = scaleMax * 10;
+    //let scaleMax = ~~(maxCantMencion * 1.5);
+    if(maxCantMencion % 10 == 0){
+      return maxCantMencion;
+    }else{
+      while (maxCantMencion % 10 != 0) {
+        maxCantMencion++;
+      }
     }
-    return scaleMax;
+    return maxCantMencion;
   }
 
 }
