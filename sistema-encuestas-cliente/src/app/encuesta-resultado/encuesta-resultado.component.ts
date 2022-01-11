@@ -22,7 +22,7 @@ export class EncuestaResultadoComponent implements OnInit {
     private _encuestasService: EncuestasService,
     private _resultadosService: ResultadosService,
     private _route: ActivatedRoute,
-    private _location: Location, @Inject('BaseURL') private _BaseURL: string) { }
+    private _location: Location) { }
 
   ngOnInit(): void {
     this._encuestasService.getEncuestaIds().subscribe(encuestaIds => this._encuestaIds = encuestaIds);

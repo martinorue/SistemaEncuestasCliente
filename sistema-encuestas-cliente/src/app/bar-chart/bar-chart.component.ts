@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { BarChart } from '../domain/bar-chart';
 import { Serie } from '../domain/bar-chart';
 import { IResultadoML } from '../domain/resultadoEncuesta';
@@ -9,28 +9,32 @@ import { IResultadoML } from '../domain/resultadoEncuesta';
   styleUrls: ['./bar-chart.component.css']
 })
 export class BarChartComponent implements OnInit {
-  @Input() preguntaResultados!: IResultadoML[];
+  @Input() preguntaResultadosML!: IResultadoML[];
   data: BarChart[] = [];
   view: [number, number] = [700, 400];
 
   constructor() {
+    console.log(innerWidth);
+    
+    this.view = [innerWidth / 2, 400];
   }
 
   ngOnInit(): void {
 
     let datos: BarChart[] = [];
 
-    this.preguntaResultados.map(resultado => {
-      
+    this.preguntaResultadosML.map(resultado => {
+
       let series: Serie[] = [];
 
       const serie: Serie = {
-        name: resultado.Texto,
+        name: resultado.Etiqueta,
         value: resultado.Valor
       }
       series.push(serie);
+
       const dato: BarChart = {
-        name: resultado.Etiqueta,
+        name: resultado.Texto,
         series: series
       }
       datos.push(dato);
@@ -38,25 +42,29 @@ export class BarChartComponent implements OnInit {
     })
 
     this.data = datos
-    
+
   }
 
   // options
   showXAxis: boolean = true;
   showYAxis: boolean = true;
   gradient: boolean = true;
+  legendTitle: string = 'Tags';
   showLegend: boolean = true;
+  legendPosition: string = 'right'
   showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Sentimiento';
+  xAxisLabel: string = 'Sentimientos';
   showYAxisLabel: boolean = true;
   yAxisLabel: string = 'Menciones';
-  legendTitle: string = 'Tags';
-  yScaleMax: number = 1000;
+  yScaleMax: number = 100;
 
   colorScheme = {
     domain: ['#5AA454', '#C7B42C', '#AAAAAA', '#FF5733', '#33A4FF']
   };
 
-
+  onResize(event: UIEvent) {
+    const w = event.target as Window; 
+    this.view = [w.innerWidth / 2, 400];
+  }
 
 }

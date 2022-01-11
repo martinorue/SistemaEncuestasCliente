@@ -14,7 +14,7 @@ export class PieChartComponent implements OnInit {
 
   data: IPieChart[] = [];
   @Input() preguntaResultados!: IResultado[];
-  //view: [number, number] = [600, 350];
+  view: [number, number] = [300, 175];
 
   // options
   gradient: boolean = true;

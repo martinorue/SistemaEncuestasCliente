@@ -1,17 +1,3 @@
-
-// export interface IResultadoEncuesta {
-//     //id!: number;
-//     EncuestaID: number;
-//     Denominacion: string;
-//     FechaInicio: string;
-//     FechaFin: string;
-//     CantidadEncuestados: number;
-//     Estado: string;
-//     Objetivo: string;
-//     Preguntas: ResultadoPregunta[]
-// }
-
-
 export interface IResultadoEncuesta {
   EncuestaID: number;
   Denominacion: string;
@@ -32,7 +18,7 @@ export interface IPregunta {
   Requerida: boolean;
   Opciones?: any;
   Resultados: IResultado[];
-  ResultadosML?: IResultadoML[];
+  ResultadosML: IResultadoML[];
 }
 
 export interface IResultadoML {

@@ -22,30 +22,31 @@
 </div>
 
 <div *ngIf="resultadoEncuesta">
-    <div *ngFor="let pregunta of resultadoEncuesta.Preguntas" 
-    fxLayoutAlign="center"
-    fxLayout.xs="column">
+    <div *ngFor="let pregunta of resultadoEncuesta.Preguntas" fxLayout.xs="column">
         <mat-card class="card-resultado">
-            <mat-card-title>{{ pregunta.TextoPregunta }}</mat-card-title>
-            <mat-card-subtitle>Tipo: {{ pregunta.Tipo }}</mat-card-subtitle>
-            <div fxLayout="row" fxLayout.xs="column">
+            <div class="card-title">
+                <mat-card-title>{{ pregunta.TextoPregunta }}</mat-card-title>
+                <mat-card-subtitle>Tipo: {{ pregunta.Tipo }}</mat-card-subtitle>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly start">
                 <div class="resultados-container">
-                    <p *ngFor="let result of pregunta.Resultados" style="margin: 1px">
+                    <p *ngFor="let result of pregunta.Resultados">
                         <mat-icon *ngIf="result.Texto == 'POSITIVO'">sentiment_very_satisfied</mat-icon>
                         <mat-icon *ngIf="result.Texto == 'NEGATIVO'">sentiment_very_dissatisfied</mat-icon>
                         <mat-icon *ngIf="result.Texto == 'MIXTO' || result.Texto == 'NEUTRO'">sentiment_satisfied
                         </mat-icon>
-                        {{ result.Texto }}: {{ result.Valor }}
+                        <span>{{ result.Texto }}S: {{ result.Valor }}</span>
                     </p>
                 </div>
-                <div  id="pie-chart-parent">
+                <div class="pie-chart-parent">
                     <app-pie-chart [preguntaResultados]="pregunta.Resultados"></app-pie-chart>
-                </div>  
-                <div *ngIf="pregunta.Tipo == 'TEXTOLIBRE'">
-                    <!-- <app-bar-chart [preguntaResultados]="pregunta.Resultados"></app-bar-chart> -->
+                </div>
+                <div *ngIf="pregunta.Tipo == 'TEXTOLIBRE'" class="bar-chart-parent">
+                    <app-bar-chart [preguntaResultadosML]="pregunta.ResultadosML"></app-bar-chart>
                 </div>
             </div>
-
         </mat-card>
+
+
     </div>
 </div>

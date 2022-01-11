@@ -1,16 +1,18 @@
-<ngx-charts-bar-vertical-2d
-  [view]="view"
-  [scheme]="colorScheme"
-  [results]="data"
-  [gradient]="gradient"
-  [xAxis]="showXAxis"
-  [yAxis]="showYAxis"
-  [legend]="showLegend"
-  [showXAxisLabel]="showXAxisLabel"
-  [showYAxisLabel]="showYAxisLabel"
-  [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel"
-  [legendTitle]="legendTitle"
-  [yScaleMax]="yScaleMax"
-  >
-</ngx-charts-bar-vertical-2d>
+  <ngx-charts-bar-vertical-2d
+  (window:resize)="onResize($event)"
+    [scheme]="colorScheme"
+    [view]="view"
+    [results]="data"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legendTitle]="legendTitle"
+    [legend]="showLegend"
+    [legendPosition]="legendPosition"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    [yScaleMax]="yScaleMax"
+    >
+  </ngx-charts-bar-vertical-2d>

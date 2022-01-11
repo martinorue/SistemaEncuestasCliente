@@ -15,7 +15,7 @@ export class DashboardEncuestasComponent implements OnInit {
   resultadoEncuesta!: IResultadoEncuesta;
 
 
-  constructor(private servicioEncuestas: EncuestasService, private resultadosService: ResultadosService, @Inject('BaseURL') private BaseURL: string) { }
+  constructor(private servicioEncuestas: EncuestasService, private resultadosService: ResultadosService) { }
 
   ngOnInit(): void {
     this.servicioEncuestas.getEncuestas().subscribe(encuestas => this.encuestas = encuestas);

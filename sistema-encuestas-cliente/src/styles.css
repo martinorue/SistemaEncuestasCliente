@@ -31,8 +31,12 @@ body {
   flex: 1 1 auto;
 }
 
-
 .chart-legend .legend-labels {
   white-space: normal !important;
   width: auto !important;
 }
+
+/* svg{
+  width: 50%;
+  height: 50vh;
+} */
