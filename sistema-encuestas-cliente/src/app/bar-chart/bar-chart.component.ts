@@ -2,6 +2,7 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { BarChart } from '../domain/bar-chart';
 import { Serie } from '../domain/bar-chart';
 import { IResultadoML } from '../domain/resultadoEncuesta';
+import { OpcionesBarChart } from '../domain/bar-chart';
 
 @Component({
   selector: 'app-bar-chart',
@@ -12,7 +13,7 @@ export class BarChartComponent implements OnInit {
   @Input() preguntaResultadosML!: IResultadoML[];
   data: BarChart[] = [];
   view: [number, number] = [700, 400];
-
+  opciones = OpcionesBarChart;
   constructor() {
     console.log(innerWidth);
 
@@ -20,8 +21,8 @@ export class BarChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let series: Serie[] = [];
 
+    let series: Serie[] = [];
     let datos: BarChart[] = [];
 
     this.preguntaResultadosML.map(resultado => {
@@ -30,7 +31,7 @@ export class BarChartComponent implements OnInit {
         value: resultado.Valor
       }
       series.push(serie);
-      
+
       const dato: BarChart = {
         name: resultado.Texto,
         series: series
@@ -38,24 +39,10 @@ export class BarChartComponent implements OnInit {
       datos.push(dato);
 
     })
-    
-    this.yScaleMax = this.getMaximoMenciones(series.map(serie => serie.value));
+
+    this.opciones.yScaleMax = this.getMaximoMenciones(series.map(serie => serie.value));
     this.data = datos
-
   }
-
-  // options
-  showXAxis: boolean = true;
-  showYAxis: boolean = true;
-  gradient: boolean = true;
-  legendTitle: string = 'Tags';
-  showLegend: boolean = true;
-  legendPosition: string = 'right'
-  showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Sentimientos';
-  showYAxisLabel: boolean = true;
-  yAxisLabel: string = 'Menciones';
-  yScaleMax!: number;
 
   colorScheme = {
     domain: ['#5AA454', '#C7B42C', '#AAAAAA', '#FF5733', '#33A4FF']
@@ -69,7 +56,7 @@ export class BarChartComponent implements OnInit {
   getMaximoMenciones(seriesValues: number[]) {
     let maxCantMencions: number = Math.max(...seriesValues);
     console.log(maxCantMencions);
-    
+
     return this.getScaleMax(maxCantMencions);
   }
 
