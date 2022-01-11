@@ -20,21 +20,17 @@ export class BarChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let series: Serie[] = [];
 
     let datos: BarChart[] = [];
 
     this.preguntaResultadosML.map(resultado => {
-
-      let series: Serie[] = [];
-
       const serie: Serie = {
         name: resultado.Etiqueta,
         value: resultado.Valor
       }
       series.push(serie);
-
-      this.yScaleMax = this.getMaximoMenciones(series.map(serie => serie.value));
-
+      
       const dato: BarChart = {
         name: resultado.Texto,
         series: series
@@ -42,7 +38,8 @@ export class BarChartComponent implements OnInit {
       datos.push(dato);
 
     })
-
+    
+    this.yScaleMax = this.getMaximoMenciones(series.map(serie => serie.value));
     this.data = datos
 
   }
@@ -71,6 +68,8 @@ export class BarChartComponent implements OnInit {
 
   getMaximoMenciones(seriesValues: number[]) {
     let maxCantMencions: number = Math.max(...seriesValues);
+    console.log(maxCantMencions);
+    
     return this.getScaleMax(maxCantMencions);
   }
 
@@ -78,7 +77,7 @@ export class BarChartComponent implements OnInit {
     const numero = maxCantMencion.toString();
     const cifras = numero.length;
     let scaleMax: number = 1;
-    for (let index = 1; index < cifras; index++) {
+    for (let index = 0; index < cifras; index++) {
       scaleMax = scaleMax * 10;
     }
     return scaleMax;
