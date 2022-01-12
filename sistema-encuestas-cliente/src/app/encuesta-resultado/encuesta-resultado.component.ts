@@ -5,7 +5,7 @@ import { switchMap } from 'rxjs/operators';
 import { EncuestasService } from '../services/encuestas.service';
 import { ResultadosService } from '../services/resultados.service';
 import { IResultadoEncuesta } from '../domain/resultadoEncuesta';
-import { IEncuesta } from '../domain/pregunta';
+import { IEncuesta } from '../domain/encuesta';
 
 @Component({
   selector: 'app-encuesta-resultado',

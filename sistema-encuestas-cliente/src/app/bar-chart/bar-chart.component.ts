@@ -10,10 +10,11 @@ import { OpcionesBarChart } from '../domain/bar-chart';
   styleUrls: ['./bar-chart.component.css']
 })
 export class BarChartComponent implements OnInit {
-  @Input() preguntaResultadosML!: IResultadoML[];
+  @Input() preguntaResultadosML: IResultadoML[] | null = [];
   data: BarChart[] = [];
   view: [number, number] = [700, 400];
   opciones = OpcionesBarChart;
+
   constructor() {
     this.view = [innerWidth / 2, 400];
   }
@@ -23,7 +24,7 @@ export class BarChartComponent implements OnInit {
     let series: Serie[] = [];
     let datos: BarChart[] = [];
 
-    this.preguntaResultadosML.map(resultado => {
+    this.preguntaResultadosML?.map(resultado => {
       const serie: Serie = {
         name: resultado.Etiqueta,
         value: resultado.Valor
@@ -58,7 +59,7 @@ export class BarChartComponent implements OnInit {
   }
 
   getScaleMax(maxCantMencion: number) {
-    //let scaleMax = ~~(maxCantMencion * 1.5);
+
     if(maxCantMencion % 10 == 0){
       return maxCantMencion;
     }else{

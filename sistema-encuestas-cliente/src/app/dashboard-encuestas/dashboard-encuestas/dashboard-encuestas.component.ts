@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { IEncuesta } from 'src/app/domain/pregunta';
+import { IEncuesta } from 'src/app/domain/encuesta';
 import { IResultadoEncuesta } from 'src/app/domain/resultadoEncuesta';
 import { EncuestasService } from 'src/app/services/encuestas.service';
 import { ResultadosService } from 'src/app/services/resultados.service';

@@ -13,7 +13,7 @@ export class PieChartComponent implements OnInit {
   }
 
   data: IPieChart[] = [];
-  @Input() preguntaResultados!: IResultado[];
+  @Input() preguntaResultados: IResultado[] | null = [];
   view: [number, number] = [300, 175];
   opciones = OpcionesPieChart;
 
@@ -25,7 +25,7 @@ export class PieChartComponent implements OnInit {
    
     let datos: IPieChart[] = [];
 
-    this.preguntaResultados.map(resultado => {
+    this.preguntaResultados?.map(resultado => {
       datos.push({
         name: resultado.Texto,
         value: resultado.Valor

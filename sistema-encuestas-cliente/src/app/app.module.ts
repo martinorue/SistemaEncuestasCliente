@@ -31,12 +31,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EncuestasInterceptor } from './interceptors/encuestas-interceptor';
+import { MatSelectModule } from '@angular/material/select';
 
 /*ngx-Charts*/
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { EncuestaGuard } from './guards/encuesta.guard';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { CrearEncuestaComponent } from './crear-encuesta/crear-encuesta.component';
+import { CrearPreguntasComponent } from './crear-preguntas/crear-preguntas.component';
 
 
 
@@ -49,7 +52,9 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
     HeaderComponent,
     LoginComponent,
     PieChartComponent,
-    BarChartComponent
+    BarChartComponent,
+    CrearEncuestaComponent,
+    CrearPreguntasComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +74,7 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
     MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule,
+    MatSelectModule,
     HttpClientModule,
     FlexLayoutModule,
     NgxChartsModule,

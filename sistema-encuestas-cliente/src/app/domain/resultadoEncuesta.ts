@@ -17,8 +17,8 @@ export interface IPregunta {
   EncuestaID: number;
   Requerida: boolean;
   Opciones?: any;
-  Resultados: IResultado[];
-  ResultadosML: IResultadoML[];
+  Resultados: IResultado[] | null;
+  ResultadosML: IResultadoML[] | null;
 }
 
 export interface IResultadoML {

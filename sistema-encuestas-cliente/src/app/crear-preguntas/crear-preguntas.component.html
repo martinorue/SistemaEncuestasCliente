@@ -1,0 +1,19 @@
+<mat-card style="border: 1px solid">
+  <label><h3>Pregunta</h3></label>
+  <mat-form-field appearance="fill">
+    <textarea matInput placeholder="texto pregunta..." id="pregunta" #nuevaPregunta></textarea>
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Tipo Pregunta</mat-label>
+    <mat-select [(ngModel)]="opcionSeleccionada" name="tipoPregunta">
+      <mat-option *ngFor="let tipo of tiposPregunta" [value]="tipo.value">
+        {{tipo.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-button (click)="agregarNuevaPregunta(nuevaPregunta.value)">
+      <mat-icon> add_circle_outline </mat-icon>
+  </button>
+</mat-card>

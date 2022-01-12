@@ -1,0 +1,25 @@
+<h1>Nueva encuesta</h1>
+<h2>Aquí se define una nueva encuesta</h2>
+
+<form #formNuevaEncuesta="ngForm" novalidate>
+    <label for="nombreEncuesta"><h3>¿Cuál será el nombre de su encuesta?</h3></label>
+    <mat-form-field>
+        <textarea matInput placeholder="Nombre encuesta..." id="nombreEncuesta" name="nombreEncuesta" ngModel></textarea>
+    </mat-form-field>
+    <label for="objetivoEncuesta"><h3>Defina un objetivo</h3></label>
+    <mat-form-field>
+        <textarea matInput placeholder="Objetivo encuesta..." id="objetivoEncuesta" name="objetivoEncuesta" ngModel></textarea>
+    </mat-form-field>
+
+    
+    <div *ngFor="let nuevaPregunta of nuevasPreguntas">
+        <app-crear-preguntas (nuevasPreguntas)="agregarPregunta($event)"></app-crear-preguntas>
+    </div>
+
+    <div>
+        <button class="button-submit" mat-raised-button type="submit" color="accent" (click)="onSubmit(formNuevaEncuesta)">
+            Finalizar
+        </button>
+    </div>
+
+</form>
