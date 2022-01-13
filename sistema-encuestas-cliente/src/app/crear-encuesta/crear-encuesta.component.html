@@ -1,25 +1,94 @@
-<h1>Nueva encuesta</h1>
-<h2>Aquí se define una nueva encuesta</h2>
+<app-header></app-header>
 
-<form #formNuevaEncuesta="ngForm" novalidate>
-    <label for="nombreEncuesta"><h3>¿Cuál será el nombre de su encuesta?</h3></label>
-    <mat-form-field>
-        <textarea matInput placeholder="Nombre encuesta..." id="nombreEncuesta" name="nombreEncuesta" ngModel></textarea>
-    </mat-form-field>
-    <label for="objetivoEncuesta"><h3>Defina un objetivo</h3></label>
-    <mat-form-field>
-        <textarea matInput placeholder="Objetivo encuesta..." id="objetivoEncuesta" name="objetivoEncuesta" ngModel></textarea>
-    </mat-form-field>
+<div class="container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-around center"
+    fxLayoutGap="10px" fxLayoutGap.xs="0">
 
-    
-    <div *ngFor="let nuevaPregunta of nuevasPreguntas">
-        <app-crear-preguntas (nuevasPreguntas)="agregarPregunta($event)"></app-crear-preguntas>
-    </div>
+    <h1>Nueva encuesta</h1>
+    <h2>Aquí se define una nueva encuesta</h2>
 
-    <div>
-        <button class="button-submit" mat-raised-button type="submit" color="accent" (click)="onSubmit(formNuevaEncuesta)">
-            Finalizar
-        </button>
-    </div>
+    <form #formNuevaEncuesta="ngForm" #eform="ngForm">
+        <mat-card style="margin-bottom: 15px">
+            <label for="nombreEncuesta">
+                <h3>Nombre de la encuesta</h3>
+            </label>
+            <mat-form-field class="full-width">
+                <textarea matInput placeholder="Nombre encuesta..." id="nombreEncuesta" name="nombreEncuesta"
+                    ngModel required></textarea>
+            </mat-form-field>
+        </mat-card>
+        <mat-card style="margin-bottom: 15px">
+            <label for="objetivoEncuesta">
+                <h3>Defina un objetivo</h3>
+            </label>
+            <mat-form-field class="full-width">
+                <textarea matInput placeholder="Objetivo encuesta..." id="objetivoEncuesta" name="objetivoEncuesta"
+                    ngModel required></textarea>
+            </mat-form-field>
+        </mat-card>
 
-</form>
+        <mat-form-field appearance="fill">
+            <mat-label>Período de la encuesta</mat-label>
+            <mat-date-range-input [formGroup]="rango" [rangePicker]="picker">
+                <input matStartDate formControlName="comienzo" placeholder="Comienzo">
+                <input matEndDate formControlName="fin" placeholder="Fin">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+
+            <mat-error *ngIf="rango.controls.comienzo.hasError('matStartDateInvalid')">Ingrese un comienzo válido</mat-error>
+            <mat-error *ngIf="rango.controls.fin.hasError('matEndDateInvalid')">Ingrese un fin válido</mat-error>
+        </mat-form-field>
+
+        <mat-card style="margin-bottom: 15px">
+            <label>
+                <h3>Agregar Preguntas</h3>
+            </label>
+            <mat-form-field appearance="fill" class="full-width">
+                <textarea matInput placeholder="Texto pregunta..." id="pregunta" name="pregunta" [(ngModel)]="pregunta"
+                    required></textarea>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Tipo Pregunta</mat-label>
+                <mat-select [(ngModel)]="tipoPregunta" name="tipoPregunta" required>
+                    <mat-option *ngFor="let tipo of tiposPregunta" [value]="tipo.value">
+                        {{tipo.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <p>
+                <mat-slide-toggle (change)="onChange()" [(ngModel)]="requerida">Requerida</mat-slide-toggle>
+            </p>
+            <p>
+                <button mat-raised-button mat-mini-fab [disabled]="!validarPregunta()"
+                    (click)="agregarNuevaPregunta(pregunta)" style="border-radius: 150px;">
+                    <mat-icon> add </mat-icon>
+                </button>
+            </p>
+        </mat-card>
+
+        <div *ngFor="let pregunta of nuevasPreguntas">
+            <mat-card style="margin-bottom: 15px; cursor: pointer;">
+                <span contenteditable="true" id="preguntaEditable">{{pregunta.TextoPregunta}}</span>
+
+                <button mat-button style="float: right; cursor: pointer;" (click)="borrarPregunta(pregunta)">
+                    <span>
+                        <mat-icon>delete_outline</mat-icon>
+                    </span>
+                </button>
+
+            </mat-card>
+        </div>
+        <div>
+            <button [disabled]="!validarEncuesta(formNuevaEncuesta)" class="button-submit" mat-raised-button type="submit"
+                color="accent" (click)="onSubmit(formNuevaEncuesta)">
+                Finalizar
+            </button>
+        </div>
+    </form>
+
+
+
+
+
+</div>

@@ -36,6 +36,10 @@ body {
   width: auto !important;
 }
 
+.full-width{
+  width: 75%;
+}
+
 /* svg{
   width: 50%;
   height: 50vh;

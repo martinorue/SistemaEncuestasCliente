@@ -38,4 +38,6 @@ export class CrearPreguntasComponent implements OnInit {
     this.nuevasPreguntas.emit(nuevaPregunta);
   }
 
+  
+
 }

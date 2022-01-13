@@ -14,13 +14,13 @@ import { IEncuesta } from '../domain/encuesta';
 })
 export class EncuestaResultadoComponent implements OnInit {
 
+  resultadoEncuesta!: IResultadoEncuesta;
   private _encuestaIds!: string[];
   encuesta!: IEncuesta;
-  resultadoEncuesta!: IResultadoEncuesta;
 
   constructor(
-    private _encuestasService: EncuestasService,
     private _resultadosService: ResultadosService,
+    private _encuestasService: EncuestasService,
     private _route: ActivatedRoute,
     private _location: Location) { }
 

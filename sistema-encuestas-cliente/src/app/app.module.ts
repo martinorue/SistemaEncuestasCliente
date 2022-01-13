@@ -32,6 +32,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EncuestasInterceptor } from './interceptors/encuestas-interceptor';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 /*ngx-Charts*/
 import { PieChartComponent } from './pie-chart/pie-chart.component';
@@ -75,11 +78,16 @@ import { CrearPreguntasComponent } from './crear-preguntas/crear-preguntas.compo
     MatInputModule,
     MatSnackBarModule,
     MatSelectModule,
+    MatSlideToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     HttpClientModule,
     FlexLayoutModule,
     NgxChartsModule,
   ],
   providers: [
+    MatDatepickerModule,
+    MatNativeDateModule,
     EncuestasService,
     // { provide: 'BaseURL', useValue: baseURL },
     {
