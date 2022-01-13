@@ -44,7 +44,6 @@ export class CrearEncuestaComponent implements OnInit {
   }
 
   validarEncuesta(formNuevaEncuesta: NgForm) {
-    console.log(formNuevaEncuesta.value);
 
     if (formNuevaEncuesta != null || formNuevaEncuesta != undefined) {
       if (formNuevaEncuesta.value.nombreEncuesta != undefined
