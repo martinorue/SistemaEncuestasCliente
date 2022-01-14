@@ -35,6 +35,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 /*ngx-Charts*/
 import { PieChartComponent } from './pie-chart/pie-chart.component';
@@ -81,6 +82,7 @@ import { CrearPreguntasComponent } from './crear-preguntas/crear-preguntas.compo
     MatSlideToggleModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    DragDropModule,
     HttpClientModule,
     FlexLayoutModule,
     NgxChartsModule,

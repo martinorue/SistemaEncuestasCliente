@@ -12,8 +12,8 @@
                 <h3>Nombre de la encuesta</h3>
             </label>
             <mat-form-field class="full-width">
-                <textarea matInput placeholder="Nombre encuesta..." id="nombreEncuesta" name="nombreEncuesta"
-                    ngModel required></textarea>
+                <textarea matInput placeholder="Nombre encuesta..." id="nombreEncuesta" name="nombreEncuesta" ngModel
+                    required></textarea>
             </mat-form-field>
         </mat-card>
         <mat-card style="margin-bottom: 15px">
@@ -35,9 +35,12 @@
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-date-range-picker #picker></mat-date-range-picker>
 
-            <mat-error *ngIf="rango.controls.comienzo.hasError('matStartDateInvalid')">Ingrese un comienzo válido</mat-error>
+            <mat-error *ngIf="rango.controls.comienzo.hasError('matStartDateInvalid')">Ingrese un comienzo válido
+            </mat-error>
             <mat-error *ngIf="rango.controls.fin.hasError('matEndDateInvalid')">Ingrese un fin válido</mat-error>
         </mat-form-field>
+
+
 
         <mat-card style="margin-bottom: 15px">
             <label>
@@ -67,21 +70,22 @@
             </p>
         </mat-card>
 
-        <div *ngFor="let pregunta of nuevasPreguntas">
-            <mat-card style="margin-bottom: 15px; cursor: pointer;">
-                <span contenteditable="true" id="preguntaEditable">{{pregunta.TextoPregunta}}</span>
-
-                <button mat-button style="float: right; cursor: pointer;" (click)="borrarPregunta(pregunta)">
-                    <span>
-                        <mat-icon>delete_outline</mat-icon>
-                    </span>
-                </button>
-
+        <div *ngIf="nuevasPreguntas.length > 0" style="margin-bottom: 15px">
+            <mat-card cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let pregunta of nuevasPreguntas" cdkDrag [cdkDragData]="data">
+                    {{pregunta.TextoPregunta}}
+                    <button mat-mini-fab class="btn-borrar-pregunta" style="float: right; cursor: pointer; line-height: 0px;" (click)="borrarPregunta(pregunta)">
+                        <span>
+                            <mat-icon>delete_outline</mat-icon>
+                        </span>
+                    </button>
+                </div>
             </mat-card>
         </div>
+
         <div>
-            <button [disabled]="!validarEncuesta(formNuevaEncuesta)" class="button-submit" mat-raised-button type="submit"
-                color="accent" (click)="onSubmit(formNuevaEncuesta)">
+            <button [disabled]="!validarEncuesta(formNuevaEncuesta)" class="button-submit" mat-raised-button
+                type="submit" color="accent" (click)="onSubmit(formNuevaEncuesta)">
                 Finalizar
             </button>
         </div>
