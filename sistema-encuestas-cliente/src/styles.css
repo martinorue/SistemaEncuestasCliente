@@ -40,6 +40,14 @@ body {
   width: 75%;
 }
 
+.medium-width{
+  width: 50%;
+}
+
+mat-card {
+  margin-bottom: 15px;
+}
+
 /* svg{
   width: 50%;
   height: 50vh;

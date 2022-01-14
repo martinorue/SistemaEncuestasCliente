@@ -6,7 +6,7 @@ import { Environment } from "./environment-definition";
 
 export const environment: Environment = {
   production: false,
-  baseUri: 'https://localhost:44384',
+  baseUri: 'https://mr87187.azurewebsites.net',
 };
 
 /*

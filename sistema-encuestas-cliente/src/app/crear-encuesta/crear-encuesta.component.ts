@@ -19,6 +19,7 @@ export class CrearEncuestaComponent implements OnInit {
   orden: number = 1;
   data: any;
   nuevaEncuesta!: IEncuesta;
+  mostrarCrearEncuesta: boolean = true;
 
   rango = new FormGroup({
     comienzo: new FormControl(),
@@ -104,6 +105,10 @@ export class CrearEncuestaComponent implements OnInit {
     });
   }
 
+  volverCrearEncuesta(){
+    this.mostrarCrearEncuesta = true;
+  }
+
   onSubmit(formNuevaEncuesta: NgForm) {
 
     this.ordenarPreguntas();
@@ -124,8 +129,8 @@ export class CrearEncuestaComponent implements OnInit {
     this.nuevasPreguntas = [];
     this.orden = 1;
     this.encuestaFormDirective.resetForm();
-
-    void this._router.navigateByUrl('/vista-previa-encuesta');
+    this.mostrarCrearEncuesta = false;
+    // void this._router.navigateByUrl('/dashboard');
   }
 
 }

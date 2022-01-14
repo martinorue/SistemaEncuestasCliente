@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IEncuesta } from '../domain/encuesta';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-vista-previa-encuesta',
@@ -8,9 +10,14 @@ import { IEncuesta } from '../domain/encuesta';
 })
 export class VistaPreviaEncuestaComponent implements OnInit {
   @Input() nuevaEncuesta!: IEncuesta
+  
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  volver(): void {
+    
   }
 
 }

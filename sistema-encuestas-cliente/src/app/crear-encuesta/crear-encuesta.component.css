@@ -50,3 +50,8 @@
   .btn-borrar-pregunta:hover{
     border-radius: 150px !important;
   }
+
+  .btn-volver{
+    display: flex;
+    align-items: center;
+  }
