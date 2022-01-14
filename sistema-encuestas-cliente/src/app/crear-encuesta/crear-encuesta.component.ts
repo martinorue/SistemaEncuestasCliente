@@ -97,7 +97,7 @@ export class CrearEncuestaComponent implements OnInit {
       FechaInicio: this.rango.value.comienzo,
       FechaFin: this.rango.value.fin,
       CantidadEncuestados: 0,
-      Estado: 'Estado',
+      Estado: 'Borrador',
       Objetivo: formNuevaEncuesta.value.objetivoEncuesta,
       Preguntas: this.nuevasPreguntas
     }
