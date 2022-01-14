@@ -72,7 +72,7 @@
 
         <div *ngIf="nuevasPreguntas.length > 0" style="margin-bottom: 15px">
             <mat-card cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let pregunta of nuevasPreguntas" cdkDrag [cdkDragData]="data">
+                <div class="example-box" *ngFor="let pregunta of nuevasPreguntas" cdkDrag [cdkDragData]="pregunta">
                     {{pregunta.TextoPregunta}}
                     <button mat-mini-fab class="btn-borrar-pregunta" style="float: right; cursor: pointer; line-height: 0px;" (click)="borrarPregunta(pregunta)">
                         <span>

@@ -16,7 +16,7 @@ export class CrearEncuestaComponent implements OnInit {
   tipoPregunta: string = '';
   pregunta: string = '';
   requerida: boolean = true;
-  orden: number = 0;
+  orden: number = 1;
   data: any;
 
   rango = new FormGroup({
@@ -36,7 +36,11 @@ export class CrearEncuestaComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.nuevasPreguntas, event.previousIndex, event.currentIndex);
     //this.orden = event.currentIndex;
-    console.log(event.item.data);
+    // const draggedPregunta: IPregunta = event.item.data;
+    // draggedPregunta.Orden = event.currentIndex + 1;
+    // this.nuevasPreguntas[event.currentIndex].Orden = event.currentIndex;
+
+    // console.log(event.item.data);
   }
 
   constructor(private _router: Router) { }
@@ -79,8 +83,8 @@ export class CrearEncuestaComponent implements OnInit {
       PreguntaID: 0,
       TextoPregunta: value,
       Tipo: this.tipoPregunta,
-      Orden: 0,
-      EncuestaID: 1,//@Input() encuesta
+      Orden: this.orden++,
+      EncuestaID: 0,//@Input() encuesta
       Requerida: this.requerida,
       Opciones: null,
       Resultados: null,
@@ -97,7 +101,16 @@ export class CrearEncuestaComponent implements OnInit {
     }
   }
 
+  ordenarPreguntas() {
+    this.nuevasPreguntas.forEach(pregunta => {
+      const index = this.nuevasPreguntas.indexOf(pregunta);
+      pregunta.Orden = index + 1;
+    });
+  }
+
   onSubmit(formNuevaEncuesta: NgForm) {
+
+    this.ordenarPreguntas();
 
     const nuevaEncuesta: IEncuesta = {
       EncuestaID: 0,
@@ -107,14 +120,15 @@ export class CrearEncuestaComponent implements OnInit {
       CantidadEncuestados: 0,
       Estado: 'Borrador',
       Objetivo: formNuevaEncuesta.value.objetivoEncuesta,
-      Preguntas: this.nuevasPreguntas.sort((a, b) => a.Orden - b.Orden)
+      Preguntas: this.nuevasPreguntas
     }
-    
+
     console.log(this.nuevasPreguntas);
-    
+
     const json_encuesta = JSON.stringify(nuevaEncuesta);
     console.log(json_encuesta);
     this.nuevasPreguntas = [];
+    this.orden = 1;
     this.encuestaFormDirective.resetForm();
 
 
