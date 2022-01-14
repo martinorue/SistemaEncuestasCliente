@@ -5,11 +5,13 @@ import { DashboardEncuestasComponent } from './dashboard-encuestas/dashboard-enc
 import { EncuestaResultadoComponent } from './encuesta-resultado/encuesta-resultado.component';
 import { EncuestaGuard } from './guards/encuesta.guard';
 import { LoginComponent } from './login/login.component';
+import { VistaPreviaEncuestaComponent } from './vista-previa-encuesta/vista-previa-encuesta.component';
 
 export const routes: Routes = [
     { path: 'Resultados/:id', component: EncuestaResultadoComponent },
     { path: '', component: LoginComponent, pathMatch: 'full' },
     { path: 'dashboard', component: DashboardEncuestasComponent, canActivate: [EncuestaGuard] },
     { path: 'login', component: LoginComponent },
-    { path: 'crear-encuesta', component: CrearEncuestaComponent }
+    { path: 'crear-encuesta', component: CrearEncuestaComponent },
+    { path: 'vista-previa-encuesta', component: VistaPreviaEncuestaComponent }
 ];

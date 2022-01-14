@@ -44,6 +44,7 @@ import { EncuestaGuard } from './guards/encuesta.guard';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { CrearEncuestaComponent } from './crear-encuesta/crear-encuesta.component';
 import { CrearPreguntasComponent } from './crear-preguntas/crear-preguntas.component';
+import { VistaPreviaEncuestaComponent } from './vista-previa-encuesta/vista-previa-encuesta.component';
 
 
 
@@ -58,7 +59,8 @@ import { CrearPreguntasComponent } from './crear-preguntas/crear-preguntas.compo
     PieChartComponent,
     BarChartComponent,
     CrearEncuestaComponent,
-    CrearPreguntasComponent
+    CrearPreguntasComponent,
+    VistaPreviaEncuestaComponent
   ],
   imports: [
     BrowserModule,

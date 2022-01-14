@@ -18,6 +18,7 @@ export class CrearEncuestaComponent implements OnInit {
   requerida: boolean = true;
   orden: number = 1;
   data: any;
+  nuevaEncuesta!: IEncuesta;
 
   rango = new FormGroup({
     comienzo: new FormControl(),
@@ -35,12 +36,7 @@ export class CrearEncuestaComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.nuevasPreguntas, event.previousIndex, event.currentIndex);
-    //this.orden = event.currentIndex;
     // const draggedPregunta: IPregunta = event.item.data;
-    // draggedPregunta.Orden = event.currentIndex + 1;
-    // this.nuevasPreguntas[event.currentIndex].Orden = event.currentIndex;
-
-    // console.log(event.item.data);
   }
 
   constructor(private _router: Router) { }
@@ -112,27 +108,24 @@ export class CrearEncuestaComponent implements OnInit {
 
     this.ordenarPreguntas();
 
-    const nuevaEncuesta: IEncuesta = {
+    this.nuevaEncuesta = {
       EncuestaID: 0,
       Denominacion: formNuevaEncuesta.value.nombreEncuesta,
       FechaInicio: this.rango.value.comienzo,
       FechaFin: this.rango.value.fin,
       CantidadEncuestados: 0,
-      Estado: 'Borrador',
+      Estado: 'BORRADOR',
       Objetivo: formNuevaEncuesta.value.objetivoEncuesta,
       Preguntas: this.nuevasPreguntas
     }
 
-    console.log(this.nuevasPreguntas);
-
-    const json_encuesta = JSON.stringify(nuevaEncuesta);
+    const json_encuesta = JSON.stringify(this.nuevaEncuesta);
     console.log(json_encuesta);
     this.nuevasPreguntas = [];
     this.orden = 1;
     this.encuestaFormDirective.resetForm();
 
-
-    //void this._router.navigateByUrl('/dashboard');
+    void this._router.navigateByUrl('/vista-previa-encuesta');
   }
 
 }
