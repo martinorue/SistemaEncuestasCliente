@@ -4,6 +4,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Router } from '@angular/router';
 import { IEncuesta } from '../domain/encuesta';
 import { IPregunta } from '../domain/resultadoEncuesta';
+import { CrearEncuestaService } from '../services/crear-encuesta.service';
 
 
 @Component({
@@ -20,6 +21,8 @@ export class CrearEncuestaComponent implements OnInit {
   data: any;
   nuevaEncuesta!: IEncuesta;
   mostrarCrearEncuesta: boolean = true;
+  encuestaSubmit!: IEncuesta;
+  errMess!: string;
 
   rango = new FormGroup({
     comienzo: new FormControl(),
@@ -40,7 +43,10 @@ export class CrearEncuestaComponent implements OnInit {
     // const draggedPregunta: IPregunta = event.item.data;
   }
 
-  constructor(private _router: Router) { }
+  constructor(
+    private _router: Router,
+    private _crearEncuestaService: CrearEncuestaService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -105,7 +111,7 @@ export class CrearEncuestaComponent implements OnInit {
     });
   }
 
-  volverCrearEncuesta(){
+  volverCrearEncuesta() {
     this.mostrarCrearEncuesta = true;
   }
 
@@ -131,6 +137,14 @@ export class CrearEncuestaComponent implements OnInit {
     this.encuestaFormDirective.resetForm();
     this.mostrarCrearEncuesta = false;
     // void this._router.navigateByUrl('/dashboard');
+    this.guardarEncuesta(json_encuesta);
+
+  }
+
+  guardarEncuesta(respuesta: string) {
+    this._crearEncuestaService.submitEncuesta(respuesta)
+      .subscribe(respuestaSubmit => this.encuestaSubmit = respuestaSubmit,
+        errmess => this.errMess = <any>errmess);
   }
 
 }

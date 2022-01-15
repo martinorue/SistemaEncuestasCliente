@@ -5,14 +5,24 @@
     <h4>Cargando encuestas...</h4>
 </div>
 
-<div *ngIf="encuestas">
+<div *ngIf="encuestas" class="dashboard-container">
     
     <h1 style="text-align: center;">Resultados de Encuestas</h1>
 
-    <div  class="container" fxLayoutGap="10px" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
-    fxLayoutAlign="center center" fxLayoutGap.xs="0">
+    <div  class="container" 
+    fxLayout="row wrap" 
+    fxLayoutGap="35px" 
+    fxLayout="row wrap"
+    fxLayoutAlign="flex-start" 
+    fxLayout.sm="column" 
+    fxLayout.xs="column"
+    fxLayoutGap.xs="0">
     
-        <mat-card class="card-encuesta" *ngFor="let encuesta of encuestas" appHighlight
+        <mat-card 
+        fxFlex="0 1 calc(33.3% - 35px)"
+        fxFlex.lt-md="0 1 calc(50% - 35px)"
+        fxFlex.lt-sm="100%"
+         class="card-encuesta" *ngFor="let encuesta of encuestas" appHighlight
             [routerLink]="['/Resultados', encuesta.EncuestaID]">
             <mat-card-title>{{ encuesta.Denominacion}}</mat-card-title>
             <div>Estado: {{encuesta.Estado}}</div>

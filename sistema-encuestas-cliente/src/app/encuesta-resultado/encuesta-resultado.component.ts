@@ -25,16 +25,17 @@ export class EncuestaResultadoComponent implements OnInit {
     private _location: Location) { }
 
   ngOnInit(): void {
-    this._encuestasService.getEncuestaIds().subscribe(encuestaIds => this._encuestaIds = encuestaIds);
+    this._encuestasService.getEncuestaIds()
+    .subscribe(encuestaIds => this._encuestaIds = encuestaIds);
     this._route.params
       .pipe(switchMap((params: Params) => {
-        this._resultadosService.getResultados(params['id']).subscribe(resultadoEncuesta => this.resultadoEncuesta = resultadoEncuesta);
+        this._resultadosService.getResultados(params['id'])
+        .subscribe(resultadoEncuesta => this.resultadoEncuesta = resultadoEncuesta);
         return this._encuestasService.getEncuesta(params['id']);
       }))
       .subscribe(encuesta => {
         this.encuesta = encuesta;
       })
-
   }
 
   volver(): void {

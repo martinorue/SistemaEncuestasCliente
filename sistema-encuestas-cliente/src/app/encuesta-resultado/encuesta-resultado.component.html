@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<div *ngIf="!encuesta" class="spinner-wrapper">
+<div *ngIf="!encuesta || !resultadoEncuesta" class="spinner-wrapper">
     <mat-spinner color="warn" class="mat-spinner"></mat-spinner>
     <h4>Cargando resultados...</h4>
 </div>
@@ -11,10 +11,6 @@
 
     <h2>Total de encuestados: {{ encuesta.CantidadEncuestados }}</h2>
 
-    <div *ngIf="!resultadoEncuesta">
-        Por el momento no existen resultados para esta encuesta.
-    </div>
-
     <!-- GO BACK -->
     <button mat-raised-button class="volver-button" (click)="volver()">
         Volver
@@ -22,31 +18,32 @@
 </div>
 
 <div *ngIf="resultadoEncuesta">
-    <div *ngFor="let pregunta of resultadoEncuesta.Preguntas" fxLayout.xs="column">
-        <mat-card class="card-resultado">
-            <div class="card-title">
-                <mat-card-title>{{ pregunta.TextoPregunta }}</mat-card-title>
-                <mat-card-subtitle>Tipo: {{ pregunta.Tipo }}</mat-card-subtitle>
-            </div>
-            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly start">
-                <div class="resultados-container">
-                    <p *ngFor="let result of pregunta.Resultados">
-                        <mat-icon *ngIf="result.Texto == 'POSITIVO'">sentiment_very_satisfied</mat-icon>
-                        <mat-icon *ngIf="result.Texto == 'NEGATIVO'">sentiment_very_dissatisfied</mat-icon>
-                        <mat-icon *ngIf="result.Texto == 'MIXTO' || result.Texto == 'NEUTRO'">sentiment_satisfied
-                        </mat-icon>
-                        <span>{{ result.Texto }}: {{ result.Valor }}</span>
-                    </p>
+    <div *ngIf="resultadoEncuesta.Preguntas">
+        <div *ngFor="let pregunta of resultadoEncuesta.Preguntas" fxLayout.xs="column">
+            <mat-card class="card-resultado">
+                <div class="card-title">
+                    <mat-card-title>{{ pregunta.TextoPregunta }}</mat-card-title>
+                    <mat-card-subtitle>Tipo: {{ pregunta.Tipo }}</mat-card-subtitle>
                 </div>
-                <div class="pie-chart-parent">
-                    <app-pie-chart [preguntaResultados]="pregunta.Resultados"></app-pie-chart>
+                <div *ngIf="pregunta.Resultados" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly start">
+                    <div>
+                        <p *ngFor="let result of pregunta.Resultados">
+                            <mat-icon *ngIf="result.Texto == 'POSITIVO'">sentiment_very_satisfied</mat-icon>
+                            <mat-icon *ngIf="result.Texto == 'NEGATIVO'">sentiment_very_dissatisfied</mat-icon>
+                            <mat-icon *ngIf="result.Texto == 'MIXTO' || result.Texto == 'NEUTRO'">sentiment_satisfied
+                            </mat-icon>
+                            <span>{{ result.Texto }}: {{ result.Valor }}</span>
+                        </p>
+                    </div>
+                    <div class="pie-chart-parent" *ngIf="pregunta.Resultados != null && pregunta.Resultados != undefined && pregunta.Resultados.length > 0">
+                        <app-pie-chart [preguntaResultados]="pregunta.Resultados"></app-pie-chart>
+                    </div>
+                    <div *ngIf="pregunta.Tipo == 'TEXTOLIBRE' && pregunta.ResultadosML != null && pregunta.ResultadosML != undefined && pregunta.ResultadosML.length > 0" 
+                        class="bar-chart-parent">
+                        <app-bar-chart [preguntaResultadosML]="pregunta.ResultadosML"></app-bar-chart>
+                    </div>
                 </div>
-                <div *ngIf="pregunta.Tipo == 'TEXTOLIBRE'" class="bar-chart-parent">
-                    <app-bar-chart [preguntaResultadosML]="pregunta.ResultadosML"></app-bar-chart>
-                </div>
-            </div>
-        </mat-card>
-
-
+            </mat-card>
+        </div>
     </div>
 </div>

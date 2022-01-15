@@ -36,7 +36,6 @@ export class BarChartComponent implements OnInit {
         series: series
       }
       datos.push(dato);
-
     })
 
     this.opciones.yScaleMax = this.getMaximoMenciones(series.map(serie => serie.value));
@@ -53,16 +52,18 @@ export class BarChartComponent implements OnInit {
   }
 
   getMaximoMenciones(seriesValues: number[]) {
-    let maxCantMencions: number = Math.max(...seriesValues);
 
-    return this.getScaleMax(maxCantMencions);
+    if (seriesValues.length > 0) {
+      let maxCantMencions: number = Math.max(...seriesValues);
+      return this.getScaleMax(maxCantMencions);
+    } else return 0;
   }
 
   getScaleMax(maxCantMencion: number) {
 
-    if(maxCantMencion % 10 == 0){
+    if (maxCantMencion % 10 == 0) {
       return maxCantMencion;
-    }else{
+    } else {
       while (maxCantMencion % 10 != 0) {
         maxCantMencion++;
       }

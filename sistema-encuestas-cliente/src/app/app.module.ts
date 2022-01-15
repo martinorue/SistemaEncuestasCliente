@@ -45,6 +45,7 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { CrearEncuestaComponent } from './crear-encuesta/crear-encuesta.component';
 import { CrearPreguntasComponent } from './crear-preguntas/crear-preguntas.component';
 import { VistaPreviaEncuestaComponent } from './vista-previa-encuesta/vista-previa-encuesta.component';
+import { CrearEncuestaService } from './services/crear-encuesta.service';
 
 
 
@@ -93,6 +94,7 @@ import { VistaPreviaEncuestaComponent } from './vista-previa-encuesta/vista-prev
     MatDatepickerModule,
     MatNativeDateModule,
     EncuestasService,
+    CrearEncuestaService,
     // { provide: 'BaseURL', useValue: baseURL },
     {
       provide: HTTP_INTERCEPTORS,

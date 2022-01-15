@@ -12,3 +12,8 @@ h1{
 	border-radius: 10px;
     border-left: 5px solid #bc1710;
 }
+
+.dashboard-container{
+    width: 50%;
+    margin: 0 auto;
+}
