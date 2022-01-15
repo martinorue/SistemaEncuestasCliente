@@ -10,7 +10,6 @@ import { HeaderComponent } from './header/header.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-// import { baseURL } from './domain/baseurl';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
