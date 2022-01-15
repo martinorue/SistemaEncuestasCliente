@@ -12,20 +12,27 @@
     <h2>Total de encuestados: {{ encuesta.CantidadEncuestados }}</h2>
 
     <!-- GO BACK -->
-    <button mat-raised-button class="volver-button" (click)="volver()">
-        Volver
-    </button>
+    <p>
+
+        <button mat-raised-button class="volver-button" (click)="volver()">
+            Volver
+        </button>
+
+    </p>
 </div>
 
 <div *ngIf="resultadoEncuesta">
     <div *ngIf="resultadoEncuesta.Preguntas">
         <div *ngFor="let pregunta of resultadoEncuesta.Preguntas" fxLayout.xs="column">
-            <mat-card class="card-resultado">
                 <div class="card-title">
-                    <mat-card-title>{{ pregunta.TextoPregunta }}</mat-card-title>
+                    <h1>{{ pregunta.TextoPregunta }}</h1>
                     <mat-card-subtitle>Tipo: {{ pregunta.Tipo }}</mat-card-subtitle>
                 </div>
-                <div *ngIf="pregunta.Resultados" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly start">
+
+            <mat-card
+                *ngIf="pregunta.Resultados != null && pregunta.Resultados != undefined && pregunta.Resultados.length > 0;else no_resultados"
+                class="card-resultado">
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly start">
                     <div>
                         <p *ngFor="let result of pregunta.Resultados">
                             <mat-icon *ngIf="result.Texto == 'POSITIVO'">sentiment_very_satisfied</mat-icon>
@@ -35,10 +42,11 @@
                             <span>{{ result.Texto }}: {{ result.Valor }}</span>
                         </p>
                     </div>
-                    <div class="pie-chart-parent" *ngIf="pregunta.Resultados != null && pregunta.Resultados != undefined && pregunta.Resultados.length > 0">
+                    <div class="pie-chart-parent"
+                        *ngIf="pregunta.Resultados != null && pregunta.Resultados != undefined && pregunta.Resultados.length > 0">
                         <app-pie-chart [preguntaResultados]="pregunta.Resultados"></app-pie-chart>
                     </div>
-                    <div *ngIf="pregunta.Tipo == 'TEXTOLIBRE' && pregunta.ResultadosML != null && pregunta.ResultadosML != undefined && pregunta.ResultadosML.length > 0" 
+                    <div *ngIf="pregunta.Tipo == 'TEXTOLIBRE' && pregunta.ResultadosML != null && pregunta.ResultadosML != undefined && pregunta.ResultadosML.length > 0"
                         class="bar-chart-parent">
                         <app-bar-chart [preguntaResultadosML]="pregunta.ResultadosML"></app-bar-chart>
                     </div>
@@ -46,4 +54,9 @@
             </mat-card>
         </div>
     </div>
+    <ng-template #no_resultados>
+        <p style="text-align: center;">
+            No hay respuestas para mostrar
+        </p>
+    </ng-template>
 </div>
