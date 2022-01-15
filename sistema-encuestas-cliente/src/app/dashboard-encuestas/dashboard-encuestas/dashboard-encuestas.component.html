@@ -6,28 +6,23 @@
 </div>
 
 <div *ngIf="encuestas" class="dashboard-container">
-    
-    <h1 style="text-align: center;">Resultados de Encuestas</h1>
 
-    <div  class="container" 
-    fxLayout="row wrap" 
-    fxLayoutGap="35px" 
-    fxLayout="row wrap"
-    fxLayoutAlign="flex-start" 
-    fxLayout.sm="column" 
-    fxLayout.xs="column"
-    fxLayoutGap.xs="0">
-    
-        <mat-card 
-        fxFlex="0 1 calc(33.3% - 35px)"
-        fxFlex.lt-md="0 1 calc(50% - 35px)"
-        fxFlex.lt-sm="100%"
-         class="card-encuesta" *ngFor="let encuesta of encuestas" appHighlight
+    <h1 style="text-align: center;">Resultados de encuestas</h1>
+
+    <div class="container" fxLayout="row wrap" fxLayoutGap="25px" fxLayout="row wrap" fxLayoutAlign="flex-start"
+        fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap.xs="0">
+
+        <mat-card fxFlex="0 1 calc(33.3% - 25px)" fxFlex.lt-md="0 1 calc(50% - 35px)" fxFlex.lt-sm="100%"
+            class="card-encuesta" *ngFor="let encuesta of encuestas" appHighlight
             [routerLink]="['/Resultados', encuesta.EncuestaID]">
             <mat-card-title>{{ encuesta.Denominacion}}</mat-card-title>
-            <div>Estado: {{encuesta.Estado}}</div>
-            <div>Inicio: {{encuesta.FechaInicio | date}}</div>
-            <div>Finalización: {{encuesta.FechaFin | date}}</div>
+            <mat-card-subtitle>Estado: {{encuesta.Estado}}</mat-card-subtitle>
+            <mat-card-content>
+                <p>
+                    Inicio: {{encuesta.FechaInicio | date}}
+                    Finalización: {{encuesta.FechaFin | date}}
+                </p>
+            </mat-card-content>
         </mat-card>
     </div>
 </div>
