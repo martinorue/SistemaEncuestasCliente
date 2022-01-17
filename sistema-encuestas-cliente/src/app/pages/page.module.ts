@@ -11,23 +11,25 @@ import { CrearEncuestaService } from '../services/crear-encuesta.service';
 import { EncuestaResultadoComponent } from './encuesta-resultado/encuesta-resultado.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ResultadosService } from '../services/resultados.service';
+import { HeaderComponentModule } from '../commons/shared/header-component.module';
 
 
 @NgModule({
   declarations: [
     DashboardEncuestasComponent,
+    CrearEncuestaComponent,
     EncuestaResultadoComponent,
-    CrearEncuestaComponent
-    ],
+  ],
   imports: [
     CommonModule,
     DashboardComponentsModule,
     DashBoardRoutingModule,//page-routing.module
     CommonModule,
+    HeaderComponentModule,
     MatButtonModule,
     MatNativeDateModule,
   ],
-  providers:[
+  providers: [
     MatDatepickerModule,
     MatNativeDateModule,
     EncuestasService,

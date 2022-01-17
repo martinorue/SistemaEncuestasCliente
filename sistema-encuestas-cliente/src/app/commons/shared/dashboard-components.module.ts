@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from '../components/header/header.component';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -28,12 +27,12 @@ import { EncuestaComponent } from '../components/encuesta/encuesta.component';
 import { NuevaEncuestaComponent } from '../components/nueva-encuesta/nueva-encuesta.component';
 import { ResultadosService } from '../../services/resultados.service';
 import { DashBoardRoutingModule } from '../../pages/page-routing.module';
+import { HeaderComponentModule } from './header-component.module';
 
 
 @NgModule({
   declarations: [
     HighlightDirective,
-    HeaderComponent,
     PieChartComponent,
     BarChartComponent,
     EncuestaComponent,
@@ -45,6 +44,7 @@ import { DashBoardRoutingModule } from '../../pages/page-routing.module';
     CommonModule,
     RouterModule,
     DashBoardRoutingModule,
+    HeaderComponentModule,
     NgxChartsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -64,7 +64,6 @@ import { DashBoardRoutingModule } from '../../pages/page-routing.module';
   ],
   exports: [
     HighlightDirective,
-    HeaderComponent,
     PieChartComponent,
     BarChartComponent,
     EncuestaComponent,
