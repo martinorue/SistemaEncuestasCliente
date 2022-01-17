@@ -1,0 +1,57 @@
+<div *ngIf="!encuesta || !resultadoEncuesta" class="spinner-wrapper">
+    <mat-spinner color="warn" class="mat-spinner"></mat-spinner>
+    <h4>Cargando resultados...</h4>
+</div>
+
+<div *ngIf="encuesta" class="resultado-container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column"
+    fxLayoutAlign="center center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <h1>Resultados de: {{ encuesta.Denominacion }}</h1>
+    
+        <h2>Total de encuestados: {{ encuesta.CantidadEncuestados }}</h2>
+        <!-- GO BACK -->
+    <p>
+        <button mat-raised-button class="volver-button" (click)="volver()">
+            Volver
+        </button>
+    </p>
+</div>
+
+<div *ngIf="resultadoEncuesta">
+    <div *ngIf="resultadoEncuesta.Preguntas">
+        <div *ngFor="let pregunta of resultadoEncuesta.Preguntas" fxLayout.xs="column">
+                <div class="card-title">
+                    <h1>{{ pregunta.TextoPregunta }}</h1>
+                    <mat-card-subtitle>Tipo: {{ pregunta.Tipo }}</mat-card-subtitle>
+                </div>
+
+            <mat-card
+                *ngIf="pregunta.Resultados != null && pregunta.Resultados != undefined && pregunta.Resultados.length > 0;else no_resultados"
+                class="card-resultado">
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly start">
+                    <div>
+                        <p *ngFor="let result of pregunta.Resultados">
+                            <mat-icon *ngIf="result.Texto == 'POSITIVO'">sentiment_very_satisfied</mat-icon>
+                            <mat-icon *ngIf="result.Texto == 'NEGATIVO'">sentiment_very_dissatisfied</mat-icon>
+                            <mat-icon *ngIf="result.Texto == 'MIXTO' || result.Texto == 'NEUTRO'">sentiment_satisfied
+                            </mat-icon>
+                            <span>{{ result.Texto }}: {{ result.Valor }}</span>
+                        </p>
+                    </div>
+                    <div class="pie-chart-parent"
+                        *ngIf="pregunta.Resultados != null && pregunta.Resultados != undefined && pregunta.Resultados.length > 0">
+                        <app-pie-chart [preguntaResultados]="pregunta.Resultados"></app-pie-chart>
+                    </div>
+                    <div *ngIf="pregunta.Tipo == 'TEXTOLIBRE' && pregunta.ResultadosML != null && pregunta.ResultadosML != undefined && pregunta.ResultadosML.length > 0"
+                        class="bar-chart-parent">
+                        <app-bar-chart [preguntaResultadosML]="pregunta.ResultadosML"></app-bar-chart>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    <ng-template #no_resultados>
+        <p style="text-align: center;">
+            No hay respuestas para mostrar
+        </p>
+    </ng-template>
+</div>

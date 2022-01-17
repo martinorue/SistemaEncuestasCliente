@@ -1,0 +1,57 @@
+<div *ngIf="!dataLoginForm" class="spinner-wrapper">
+    <mat-spinner color="warn" class="mat-spinner"></mat-spinner>
+    <h4>Cargando resultados...</h4>
+</div>
+
+<div class="container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column"
+fxLayoutAlign="center center" fxLayoutGap.xs="0">
+	<div>
+		<img src="https://winenot.com.uy/wp-content/uploads/2020/12/Transp-1.png" alt="Wine Not?" height="300px" width="300px"/>
+	</div>
+	<form #myFormLogin="ngForm" fxLayout="column">
+		<mat-form-field appearance="outline">
+			<mat-label>Usuario</mat-label>
+			<input
+				matInput
+				placeholder="Ingrese nombre de usuario"
+				name="username"
+				[(ngModel)]="dataLoginForm.userName"
+				required
+				#uservalid="ngModel"
+			/>
+			<mat-icon class="material-icons-outlined" matSuffix>account_circle_outline</mat-icon>
+			<mat-error *ngIf="uservalid.invalid && uservalid.errors?.required">
+				El usuario es requerido
+			</mat-error>
+		</mat-form-field>
+		<mat-form-field appearance="outline">
+			<mat-label>Contraseña</mat-label>
+			<input
+				type="password"
+				matInput
+				placeholder="Ingrese su contraseña"
+				name="password"
+				[(ngModel)]="dataLoginForm.password"
+				required
+				#userPassword="ngModel"
+			/>
+			<mat-icon matSuffix>password</mat-icon>
+			<mat-error *ngIf="userPassword.invalid && userPassword.errors?.required">
+				La contraseña es requerida
+			</mat-error>
+		</mat-form-field>
+
+		<button
+			mat-raised-button
+			color="warn"
+			[disabled]="!myFormLogin.valid"
+			type="submit"
+			(click)="clickLogin()"
+		>
+			Ingresar
+		</button>
+		
+	</form>
+</div>
+
+
