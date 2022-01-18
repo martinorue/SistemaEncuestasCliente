@@ -11,8 +11,6 @@ import { IEncuesta } from '../domain/encuesta';
 })
 export class EncuestasService {
   
-  //private url_local_jsonServer = 'http://localhost:3000/EncuestaResultados';
-
   constructor(private http: HttpClient) {
   }
 

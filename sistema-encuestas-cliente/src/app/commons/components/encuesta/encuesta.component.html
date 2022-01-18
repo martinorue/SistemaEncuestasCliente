@@ -3,12 +3,11 @@
     <h4>Cargando encuestas...</h4>
 </div>
 
-<div class="dashboard-container">
+<div *ngIf="encuestas" class="dashboard-container">
 
     <h1>Seleccione una encuesta</h1>
-
     
-    <div *ngIf="encuestas" fxLayout="row wrap" fxLayoutGap="25px" fxLayout="row wrap" fxLayoutAlign="flex-start"
+    <div  fxLayout="row wrap" fxLayoutGap="25px" fxLayout="row wrap" fxLayoutAlign="flex-start"
     fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap.xs="0">
     <mat-card fxFlex="0 1 calc(33.3% - 25px)" fxFlex.lt-md="0 1 calc(50% - 35px)" fxFlex.lt-sm="100%"
     class="card-encuesta" *ngFor="let encuesta of encuestas" appHighlight

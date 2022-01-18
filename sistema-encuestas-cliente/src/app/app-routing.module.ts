@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EncuestaGuard } from './guards/encuesta.guard';
 import { LoginPageComponent } from './pages/auth/login-page/login-page.component';
 import { CrearEncuestaComponent } from './pages/crear-encuesta/crear-encuesta.component';
 import { EncuestaResultadoComponent } from './pages/encuesta-resultado/encuesta-resultado.component';
@@ -16,7 +17,8 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('./pages/page.module').then((m) => m.PageModule)
+    loadChildren: () => import('./pages/page.module').then((m) => m.PageModule),
+    canLoad: [EncuestaGuard] //si el usuario no está autorizado, no se cargan los componentes con lazy loading
   },
   {
     path: 'crear-encuesta',

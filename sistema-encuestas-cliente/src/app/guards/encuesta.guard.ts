@@ -22,7 +22,7 @@ export class EncuestaGuard implements CanActivate {
       void this._router.navigateByUrl('/login');
     }
     return isLoggedIn;
-    return true;
+    //return true;
   }
   
 }
