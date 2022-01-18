@@ -9,9 +9,6 @@ import { IResultadoEncuesta } from '../domain/resultadoEncuesta';
 })
 export class ResultadosService {
 
-  //private url_local_jsonServer = 'http://localhost:3000/EncuestaResultados';
-
-
   constructor(private http: HttpClient) { }
 
   getResultados(id: number): Observable<IResultadoEncuesta> {

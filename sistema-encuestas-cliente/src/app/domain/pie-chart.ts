@@ -3,7 +3,7 @@ export interface IPieChart {
     value: number;
 }
 
-export const OpcionesPieChart = {
+export const OPCIONES_PIE_CHART = {
     gradient: true,
     showLegend: true,
     showLabels: true,
@@ -11,3 +11,8 @@ export const OpcionesPieChart = {
     legendTitle: "",
     legendPosition: 'below'
 }
+
+const verde: string = '#5AA454';
+export const COLOR_SCHEME = {
+    domain: [verde, '#AAAAAA', '#C7B42C', '#A10A28']
+};

@@ -17,7 +17,7 @@ import { HeaderComponentModule } from '../commons/shared/header-component.module
 @NgModule({
   declarations: [
     DashboardEncuestasComponent,
-    CrearEncuestaComponent,
+    
     EncuestaResultadoComponent,
   ],
   imports: [

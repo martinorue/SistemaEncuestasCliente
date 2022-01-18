@@ -16,10 +16,10 @@ export const routes: Routes = [
         path: 'Resultados/:id',
         component: EncuestaResultadoComponent
       },
-      {
-        path: 'crear-encuesta',
-        component: CrearEncuestaComponent
-      },
+      // {
+      //   path: 'crear-encuesta',
+      //   component: CrearEncuestaComponent
+      // },
     ]
   }
 ];

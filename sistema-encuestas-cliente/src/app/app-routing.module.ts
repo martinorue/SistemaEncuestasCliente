@@ -18,7 +18,10 @@ export const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./pages/page.module').then((m) => m.PageModule)
   },
-  
+  {
+    path: 'crear-encuesta',
+    loadChildren: () => import('./pages/crear-encuesta-page.module').then((m) => m.CrearEncuestaPageModule)
+  }
 ]
 @NgModule({
   imports: [

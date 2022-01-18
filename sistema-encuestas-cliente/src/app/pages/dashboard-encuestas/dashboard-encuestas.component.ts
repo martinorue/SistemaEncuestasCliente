@@ -1,16 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard-encuestas',
   templateUrl: './dashboard-encuestas.component.html',
   styleUrls: ['./dashboard-encuestas.component.css']
 })
-export class DashboardEncuestasComponent implements OnInit {
+export class DashboardEncuestasComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-    
-  }
 
 }
