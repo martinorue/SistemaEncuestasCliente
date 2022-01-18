@@ -12,6 +12,6 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(login: IRQLogin): Observable<IRLogin>{
-    return this.http.post<IRLogin>(`${environment.baseUri}/api/login`, login);
+    return this.http.post<IRLogin>(`${environment.baseUri}/login`, login);
   }
 }

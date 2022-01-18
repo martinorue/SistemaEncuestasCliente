@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LocalStorageJwt } from '../local-storage';
+import { LocalStorageJwt } from '../commons/static/local-storage';
 import jwt_decode from 'jwt-decode';
 import { IJwt } from '../domain/auth';
 
@@ -34,7 +34,7 @@ export class JwtAuthService {
 	isAdmin(): boolean {
 		const lsRol = localStorage.getItem(LocalStorageJwt.LS_ROLES)!;
 		const rolArray = JSON.parse(lsRol) as Array<string>;
-		const rolAdmin = rolArray.find((x) => x === 'ADMIN');
+		const rolAdmin = rolArray.find((x) => x === 'ADMINISTRADOR');
 
 		return rolAdmin !== undefined;
 	}

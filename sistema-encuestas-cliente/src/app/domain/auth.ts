@@ -1,6 +1,6 @@
 export interface IRQLogin{
-    username: string;
-    password: string;
+    Email: string;
+    Clave: string;
 }
 
 export interface IRLogin {
