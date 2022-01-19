@@ -50,3 +50,7 @@
   .btn-borrar-pregunta:hover{
     border-radius: 150px !important;
   }
+
+  .chip-list{
+    width: 100%;
+  }

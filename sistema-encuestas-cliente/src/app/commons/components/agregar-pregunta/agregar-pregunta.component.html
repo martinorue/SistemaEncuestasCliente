@@ -1,12 +1,12 @@
 <mat-card>
-    <label>
+    <label for="pregunta">
         <h3>Agregar Preguntas</h3>
     </label>
     <mat-form-field appearance="fill" class="full-width">
         <textarea matInput placeholder="Texto pregunta..." id="pregunta" name="pregunta" [(ngModel)]="pregunta"
-        required></textarea>
+            required></textarea>
     </mat-form-field>
-    
+
     <mat-form-field appearance="fill" class="full-width">
         <mat-label>Tipo Pregunta</mat-label>
         <mat-select [(ngModel)]="tipoPregunta" name="tipoPregunta" required>
@@ -15,14 +15,45 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
+    <div *ngIf="tipoPregunta == 'OPCIONSIMPLE' || tipoPregunta == 'OPCIONMULTIPLE'">
+        <div>
+
+            <mat-form-field class="chip-list" appearance="fill">
+                <mat-label for="opcion">Agregar Opción</mat-label>
+                <!-- <input matInput placeholder="Texto opción..." id="opcion" name="opcion" [(ngModel)]="opcion" required> -->
+                <mat-chip-list #listaOpciones aria-label="Opciones">
+                    <mat-chip *ngFor="let opcion of opciones" (removed)="borrarOpcion(opcion)">
+                        {{opcion.OpcionTexto}}
+                        <button matChipRemove>
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </mat-chip>
+                    <input placeholder="Nueva opción..." [matChipInputFor]="listaOpciones"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                        (matChipInputTokenEnd)="agregarOpcion($event)">
+                </mat-chip-list>
+            </mat-form-field>
+
+
+
+            <!-- <span>
+
+                <button mat-raised-button mat-mini-fab class="btn-agregar-opcion" [disabled]="!validarOpcion()"
+                    (click)="agregarOpcion(opcion)">
+                    <mat-icon> add </mat-icon>
+                </button>
+
+            </span> -->
+        </div>
+
+    </div>
     <p>
         <mat-slide-toggle (change)="onChange()" [(ngModel)]="requerida" name="requerida">Requerida
         </mat-slide-toggle>
     </p>
     <p>
-        <button mat-raised-button mat-mini-fab [disabled]="!validarPregunta()"
-        (click)="agregarNuevaPregunta(pregunta)">
-        <mat-icon> add </mat-icon>
-    </button>
-</p>
+        <button mat-raised-button mat-mini-fab [disabled]="!validarPregunta()" (click)="agregarNuevaPregunta(pregunta)">
+            <mat-icon> add </mat-icon>
+        </button>
+    </p>
 </mat-card>

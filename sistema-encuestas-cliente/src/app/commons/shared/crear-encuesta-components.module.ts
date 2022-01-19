@@ -15,7 +15,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { AgregarPreguntaComponent } from '../components/agregar-pregunta/agregar-pregunta.component';
-
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -37,13 +37,14 @@ import { AgregarPreguntaComponent } from '../components/agregar-pregunta/agregar
     MatNativeDateModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatChipsModule
   ],
-  exports:[
+  exports: [
     NuevaEncuestaComponent,
     VistaPreviaEncuestaComponent
   ],
-  providers:[
+  providers: [
     MatDatepickerModule,
     MatNativeDateModule
   ]

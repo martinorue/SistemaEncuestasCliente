@@ -9,15 +9,17 @@ import { Location } from '@angular/common';
   styleUrls: ['./vista-previa-encuesta.component.css']
 })
 export class VistaPreviaEncuestaComponent implements OnInit {
-  @Input() nuevaEncuesta!: IEncuesta
+  public nuevaEncuesta!: any;
   
-  constructor() { }
+  constructor(private _location:Location) { }
 
   ngOnInit(): void {
+    this.nuevaEncuesta = this._location.getState();
+    console.log(this.nuevaEncuesta);
   }
 
-  volver(): void {
-    
+  volverCrearEncuesta(): void {
+    this._location.back();
   }
 
 }

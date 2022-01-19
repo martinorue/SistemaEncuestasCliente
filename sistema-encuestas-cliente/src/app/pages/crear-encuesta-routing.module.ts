@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { CrearEncuestaComponent } from './crear-encuesta/crear-encuesta.component';
 import { RouterModule, Routes } from '@angular/router';
+import { VistaPreviaComponent } from './vista-previa/vista-previa.component';
 
 export const routes: Routes = [
   {
@@ -10,11 +10,11 @@ export const routes: Routes = [
       {
         path: '',
         component: CrearEncuestaComponent,
+      },
+      {
+        path: 'vista-previa-encuesta',
+        component: VistaPreviaComponent
       }
-      // {
-      //   path: 'crear-encuesta',
-      //   component: CrearEncuestaComponent
-      // }
     ]
   }
 ];

@@ -36,8 +36,10 @@ export class LoginComponent {
 		console.log(user);
 		
 		this._authService.login(user).subscribe((data) => {
-			// this._jwtAuthService.login(data.JwtEncuestas);
-			void this._router.navigateByUrl('/dashboard');
+			console.log(data);
+			
+			//this._jwtAuthService.login(data.JwtEncuestas);
+			//void this._router.navigateByUrl('/dashboard');
 		});
 
 		//void this._router.navigateByUrl('/dashboard');

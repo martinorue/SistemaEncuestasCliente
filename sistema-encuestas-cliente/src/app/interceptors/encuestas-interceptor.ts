@@ -17,7 +17,7 @@ export class EncuestasInterceptor implements HttpInterceptor {
 	intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 		const token = localStorage.getItem('acces_token')!;
 		let requestClone = req;
-
+		
 		//definir a quién queremos enviar los encabezados, ej: authorization
 		if (!this.isLogin(req.url)) {//que agregue el authorization solo si la url no contiene login
 			requestClone = req.clone({

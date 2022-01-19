@@ -1,6 +1,5 @@
 <div fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-around center" fxLayoutGap="10px"
     fxLayoutGap.xs="0">
-    <div *ngIf="mostrarCrearEncuesta">
         <h1>Nueva encuesta</h1>
         <h2>Aquí se define una nueva encuesta</h2>
         <form #formNuevaEncuesta="ngForm" #eform="ngForm">
@@ -61,18 +60,4 @@
                 </button>
             </div>
         </form>
-    </div>
-
-    <div *ngIf="!mostrarCrearEncuesta" class="container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column"
-        fxLayoutAlign="space-around center" fxLayoutGap="10px" fxLayoutGap.xs="0">
-        <div>
-            <!-- COMPONENTE VISTA PREVIA ENCUESTA CREADA -->
-            <app-vista-previa-encuesta [nuevaEncuesta]="nuevaEncuesta"></app-vista-previa-encuesta>
-            <!-- GO BACK -->
-            <button mat-raised-button (click)="volverCrearEncuesta()">
-                Volver
-            </button>
-        </div>
-    </div>
-
 </div>

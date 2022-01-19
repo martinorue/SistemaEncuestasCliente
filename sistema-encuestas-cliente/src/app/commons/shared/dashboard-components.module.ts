@@ -14,7 +14,7 @@ import { EncuestasService } from '../../services/encuestas.service';
 import { ResultadoComponent } from '../components/resultado/resultado.component';
 import { EncuestaComponent } from '../components/encuesta/encuesta.component';
 import { ResultadosService } from '../../services/resultados.service';
-import { DashBoardRoutingModule } from '../../pages/page-routing.module';
+import { DashBoardRoutingModule } from '../../pages/dashboard-routing.module';
 import { HeaderComponentModule } from './header-component.module';
 
 

@@ -1,6 +1,8 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { IPregunta } from '../../../domain/resultadoEncuesta';
+import { IOpcion, IPregunta } from '../../../domain/pregunta';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-agregar-pregunta',
@@ -9,12 +11,21 @@ import { IPregunta } from '../../../domain/resultadoEncuesta';
 })
 export class AgregarPreguntaComponent implements OnInit {
 
+  @Output() preguntaEmitida = new EventEmitter<IPregunta>();
   pregunta: string = '';
   tipoPregunta: string = '';
   nuevasPreguntas: IPregunta[] = [];
   requerida: boolean = true;
   orden: number = 1;
-  @Output() preguntaEmitida = new EventEmitter<IPregunta>();
+  opcion: string = '';
+  opciones: IOpcion[] = [];
+  addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
 
   tiposPregunta: any = [
     { value: 'TEXTOLIBRE', viewValue: 'Texto Libre' },
@@ -37,9 +48,9 @@ export class AgregarPreguntaComponent implements OnInit {
       TextoPregunta: value,
       Tipo: this.tipoPregunta,
       Orden: this.orden++,
-      EncuestaID: 0,//@Input() encuesta
+      EncuestaID: 0,
       Requerida: this.requerida,
-      Opciones: null,
+      Opciones: this.opciones,
       Resultados: null,
       ResultadosML: null
     }
@@ -48,12 +59,26 @@ export class AgregarPreguntaComponent implements OnInit {
     this.pregunta = '';
   }
 
-  validarPregunta() {
+  validarPregunta(): boolean {
+    let ok = false;
     if (this.pregunta != null) {
-      return this.pregunta.trim() != ''
-        && this.tipoPregunta != ''
-        && this.tipoPregunta != null;
-    } else return;
+      ok = true;
+    }
+    if (this.tipoPregunta == '') {
+      ok = false;
+    }
+    if (this.tipoPregunta == 'OPCIONSIMPLE'
+      && (this.opciones == null || this.opciones.length == 0)) {
+      ok = false;
+    }
+    if (this.tipoPregunta == 'OPCIONMULTIPLE'
+      && (this.opciones == null || this.opciones.length == 0)) {
+      ok = false;
+    }
+    if (this.pregunta.trim() == '') {
+      ok = false;
+    }
+    return ok;
   }
 
   borrarPregunta(pregunta: IPregunta) {
@@ -63,10 +88,39 @@ export class AgregarPreguntaComponent implements OnInit {
     }
   }
 
+  // agregarOpciona(value: string): void {
+  //   const opcion: IOpcion = {
+  //     OpcionID: 0,
+  //     OpcionTexto: value
+  //   }
+  //   this.opciones.push(opcion);
+  //   this.opcion = '';
+  // }
 
-  constructor() { }
+  // validarOpcion() {
+  //   if (this.opcion != null) {
+  //     return this.opcion.trim() != ''
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
-  ngOnInit(): void {
+  agregarOpcion(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    if (value) {
+      this.opciones.push({OpcionID: 0, OpcionTexto: value });
+    }
+
+    event.chipInput!.clear();
+  }
+
+  borrarOpcion(opcion: IOpcion): void {
+    const index = this.opciones.indexOf(opcion);
+
+    if (index >= 0) {
+      this.opciones.splice(index, 1);
+    }
   }
 
 }

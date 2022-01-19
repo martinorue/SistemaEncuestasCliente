@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardEncuestasComponent } from './dashboard-encuestas/dashboard-encuestas.component';
 import { DashboardComponentsModule } from '../commons/shared/dashboard-components.module';
-import { DashBoardRoutingModule } from './page-routing.module';
+import { DashBoardRoutingModule } from './dashboard-routing.module';
 import { CrearEncuestaComponent } from './crear-encuesta/crear-encuesta.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -17,7 +17,6 @@ import { HeaderComponentModule } from '../commons/shared/header-component.module
 @NgModule({
   declarations: [
     DashboardEncuestasComponent,
-    
     EncuestaResultadoComponent,
   ],
   imports: [

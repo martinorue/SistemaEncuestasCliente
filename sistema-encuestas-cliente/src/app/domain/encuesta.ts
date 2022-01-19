@@ -1,4 +1,4 @@
-import { IPregunta } from "./resultadoEncuesta";
+import { IPregunta } from "./pregunta";
 
 export interface IEncuesta {
   EncuestaID: number;

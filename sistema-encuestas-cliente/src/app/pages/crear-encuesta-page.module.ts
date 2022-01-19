@@ -4,12 +4,13 @@ import { CrearEncuestaComponent } from './crear-encuesta/crear-encuesta.componen
 import { HeaderComponentModule } from '../commons/shared/header-component.module';
 import { CrearEncuestaComponentsModule } from '../commons/shared/crear-encuesta-components.module';
 import { CrearEncuestaRoutingModule } from './crear-encuesta-routing.module';
-
+import { VistaPreviaComponent } from './vista-previa/vista-previa.component';
 
 
 @NgModule({
   declarations: [
-    CrearEncuestaComponent
+    CrearEncuestaComponent,
+    VistaPreviaComponent
   ],
   imports: [
     CommonModule,

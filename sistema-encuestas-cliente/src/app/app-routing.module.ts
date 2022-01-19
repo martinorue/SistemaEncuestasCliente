@@ -15,7 +15,7 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('./pages/page.module').then((m) => m.PageModule),
+    loadChildren: () => import('./pages/dashboard-page.module').then((m) => m.PageModule),
     //canLoad: [EncuestaGuard] //si el usuario no está autorizado, no se cargan los componentes con lazy loading
   },
   {

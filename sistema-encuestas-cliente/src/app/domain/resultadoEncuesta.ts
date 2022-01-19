@@ -1,3 +1,5 @@
+import { IPregunta } from "./pregunta";
+
 export interface IResultadoEncuesta {
   EncuestaID: number;
   Denominacion: string;
@@ -7,18 +9,6 @@ export interface IResultadoEncuesta {
   Estado: string;
   Objetivo: string;
   Preguntas: IPregunta[];
-}
-
-export interface IPregunta {
-  PreguntaID: number;
-  TextoPregunta: string;
-  Tipo: string;
-  Orden: number;
-  EncuestaID: number;
-  Requerida: boolean;
-  Opciones?: any;
-  Resultados: IResultado[] | null;
-  ResultadosML: IResultadoML[] | null;
 }
 
 export interface IResultadoML {

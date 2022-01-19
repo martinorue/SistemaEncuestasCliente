@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm, FormGroup, FormControl } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Router } from '@angular/router';
-import { IPregunta } from '../../../domain/resultadoEncuesta';
+import { IPregunta } from '../../../domain/pregunta';
 import { IEncuesta } from '../../../domain/encuesta';
 import { CrearEncuestaService } from '../../../services/crear-encuesta.service';
 
@@ -17,7 +17,6 @@ export class NuevaEncuestaComponent implements OnInit {
   tipoPregunta: string = '';
   orden: number = 1;
   nuevaEncuesta!: IEncuesta;
-  mostrarCrearEncuesta: boolean = true;
   encuestaSubmit!: IEncuesta;
   errMess!: string;
   // data: any;
@@ -72,9 +71,7 @@ export class NuevaEncuestaComponent implements OnInit {
     });
   }
 
-  volverCrearEncuesta() {
-    this.mostrarCrearEncuesta = true;
-  }
+ 
 
   onSubmit(formNuevaEncuesta: NgForm) {
 
@@ -96,10 +93,8 @@ export class NuevaEncuestaComponent implements OnInit {
     this.nuevasPreguntas = [];
     this.orden = 1;
     this.encuestaFormDirective.resetForm();
-    this.mostrarCrearEncuesta = false;
-    // void this._router.navigateByUrl('/dashboard');
     this.guardarEncuesta(json_encuesta);
-
+    void this._router.navigateByUrl('/crear-encuesta/vista-previa-encuesta', {state: this.nuevaEncuesta}); //pasándole la encuesta creada
   }
 
   guardarEncuesta(respuesta: string) {
