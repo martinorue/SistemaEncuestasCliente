@@ -4,7 +4,7 @@ export interface IRQLogin{
 }
 
 export interface IRLogin {
-	accessToken: string;
+	JwtEncuestas: string;
 }
 
 export interface IJwt {

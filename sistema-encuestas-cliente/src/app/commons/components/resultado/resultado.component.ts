@@ -6,6 +6,7 @@ import { IResultadoEncuesta } from '../../../domain/resultadoEncuesta';
 import { EncuestasService } from '../../../services/encuestas.service';
 import { ResultadosService } from '../../../services/resultados.service';
 import { Location } from '@angular/common';
+import { IResultadoComprehend, ISentColor } from 'src/app/domain/pie-chart';
 
 @Component({
   selector: 'app-resultado',
@@ -17,6 +18,9 @@ export class ResultadoComponent implements OnInit {
   resultadoEncuesta!: IResultadoEncuesta;
   encuestaIds!: string[];
   encuesta!: IEncuesta;
+  sent_color: ISentColor[] = [];
+  resultadosComprehend: IResultadoComprehend[] = [];
+  
 
   constructor(
     private _resultadosService: ResultadosService,
@@ -27,17 +31,57 @@ export class ResultadoComponent implements OnInit {
 
   ngOnInit(): void {
     this._encuestasService.getEncuestaIds()
-    .subscribe(encuestaIds => this.encuestaIds = encuestaIds);
+      .subscribe(encuestaIds => this.encuestaIds = encuestaIds);
     this._route.params
       .pipe(switchMap((params: Params) => {
         this._resultadosService.getResultados(params['id'])
-        .subscribe(resultadoEncuesta => this.resultadoEncuesta = resultadoEncuesta);
+          .subscribe(resultadoEncuesta => this.resultadoEncuesta = resultadoEncuesta);
         return this._encuestasService.getEncuesta(params['id']);
       }))
       .subscribe(encuesta => {
         this.encuesta = encuesta;
-      })
+      });
+
+    this.resultadoEncuesta.Preguntas
+      .map(pregunta => pregunta.Resultados?.map(result => {
+        const resultado_comprehend: IResultadoComprehend = { 
+          texto: result.Texto, 
+          valor: result.Valor, 
+          color: this.definirColor(result.Texto)
+        }
+        this.resultadosComprehend.push(resultado_comprehend);
+      }));
+
   }
+
+  definirColor(Texto: string) {
+    const verde: string = '#5AA454';
+    const gris: string = '#AAAAAA';
+    const amarillo: string = '#C7B42C';
+    const rojo: string = '#A10A28';
+
+    let color: string = '';
+
+    switch(Texto){
+      case 'POSITIVO':
+      color = verde;
+      break;
+      case 'NEGATIVO':
+      color = rojo;
+      break;
+      case 'MIXTO':
+      color = amarillo;
+      break;
+      case 'NEUTRO':
+      color = gris;
+    }
+
+    return color;
+  }
+
+  
+
+
 
   volver(): void {
     this._location.back();

@@ -12,7 +12,13 @@ export const OPCIONES_PIE_CHART = {
     legendPosition: 'below'
 }
 
-const verde: string = '#5AA454';
-export const COLOR_SCHEME = {
-    domain: [verde, '#AAAAAA', '#C7B42C', '#A10A28']
-};
+export interface ISentColor{
+    sentiment: string;
+    color: string;
+}
+
+export interface IResultadoComprehend{
+    texto: string;
+    valor: number;
+    color: string;
+}

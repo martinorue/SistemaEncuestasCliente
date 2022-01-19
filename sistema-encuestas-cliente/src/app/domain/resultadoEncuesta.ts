@@ -30,4 +30,5 @@ export interface IResultadoML {
 export interface IResultado {
   Texto: string;
   Valor: number;
+  //color
 }

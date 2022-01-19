@@ -25,7 +25,9 @@
                 </div>
 
             <mat-card
-                *ngIf="pregunta.Resultados != null && pregunta.Resultados != undefined && pregunta.Resultados.length > 0;else no_resultados"
+                *ngIf="pregunta.Resultados != null && 
+                pregunta.Resultados != undefined 
+                && pregunta.Resultados.length > 0;else no_resultados"
                 class="card-resultado">
                 <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly start">
                     <div>
@@ -39,7 +41,7 @@
                     </div>
                     <div class="pie-chart-parent"
                         *ngIf="pregunta.Resultados != null && pregunta.Resultados != undefined && pregunta.Resultados.length > 0">
-                        <app-pie-chart [preguntaResultados]="pregunta.Resultados"></app-pie-chart>
+                        <app-pie-chart [preguntaResultados]="pregunta.Resultados" [resultadosComprehend]="resultadosComprehend"></app-pie-chart>
                     </div>
                     <div *ngIf="pregunta.Tipo == 'TEXTOLIBRE' && pregunta.ResultadosML != null && pregunta.ResultadosML != undefined && pregunta.ResultadosML.length > 0"
                         class="bar-chart-parent">
@@ -50,7 +52,7 @@
         </div>
     </div>
     <ng-template #no_resultados>
-        <p style="text-align: center;">
+        <p class="no-resultados">
             No hay respuestas para mostrar
         </p>
     </ng-template>

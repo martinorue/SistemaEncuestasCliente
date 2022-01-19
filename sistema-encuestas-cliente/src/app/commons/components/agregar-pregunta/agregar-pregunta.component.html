@@ -1,0 +1,28 @@
+<mat-card>
+    <label>
+        <h3>Agregar Preguntas</h3>
+    </label>
+    <mat-form-field appearance="fill" class="full-width">
+        <textarea matInput placeholder="Texto pregunta..." id="pregunta" name="pregunta" [(ngModel)]="pregunta"
+        required></textarea>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Tipo Pregunta</mat-label>
+        <mat-select [(ngModel)]="tipoPregunta" name="tipoPregunta" required>
+            <mat-option *ngFor="let tipo of tiposPregunta" [value]="tipo.value">
+                {{ tipo.viewValue }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <p>
+        <mat-slide-toggle (change)="onChange()" [(ngModel)]="requerida" name="requerida">Requerida
+        </mat-slide-toggle>
+    </p>
+    <p>
+        <button mat-raised-button mat-mini-fab [disabled]="!validarPregunta()"
+        (click)="agregarNuevaPregunta(pregunta)">
+        <mat-icon> add </mat-icon>
+    </button>
+</p>
+</mat-card>

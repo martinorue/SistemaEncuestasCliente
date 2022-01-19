@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { COLOR_SCHEME, IPieChart, OPCIONES_PIE_CHART} from '../../../domain/pie-chart';
+import { IPieChart, IResultadoComprehend, OPCIONES_PIE_CHART } from '../../../domain/pie-chart';
 import { IResultado } from '../../../domain/resultadoEncuesta';
 
 @Component({
@@ -14,12 +14,13 @@ export class PieChartComponent implements OnInit {
 
   data: IPieChart[] = [];
   @Input() preguntaResultados: IResultado[] | null = [];
+  @Input() resultadosComprehend: IResultadoComprehend[] = [];
   view: [number, number] = [300, 175];
   opciones = OPCIONES_PIE_CHART;
-  colorScheme = COLOR_SCHEME;
+  orden_colores: string[] = [];
 
   ngOnInit(): void {
-   
+
     let datos: IPieChart[] = [];
 
     this.preguntaResultados?.map(resultado => {
@@ -30,7 +31,12 @@ export class PieChartComponent implements OnInit {
     });
 
     this.data = datos;
-    
+
+    this.orden_colores = this.resultadosComprehend.map(rc => rc.color);
   }
+
+  colorScheme = {
+    domain: this.orden_colores
+  };
 
 }

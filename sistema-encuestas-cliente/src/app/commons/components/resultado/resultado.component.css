@@ -16,3 +16,7 @@
 .bar-chart-parent { 
     display: grid; 
 }
+
+.no-resultados{
+    text-align: center;
+}

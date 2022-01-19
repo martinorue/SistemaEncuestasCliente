@@ -15,14 +15,12 @@ export class NuevaEncuestaComponent implements OnInit {
 
   nuevasPreguntas: IPregunta[] = [];
   tipoPregunta: string = '';
-  pregunta: string = '';
-  requerida: boolean = true;
   orden: number = 1;
-  data: any;
   nuevaEncuesta!: IEncuesta;
   mostrarCrearEncuesta: boolean = true;
   encuestaSubmit!: IEncuesta;
   errMess!: string;
+  // data: any;
 
   rango = new FormGroup({
     comienzo: new FormControl(),
@@ -31,31 +29,15 @@ export class NuevaEncuestaComponent implements OnInit {
 
   @ViewChild('eform') encuestaFormDirective: any
 
-
-  tiposPregunta: any = [
-    { value: 'TEXTOLIBRE', viewValue: 'Texto Libre' },
-    { value: 'OPCIONSIMPLE', viewValue: 'Opción Simple' },
-    { value: 'OPCIONMULTIPLE', viewValue: 'Opción Múltiple' },
-  ];
-
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.nuevasPreguntas, event.previousIndex, event.currentIndex);
     // const draggedPregunta: IPregunta = event.item.data;
   }
 
-
   constructor(private _router: Router,
     private _crearEncuestaService: CrearEncuestaService) { }
 
   ngOnInit(): void {
-  }
-
-  validarPregunta() {
-    if (this.pregunta != null) {
-      return this.pregunta.trim() != ''
-        && this.tipoPregunta != ''
-        && this.tipoPregunta != null;
-    } else return;
   }
 
   validarEncuesta(formNuevaEncuesta: NgForm) {
@@ -72,28 +54,8 @@ export class NuevaEncuestaComponent implements OnInit {
     } else return;
   }
 
-  onChange() {
-    !this.requerida;
-  }
-
-  agregarPregunta(pregunta: IPregunta) {
-    this.nuevasPreguntas.push(pregunta);
-  }
-
-  agregarNuevaPregunta(value: string) {
-    const nuevaPregunta: IPregunta = {
-      PreguntaID: 0,
-      TextoPregunta: value,
-      Tipo: this.tipoPregunta,
-      Orden: this.orden++,
-      EncuestaID: 0,//@Input() encuesta
-      Requerida: this.requerida,
-      Opciones: null,
-      Resultados: null,
-      ResultadosML: null
-    }
-    this.nuevasPreguntas.push(nuevaPregunta);
-    this.pregunta = '';
+  agregarNuevaPreguntaEmitida(value: IPregunta){
+    this.nuevasPreguntas.push(value);
   }
 
   borrarPregunta(pregunta: IPregunta) {
