@@ -5,6 +5,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -15,9 +17,11 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     MatIconModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSidenavModule,
+    FlexLayoutModule
   ],
-  exports:[
+  exports: [
     HeaderComponent
   ]
 })
