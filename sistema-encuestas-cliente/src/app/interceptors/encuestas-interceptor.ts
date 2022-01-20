@@ -15,6 +15,7 @@ export class EncuestasInterceptor implements HttpInterceptor {
 	constructor(private messageService: MessageService) {}
 
 	intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+		debugger
 		const token = localStorage.getItem('access_token')!;
 		let requestClone = req;
 
@@ -22,7 +23,7 @@ export class EncuestasInterceptor implements HttpInterceptor {
 		if (!this.isLogin(req.url)) {//que agregue el authorization solo si la url no contiene login
 			requestClone = req.clone({
 				// withCredentials: true,
-				// url: req.url.replace('http://', 'https://'),
+				url: req.url.replace('http://', 'https://'),
 				headers: req.headers.set('Authorization', `Bearer ${token}`)
 			});
 			

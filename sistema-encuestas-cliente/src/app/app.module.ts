@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { EncuestasInterceptor } from './interceptors/encuestas-interceptor';
 import { AuthModule } from './pages/auth/auth.module';
 
 @NgModule({

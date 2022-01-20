@@ -35,8 +35,7 @@ import { EncuestasInterceptor } from '../interceptors/encuestas-interceptor';
     MatNativeDateModule,
     EncuestasService,
     CrearEncuestaService,
-    ResultadosService,
-    
+    ResultadosService
     // ,EncuestaGuard
   ]
 })
