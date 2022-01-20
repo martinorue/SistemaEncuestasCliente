@@ -20,7 +20,7 @@ export class ResultadoComponent implements OnInit {
   encuesta!: IEncuesta;
   sent_color: ISentColor[] = [];
   resultadosComprehend: IResultadoComprehend[] = [];
-  
+
 
   constructor(
     private _resultadosService: ResultadosService,
@@ -35,22 +35,30 @@ export class ResultadoComponent implements OnInit {
     this._route.params
       .pipe(switchMap((params: Params) => {
         this._resultadosService.getResultados(params['id'])
-          .subscribe(resultadoEncuesta => this.resultadoEncuesta = resultadoEncuesta);
+          .subscribe(resultadoEncuesta => {
+            this.resultadoEncuesta = resultadoEncuesta;
+            this.resultadoEncuesta.Preguntas
+              .map(pregunta => pregunta.Resultados?.map(result => {
+                if(pregunta.Tipo == 'TEXTOLIBRE'){
+
+                  const resultado_comprehend: IResultadoComprehend = {
+                    texto: result.Texto,
+                    valor: result.Valor,
+                    color: this.definirColor(result.Texto)
+                  }
+                  console.log(resultado_comprehend);
+                  
+                  this.resultadosComprehend.push(resultado_comprehend);
+                }
+              }));
+          });
         return this._encuestasService.getEncuesta(params['id']);
       }))
       .subscribe(encuesta => {
         this.encuesta = encuesta;
       });
 
-    this.resultadoEncuesta.Preguntas
-      .map(pregunta => pregunta.Resultados?.map(result => {
-        const resultado_comprehend: IResultadoComprehend = { 
-          texto: result.Texto, 
-          valor: result.Valor, 
-          color: this.definirColor(result.Texto)
-        }
-        this.resultadosComprehend.push(resultado_comprehend);
-      }));
+
 
   }
 
@@ -62,26 +70,22 @@ export class ResultadoComponent implements OnInit {
 
     let color: string = '';
 
-    switch(Texto){
+    switch (Texto) {
       case 'POSITIVO':
-      color = verde;
-      break;
+        color = verde;
+        break;
       case 'NEGATIVO':
-      color = rojo;
-      break;
+        color = rojo;
+        break;
       case 'MIXTO':
-      color = amarillo;
-      break;
+        color = amarillo;
+        break;
       case 'NEUTRO':
-      color = gris;
+        color = gris;
     }
 
     return color;
   }
-
-  
-
-
 
   volver(): void {
     this._location.back();

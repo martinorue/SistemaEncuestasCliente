@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -11,7 +11,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(login: IRQLogin): Observable<IRLogin>{
-    return this.http.post<IRLogin>(`${environment.baseUri}/api/login`, login);
+  login(login: IRQLogin): Observable<HttpResponse<string>>{
+    return this.http.post<string>(`${environment.baseUri}/api/login`, login, { observe: 'response'});
   }
 }

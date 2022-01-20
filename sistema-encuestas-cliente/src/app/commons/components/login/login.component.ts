@@ -14,35 +14,35 @@ export class LoginComponent {
 	@ViewChild('myFormLogin') myFormLogin: NgForm | undefined;
 
 
-	constructor(private _router: Router, 
-		private _authService: AuthService, 
+	constructor(private _router: Router,
+		private _authService: AuthService,
 		private _jwtAuthService: JwtAuthService
-		) { }
+	) { }
 
 
 	dataLoginForm = {
-		userName: '',
-		password: ''
+		userName: 'rivero.info@gmail.com',
+		password: '123456'
 	};
 
 
 	clickLogin(): void {
-		
+
 		const user: IRQLogin = {
 			Email: this.dataLoginForm.userName,
 			Clave: this.dataLoginForm.password
 		};
 
-		console.log(user);
-		
-		this._authService.login(user).subscribe((data) => {
-			console.log(data);
-			
-			//this._jwtAuthService.login(data.JwtEncuestas);
-			//void this._router.navigateByUrl('/dashboard');
+		// console.log(user);
+
+		this._authService.login(user).subscribe((response) => {
+			const token: any = response.body;
+			if(response.body != null){
+				this._jwtAuthService.login(token);
+			}
+			void this._router.navigateByUrl('/dashboard');
 		});
 
-		//void this._router.navigateByUrl('/dashboard');
 	}
 
 }

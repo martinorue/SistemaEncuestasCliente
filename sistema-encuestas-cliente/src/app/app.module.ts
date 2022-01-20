@@ -20,14 +20,6 @@ import { AuthModule } from './pages/auth/auth.module';
     HttpClientModule,
     MatSnackBarModule,
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: EncuestasInterceptor,
-      multi: true
-    }
-    // ,EncuestaGuard
-  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

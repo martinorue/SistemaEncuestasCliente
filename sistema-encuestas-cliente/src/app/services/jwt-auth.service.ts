@@ -10,11 +10,13 @@ export class JwtAuthService {
 
   constructor() { }
 
-  login(token: string): void {
-    const decode = jwt_decode<IJwt>(token);
-
+  login(token: any): void {
+    // const decode = jwt_decode<IJwt>(token);
+    const decode: any = jwt_decode<string>(token);
+	
     localStorage.setItem(LocalStorageJwt.LS_ACCESS_TOKEN, token);
-    localStorage.setItem(LocalStorageJwt.LS_ROLES, JSON.stringify(decode.role));
+    // localStorage.setItem('access_token', token);
+    // localStorage.setItem(LocalStorageJwt.LS_ROLES, JSON.stringify(decode.role));
   }
 
   isLoggedIn(): boolean {

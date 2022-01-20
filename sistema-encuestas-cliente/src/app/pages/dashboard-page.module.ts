@@ -12,6 +12,8 @@ import { EncuestaResultadoComponent } from './encuesta-resultado/encuesta-result
 import { MatButtonModule } from '@angular/material/button';
 import { ResultadosService } from '../services/resultados.service';
 import { HeaderComponentModule } from '../commons/shared/header-component.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { EncuestasInterceptor } from '../interceptors/encuestas-interceptor';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { HeaderComponentModule } from '../commons/shared/header-component.module
     MatNativeDateModule,
     EncuestasService,
     CrearEncuestaService,
-    ResultadosService
+    ResultadosService,
+    
+    // ,EncuestaGuard
   ]
 })
 export class PageModule { }

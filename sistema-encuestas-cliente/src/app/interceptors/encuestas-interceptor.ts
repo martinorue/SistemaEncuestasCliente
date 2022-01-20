@@ -15,14 +15,17 @@ export class EncuestasInterceptor implements HttpInterceptor {
 	constructor(private messageService: MessageService) {}
 
 	intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-		const token = localStorage.getItem('acces_token')!;
+		const token = localStorage.getItem('access_token')!;
 		let requestClone = req;
-		
+
 		//definir a quién queremos enviar los encabezados, ej: authorization
 		if (!this.isLogin(req.url)) {//que agregue el authorization solo si la url no contiene login
 			requestClone = req.clone({
+				// withCredentials: true,
+				// url: req.url.replace('http://', 'https://'),
 				headers: req.headers.set('Authorization', `Bearer ${token}`)
 			});
+			
 		}
 
 		return next.handle(requestClone).pipe(catchError((error) => this.errorHandler(error)));

@@ -18,6 +18,7 @@ export class PieChartComponent implements OnInit {
   view: [number, number] = [300, 175];
   opciones = OPCIONES_PIE_CHART;
   orden_colores: string[] = [];
+  colorScheme: any;
 
   ngOnInit(): void {
 
@@ -33,10 +34,12 @@ export class PieChartComponent implements OnInit {
     this.data = datos;
 
     this.orden_colores = this.resultadosComprehend.map(rc => rc.color);
-  }
+    console.log(this.orden_colores);
 
-  colorScheme = {
-    domain: this.orden_colores
-  };
+    this.colorScheme = {
+      domain: this.orden_colores
+    };
+
+  }
 
 }
