@@ -46,7 +46,6 @@ export class ResultadoComponent implements OnInit {
                     valor: result.Valor,
                     color: this.definirColor(result.Texto)
                   }
-                  console.log(resultado_comprehend);
                   
                   this.resultadosComprehend.push(resultado_comprehend);
                 }

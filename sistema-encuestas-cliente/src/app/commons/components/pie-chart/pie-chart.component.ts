@@ -34,7 +34,6 @@ export class PieChartComponent implements OnInit {
     this.data = datos;
 
     this.orden_colores = this.resultadosComprehend.map(rc => rc.color);
-    console.log(this.orden_colores);
 
     this.colorScheme = {
       domain: this.orden_colores

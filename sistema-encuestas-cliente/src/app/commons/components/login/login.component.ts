@@ -33,14 +33,9 @@ export class LoginComponent {
 			Clave: this.dataLoginForm.password
 		};
 
-		// console.log(user);
-
 		this._authService.login(user).subscribe((response) => {
-			console.log(response.body);
 
 			const token: any = response.body;
-
-			console.log(token);
 			
 			this._jwtAuthService.login(token);
 

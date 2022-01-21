@@ -1,7 +1,6 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IOpcion, IPregunta } from '../../../domain/pregunta';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
@@ -32,11 +31,6 @@ export class AgregarPreguntaComponent implements OnInit {
     { value: 'OPCIONSIMPLE', viewValue: 'Opción Simple' },
     { value: 'OPCIONMULTIPLE', viewValue: 'Opción Múltiple' },
   ];
-
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.nuevasPreguntas, event.previousIndex, event.currentIndex);
-    // const draggedPregunta: IPregunta = event.item.data;
-  }
 
   onChange() {
     !this.requerida;
@@ -87,23 +81,6 @@ export class AgregarPreguntaComponent implements OnInit {
       this.nuevasPreguntas.splice(index, 1);
     }
   }
-
-  // agregarOpciona(value: string): void {
-  //   const opcion: IOpcion = {
-  //     OpcionID: 0,
-  //     OpcionTexto: value
-  //   }
-  //   this.opciones.push(opcion);
-  //   this.opcion = '';
-  // }
-
-  // validarOpcion() {
-  //   if (this.opcion != null) {
-  //     return this.opcion.trim() != ''
-  //   } else {
-  //     return false;
-  //   }
-  // }
 
   agregarOpcion(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();

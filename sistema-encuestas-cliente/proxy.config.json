@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "https://mr87187.azurewebsites.net",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}
