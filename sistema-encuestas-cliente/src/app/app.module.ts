@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthModule } from './pages/auth/auth.module';
+import { EncuestasInterceptor } from './interceptors/encuestas-interceptor';
 
 @NgModule({
   declarations: [

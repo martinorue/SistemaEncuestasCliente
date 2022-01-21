@@ -12,7 +12,7 @@ export class JwtAuthService {
 
   login(token: any): void {
     // const decode = jwt_decode<IJwt>(token);
-    const decode: any = jwt_decode<string>(token);
+    // const decode: any = jwt_decode<string>(token);
 	
     localStorage.setItem(LocalStorageJwt.LS_ACCESS_TOKEN, token);
     // localStorage.setItem('access_token', token);

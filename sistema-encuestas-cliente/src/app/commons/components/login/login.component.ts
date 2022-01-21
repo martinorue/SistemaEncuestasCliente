@@ -36,10 +36,14 @@ export class LoginComponent {
 		// console.log(user);
 
 		this._authService.login(user).subscribe((response) => {
+			console.log(response.body);
+
 			const token: any = response.body;
-			if(response.body != null){
-				this._jwtAuthService.login(token);
-			}
+
+			console.log(token);
+			
+			this._jwtAuthService.login(token);
+
 			void this._router.navigateByUrl('/dashboard');
 		});
 

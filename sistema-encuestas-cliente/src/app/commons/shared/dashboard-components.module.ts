@@ -16,6 +16,8 @@ import { EncuestaComponent } from '../components/encuesta/encuesta.component';
 import { ResultadosService } from '../../services/resultados.service';
 import { DashBoardRoutingModule } from '../../pages/dashboard-routing.module';
 import { HeaderComponentModule } from './header-component.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { EncuestasInterceptor } from 'src/app/interceptors/encuestas-interceptor';
 
 
 @NgModule({
@@ -28,9 +30,10 @@ import { HeaderComponentModule } from './header-component.module';
   ],
   imports: [
     CommonModule,
-    RouterModule,
-    DashBoardRoutingModule,
     HeaderComponentModule,
+    RouterModule,
+    HttpClientModule,
+    DashBoardRoutingModule,
     NgxChartsModule,
     MatCardModule,
     MatButtonModule,
@@ -44,6 +47,11 @@ import { HeaderComponentModule } from './header-component.module';
     BarChartComponent,
     EncuestaComponent,
     ResultadoComponent,
-  ]
+  ],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: EncuestasInterceptor,
+    multi: true
+  }],
 })
 export class DashboardComponentsModule { }

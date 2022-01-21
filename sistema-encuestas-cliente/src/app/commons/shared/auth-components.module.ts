@@ -25,6 +25,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatProgressSpinnerModule,
     FlexLayoutModule
   ],
-  exports: [LoginComponent]
+  exports: [LoginComponent],
 })
 export class AuthComponentsModule { }

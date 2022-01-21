@@ -12,7 +12,7 @@ import { EncuestaResultadoComponent } from './encuesta-resultado/encuesta-result
 import { MatButtonModule } from '@angular/material/button';
 import { ResultadosService } from '../services/resultados.service';
 import { HeaderComponentModule } from '../commons/shared/header-component.module';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EncuestasInterceptor } from '../interceptors/encuestas-interceptor';
 
 
@@ -23,20 +23,15 @@ import { EncuestasInterceptor } from '../interceptors/encuestas-interceptor';
   ],
   imports: [
     CommonModule,
-    DashboardComponentsModule,
-    DashBoardRoutingModule,//page-routing.module
-    CommonModule,
     HeaderComponentModule,
+    DashboardComponentsModule,
+    DashBoardRoutingModule,
     MatButtonModule,
-    MatNativeDateModule,
   ],
   providers: [
-    MatDatepickerModule,
-    MatNativeDateModule,
     EncuestasService,
     CrearEncuestaService,
-    ResultadosService
-    // ,EncuestaGuard
+    ResultadosService,
   ]
 })
 export class PageModule { }

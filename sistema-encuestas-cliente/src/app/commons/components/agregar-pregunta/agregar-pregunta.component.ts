@@ -20,7 +20,7 @@ export class AgregarPreguntaComponent implements OnInit {
   opcion: string = '';
   opciones: IOpcion[] = [];
   addOnBlur = true;
-  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  readonly separatorKeysCodes = [ENTER] as const;
 
   constructor() { }
 
