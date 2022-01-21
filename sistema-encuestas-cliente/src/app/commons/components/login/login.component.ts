@@ -37,16 +37,12 @@ export class LoginComponent {
 		this._authService.login(user).subscribe((response) => {
 			this.respuestaHttp = response.status
 			const token: any = response.body;
-			
+
 			this._jwtAuthService.login(token);
 			void this._router.navigateByUrl('/dashboard');
 		})
-			// if(response.status != 200){
-			// 	this.mostrarProgreso = false;
-			// }
-			// 
-		};//);
+	};
 
-	}
+}
 
 

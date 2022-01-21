@@ -3,7 +3,7 @@
     <h4>Cargando resultados...</h4>
 </div>
 
-<div *ngIf="encuesta" class="resultado-container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column"
+<div *ngIf="encuesta && resultadoEncuesta" class="resultado-container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column"
     fxLayoutAlign="center center" fxLayoutGap="10px" fxLayoutGap.xs="0">
         <h1>Resultados de: {{ encuesta.Denominacion }}</h1>
     
