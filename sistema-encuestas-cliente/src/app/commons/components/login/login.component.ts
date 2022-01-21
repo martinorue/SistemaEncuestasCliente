@@ -12,7 +12,8 @@ import { JwtAuthService } from '../../../services/jwt-auth.service';
 })
 export class LoginComponent {
 	@ViewChild('myFormLogin') myFormLogin: NgForm | undefined;
-
+	mostrarProgreso: boolean = false;
+	respuestaHttp!: number;
 
 	constructor(private _router: Router,
 		private _authService: AuthService,
@@ -27,21 +28,25 @@ export class LoginComponent {
 
 
 	clickLogin(): void {
-
+		this.mostrarProgreso = true;
 		const user: IRQLogin = {
 			Email: this.dataLoginForm.userName,
 			Clave: this.dataLoginForm.password
 		};
 
 		this._authService.login(user).subscribe((response) => {
-
+			this.respuestaHttp = response.status
 			const token: any = response.body;
 			
 			this._jwtAuthService.login(token);
-
 			void this._router.navigateByUrl('/dashboard');
-		});
+		})
+			// if(response.status != 200){
+			// 	this.mostrarProgreso = false;
+			// }
+			// 
+		};//);
 
 	}
 
-}
+

@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from '../components/login/login.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     RouterModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
+    MatProgressBarModule,
     FlexLayoutModule
   ],
   exports: [LoginComponent],

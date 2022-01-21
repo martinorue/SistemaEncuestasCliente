@@ -13,7 +13,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, private processHttpmsgService: ProcessHttpmsgService) { }
 
-  login(login: IRQLogin): Observable<HttpResponse<string>>{
-    return this.http.post<string>(`${environment.baseUri}/api/login`, login, { observe: 'response'}).pipe(catchError((error) => this.processHttpmsgService.handleError(error)));
+  login(login: IRQLogin): Observable<HttpResponse<string>> {
+    return this.http.post<string>(`${environment.baseUri}/api/login`, login, { observe: 'response' }).pipe(catchError((error) => this.processHttpmsgService.handleError(error)));
   }
 }
