@@ -1,23 +1,29 @@
-<div class="container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column"
-        fxLayoutAlign="space-around center" fxLayoutGap="10px" fxLayoutGap.xs="0">
-        <div>
-            <!-- COMPONENTE VISTA PREVIA ENCUESTA CREADA -->
-            <!-- <app-vista-previa-encuesta [nuevaEncuesta]="nuevaEncuesta"></app-vista-previa-encuesta> -->
-            <!-- GO BACK -->
-            <h1>Vista Previa de la encuesta</h1>
-            <h2>Denominación: {{nuevaEncuesta.Denominacion}}</h2>
-            <h3><mat-icon>outlined_flag</mat-icon>Objetivo: {{nuevaEncuesta.Objetivo}}</h3>
-            <h4><mat-icon>date_range</mat-icon>Período: {{nuevaEncuesta.FechaInicio | date}} - {{nuevaEncuesta.FechaFin | date}}</h4>
-            <h4><mat-icon>quiz</mat-icon>Preguntas:</h4>
-            <div *ngFor="let pregunta of nuevaEncuesta.Preguntas">
-                <mat-card class="medium-width">
-                    {{pregunta.TextoPregunta}}
-                </mat-card>
+<div class="container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-around center"
+    fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <!-- COMPONENTE VISTA PREVIA ENCUESTA CREADA -->
+        <!-- GO BACK -->
+        <h1>Vista Previa de la encuesta</h1>
+        <h2>Denominación: {{nuevaEncuesta.Denominacion}}</h2>
+        <a mat-button>
+            <mat-icon>outlined_flag</mat-icon>Objetivo: {{nuevaEncuesta.Objetivo}}
+        </a>
+        <a mat-button>
+            <mat-icon>date_range</mat-icon>Período: {{nuevaEncuesta.FechaInicio | date}} - {{nuevaEncuesta.FechaFin |
+            date}}
+        </a>
+        <a mat-button>
+            <mat-icon>quiz</mat-icon>
+            <span>Preguntas:</span>
+        </a>
+        <mat-card *ngFor="let pregunta of nuevaEncuesta.Preguntas" class="medium-width">
+            <mat-card-title>{{pregunta.TextoPregunta}}</mat-card-title>
+            <div *ngIf="pregunta.Tipo != 'TEXTOLIBRE'">
+                <span class="opcion" *ngFor="let opcion of pregunta.Opciones">
+                    {{opcion.OpcionTexto}}
+                </span>
             </div>
-            <button mat-raised-button (click)="volverCrearEncuesta()">
-                Volver
-            </button>
-        </div>
-    </div>
-
-
+        </mat-card>
+        <button mat-raised-button (click)="volverCrearEncuesta()">
+            Volver
+        </button>
+</div>

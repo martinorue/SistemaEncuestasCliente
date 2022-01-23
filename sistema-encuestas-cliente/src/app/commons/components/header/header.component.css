@@ -7,6 +7,10 @@
     width: 61px;
 }
 
+mat-icon{
+    line-height: 23px;
+}
+
 
 /* .companyName{
     font-size: 150%;

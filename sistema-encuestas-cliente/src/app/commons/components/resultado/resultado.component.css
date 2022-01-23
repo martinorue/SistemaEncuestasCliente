@@ -20,3 +20,8 @@
 .no-resultados{
     text-align: center;
 }
+
+.icon-text {
+    display: flex;
+    align-items: end;
+}

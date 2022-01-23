@@ -31,7 +31,7 @@
                 class="card-resultado">
                 <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly start">
                     <div>
-                        <p *ngFor="let result of pregunta.Resultados">
+                        <p class="icon-text" *ngFor="let result of pregunta.Resultados">
                             <mat-icon *ngIf="result.Texto == 'POSITIVO'">sentiment_very_satisfied</mat-icon>
                             <mat-icon *ngIf="result.Texto == 'NEGATIVO'">sentiment_very_dissatisfied</mat-icon>
                             <mat-icon *ngIf="result.Texto == 'MIXTO' || result.Texto == 'NEUTRO'">sentiment_satisfied

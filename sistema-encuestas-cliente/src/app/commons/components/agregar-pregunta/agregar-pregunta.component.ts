@@ -51,6 +51,8 @@ export class AgregarPreguntaComponent implements OnInit {
     this.nuevasPreguntas.push(nuevaPregunta);
     this.preguntaEmitida.emit(nuevaPregunta);
     this.pregunta = '';
+    this.opciones = [];
+    this.tipoPregunta = '';
   }
 
   validarPregunta(): boolean {

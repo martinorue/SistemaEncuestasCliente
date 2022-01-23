@@ -41,9 +41,17 @@ body {
 }
 
 .medium-width{
-  width: 50%;
+  width: 60%;
 }
 
 mat-card {
-  margin-bottom: 15px;
+  margin-bottom: 15px !important;
+}
+
+.btn-borrar-pregunta{
+  float: right;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  padding: 0 !important;
 }

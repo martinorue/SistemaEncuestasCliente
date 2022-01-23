@@ -40,13 +40,18 @@ export class ResultadoComponent implements OnInit {
             this.resultadoEncuesta.Preguntas
               .map(pregunta => pregunta.Resultados?.map(result => {
                 if(pregunta.Tipo == 'TEXTOLIBRE'){
-
                   const resultado_comprehend: IResultadoComprehend = {
                     texto: result.Texto,
                     valor: result.Valor,
                     color: this.definirColor(result.Texto)
                   }
-                  
+                  this.resultadosComprehend.push(resultado_comprehend);
+                }else{
+                  const resultado_comprehend: IResultadoComprehend = {
+                    texto: result.Texto,
+                    valor: result.Valor,
+                    color: '#'+(Math.random()*0xFFFFFF<<0).toString(16)
+                  }
                   this.resultadosComprehend.push(resultado_comprehend);
                 }
               }));
@@ -56,9 +61,6 @@ export class ResultadoComponent implements OnInit {
       .subscribe(encuesta => {
         this.encuesta = encuesta;
       });
-
-
-
   }
 
   definirColor(Texto: string) {

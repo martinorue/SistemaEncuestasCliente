@@ -8,10 +8,8 @@ import { IResultado } from '../../../domain/resultadoEncuesta';
   styleUrls: ['./pie-chart.component.css']
 })
 export class PieChartComponent implements OnInit {
-  constructor() {
-
-  }
-
+  orden_opciones: any;
+  
   data: IPieChart[] = [];
   @Input() preguntaResultados: IResultado[] | null = [];
   @Input() resultadosComprehend: IResultadoComprehend[] = [];
@@ -19,6 +17,8 @@ export class PieChartComponent implements OnInit {
   opciones = OPCIONES_PIE_CHART;
   orden_colores: string[] = [];
   colorScheme: any;
+  constructor() {
+  }
 
   ngOnInit(): void {
 

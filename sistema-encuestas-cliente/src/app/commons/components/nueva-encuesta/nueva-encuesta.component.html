@@ -1,63 +1,65 @@
 <div fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-around center" fxLayoutGap="10px"
     fxLayoutGap.xs="0">
-        <h1>Nueva encuesta</h1>
-        <h2>Aquí se define una nueva encuesta</h2>
-        <form #formNuevaEncuesta="ngForm" #eform="ngForm">
-            <mat-card>
-                <label for="nombreEncuesta">
-                    <h3>Nombre de la encuesta</h3>
-                </label>
-                <mat-form-field class="full-width">
-                    <textarea matInput placeholder="Nombre encuesta..." id="nombreEncuesta" name="nombreEncuesta"
-                        ngModel required></textarea>
-                </mat-form-field>
-            </mat-card>
-            <mat-card>
-                <label for="objetivoEncuesta">
-                    <h3>Defina un objetivo</h3>
-                </label>
-                <mat-form-field class="full-width">
-                    <textarea matInput placeholder="Objetivo encuesta..." id="objetivoEncuesta" name="objetivoEncuesta"
-                        ngModel required></textarea>
-                </mat-form-field>
-            </mat-card>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Período de la encuesta</mat-label>
-                <mat-date-range-input [formGroup]="rango" [rangePicker]="picker">
-                    <input matStartDate formControlName="comienzo" placeholder="Comienzo" />
-                    <input matEndDate formControlName="fin" placeholder="Fin" />
-                </mat-date-range-input>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-date-range-picker #picker></mat-date-range-picker>
-
-                <mat-error *ngIf="rango.controls.comienzo.hasError('matStartDateInvalid')">Ingrese un comienzo válido
-                </mat-error>
-                <mat-error *ngIf="rango.controls.fin.hasError('matEndDateInvalid')">Ingrese un fin válido</mat-error>
+    <h1>Nueva encuesta</h1>
+    <h2>Aquí se define una nueva encuesta</h2>
+    <form #formNuevaEncuesta="ngForm" #eform="ngForm">
+        <mat-card>
+            <label for="nombreEncuesta">
+                <h3>Nombre de la encuesta</h3>
+            </label>
+            <mat-form-field class="full-width">
+                <textarea matInput placeholder="Nombre encuesta..." id="nombreEncuesta" name="nombreEncuesta" ngModel
+                    required></textarea>
             </mat-form-field>
+        </mat-card>
+        <mat-card>
+            <label for="objetivoEncuesta">
+                <h3>Defina un objetivo</h3>
+            </label>
+            <mat-form-field class="full-width">
+                <textarea matInput placeholder="Objetivo encuesta..." id="objetivoEncuesta" name="objetivoEncuesta"
+                    ngModel required></textarea>
+            </mat-form-field>
+        </mat-card>
 
-            <!-- COMPONENTE AGREGAR PREGUNTA -->
-            <app-agregar-pregunta (preguntaEmitida)="agregarNuevaPreguntaEmitida($event)"></app-agregar-pregunta>
+        <mat-form-field appearance="fill">
+            <mat-label>Período de la encuesta</mat-label>
+            <mat-date-range-input [formGroup]="rango" [rangePicker]="picker">
+                <input matStartDate formControlName="comienzo" placeholder="Comienzo" />
+                <input matEndDate formControlName="fin" placeholder="Fin" />
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
 
-            <div *ngIf="nuevasPreguntas.length > 0">
-                <mat-card cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-                    <div class="example-box" *ngFor="let pregunta of nuevasPreguntas" cdkDrag [cdkDragData]="pregunta">
-                        {{ pregunta.TextoPregunta }}
-                        <button mat-mini-fab class="btn-borrar-pregunta"
-                            style="float: right; cursor: pointer; line-height: 0px" (click)="borrarPregunta(pregunta)">
-                            <span>
-                                <mat-icon>delete_outline</mat-icon>
-                            </span>
+            <mat-error *ngIf="rango.controls.comienzo.hasError('matStartDateInvalid')">Ingrese un comienzo válido
+            </mat-error>
+            <mat-error *ngIf="rango.controls.fin.hasError('matEndDateInvalid')">Ingrese un fin válido</mat-error>
+        </mat-form-field>
+
+        <!-- COMPONENTE AGREGAR PREGUNTA -->
+        <app-agregar-pregunta (preguntaEmitida)="agregarNuevaPreguntaEmitida($event)"></app-agregar-pregunta>
+
+        <div *ngIf="nuevasPreguntas.length > 0">
+            <mat-card cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let pregunta of nuevasPreguntas" cdkDrag [cdkDragData]="pregunta">
+                    <span class="texto-pregunta">{{ pregunta.TextoPregunta }}</span>
+                        <button class="btn-borrar-pregunta" mat-mini-fab (click)="borrarPregunta(pregunta)">
+                            <mat-icon class="icon-papelera">delete_outline</mat-icon>
                         </button>
+                    <div class="opciones">
+                        <ul *ngFor="let opcion of pregunta.Opciones">
+                            <li>{{opcion.OpcionTexto}}</li> 
+                        </ul>
                     </div>
-                </mat-card>
-            </div>
+                </div>
+            </mat-card>
+        </div>
 
-            <div>
-                <button [disabled]="!validarEncuesta(formNuevaEncuesta)" class="button-submit" mat-raised-button
-                    type="submit" color="accent" (click)="onSubmit(formNuevaEncuesta)">
-                    Finalizar
-                </button>
-            </div>
-        </form>
+        <div>
+            <button [disabled]="!validarEncuesta(formNuevaEncuesta)" class="button-submit" mat-raised-button
+                type="submit" color="accent" (click)="onSubmit(formNuevaEncuesta)">
+                Finalizar
+            </button>
+        </div>
+    </form>
 </div>
