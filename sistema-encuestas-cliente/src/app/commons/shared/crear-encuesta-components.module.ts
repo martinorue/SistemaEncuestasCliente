@@ -31,7 +31,6 @@ import { CrearEncuestaRoutingModule } from 'src/app/pages/crear-encuesta-routing
     CommonModule,
     HeaderComponentModule,
     RouterModule,
-    // HttpClientModule,
     CrearEncuestaRoutingModule,
     MatCardModule,
     MatIconModule,
@@ -53,11 +52,6 @@ import { CrearEncuestaRoutingModule } from 'src/app/pages/crear-encuesta-routing
     VistaPreviaEncuestaComponent
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: EncuestasInterceptor,
-    //   multi: true
-    // },
     MatDatepickerModule,
     MatNativeDateModule,
   ]

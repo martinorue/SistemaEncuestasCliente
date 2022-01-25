@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EditarEncuestaComponent } from './commons/components/editar-encuesta/editar-encuesta.component';
 import { EncuestaGuard } from './guards/encuesta.guard';
 import { LoginPageComponent } from './pages/auth/login-page/login-page.component';
 

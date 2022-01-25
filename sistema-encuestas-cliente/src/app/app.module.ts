@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthModule } from './pages/auth/auth.module';
 
+
 @NgModule({
   declarations: [
     AppComponent
