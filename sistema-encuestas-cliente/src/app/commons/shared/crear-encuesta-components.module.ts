@@ -16,8 +16,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { AgregarPreguntaComponent } from '../components/agregar-pregunta/agregar-pregunta.component';
 import { MatChipsModule } from '@angular/material/chips';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { EncuestasInterceptor } from 'src/app/interceptors/encuestas-interceptor';
 import { RouterModule } from '@angular/router';
 import { CrearEncuestaRoutingModule } from 'src/app/pages/crear-encuesta-routing.module';
 

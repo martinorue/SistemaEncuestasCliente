@@ -16,10 +16,6 @@ export const routes: Routes = [
         path: 'Resultados/:id',
         component: EncuestaResultadoComponent
       },
-      {
-        path: 'editar-encuesta/:id',
-        component: EditarEncuestaComponent
-      },
     ]
   }
 ];

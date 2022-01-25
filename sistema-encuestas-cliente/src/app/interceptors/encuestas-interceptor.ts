@@ -5,7 +5,7 @@ import {
 	HttpRequest
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { PathRest } from '../commons/static/path-rest';
 import { ProcessHttpmsgService } from '../services/process-httpmsg.service';
@@ -13,10 +13,10 @@ import { ProcessHttpmsgService } from '../services/process-httpmsg.service';
 @Injectable()
 
 export class EncuestasInterceptor implements HttpInterceptor {
-	constructor(private processHttpmsgService: ProcessHttpmsgService) {}
+	constructor(private processHttpmsgService: ProcessHttpmsgService) { }
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-		
+
 		const token = localStorage.getItem('access_token')!;
 		let requestClone = req;
 
