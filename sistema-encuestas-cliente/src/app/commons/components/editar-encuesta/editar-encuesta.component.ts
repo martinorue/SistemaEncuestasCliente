@@ -2,11 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm, FormGroup, FormControl } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { IPregunta } from '../../../domain/pregunta';
+import { IOpcion, IPregunta } from '../../../domain/pregunta';
 import { IEncuesta } from '../../../domain/encuesta';
 import { CrearEncuestaService } from '../../../services/crear-encuesta.service';
 import { EncuestasService } from '../../../services/encuestas.service';
 import { switchMap } from 'rxjs/operators';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { ENTER } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-editar-encuesta',
@@ -15,11 +17,6 @@ import { switchMap } from 'rxjs/operators';
 })
 export class EditarEncuestaComponent implements OnInit {
 
-  name: any = 'Angular';
-
-  onNameChange(val: any) {
-    console.log("Changed", val)
-  }
 
   nuevasPreguntas: IPregunta[] = [];
   tipoPregunta: string = '';
@@ -30,6 +27,11 @@ export class EditarEncuestaComponent implements OnInit {
   encuestaIds!: string[];
   encuesta!: IEncuesta;
   clonPreguntas: IPregunta[] = [];
+  multiple: boolean = false;
+  opciones: IOpcion[] = [] || null;
+  addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER] as const;
+
 
   rango = new FormGroup({
     comienzo: new FormControl(),
@@ -78,6 +80,11 @@ export class EditarEncuestaComponent implements OnInit {
   }
 
   agregarNuevaPreguntaEmitida(value: IPregunta) {
+    console.log(value);
+    value.EncuestaID = this.encuesta.EncuestaID;
+    if(value.Opciones?.length == 0){
+      value.Opciones = null;
+    }
     this.clonPreguntas.push(value);
   }
 
@@ -100,12 +107,37 @@ export class EditarEncuestaComponent implements OnInit {
     this.clonPreguntas[index].TextoPregunta = value;
   }
 
+  agregarOpcion(event: MatChipInputEvent, pregunta: IPregunta): void {
+    const value = (event.value || '').trim();
+
+    if (value) {
+      const opcion: IOpcion = { OpcionID: 0, OpcionTexto: value }
+      const index = this.clonPreguntas.indexOf(pregunta);
+      this.clonPreguntas[index].Opciones?.push(opcion);
+    }
+    event.chipInput!.clear();
+  }
+
+  borrarOpcion(opcion: IOpcion, pregunta: IPregunta): void {
+    const indexOpcion = pregunta.Opciones?.indexOf(opcion);
+
+    if (indexOpcion != null && indexOpcion != undefined) {
+      pregunta.Opciones?.splice(indexOpcion, 1);
+    }
+  }
+
+  onChangeRequerida(pregunta: IPregunta) {
+    if (pregunta.Requerida) {
+      pregunta.Requerida = false;
+    }
+  }
+
   onSubmit(formNuevaEncuesta: NgForm) {
 
     this.ordenarPreguntas();
 
     this.nuevaEncuesta = {
-      EncuestaID: 0,
+      EncuestaID: this.encuesta.EncuestaID,
       Denominacion: formNuevaEncuesta.value.nombreEncuesta,
       FechaInicio: this.rango.value.comienzo,
       FechaFin: this.rango.value.fin,
@@ -120,15 +152,15 @@ export class EditarEncuestaComponent implements OnInit {
     this.nuevasPreguntas = [];
     this.orden = 1;
     this.encuestaFormDirective.resetForm();
-    //this.guardarEncuesta(json_encuesta);
+    this.guardarEncuestaEditada(this.nuevaEncuesta);
     void this._router.navigateByUrl('/crear-encuesta/vista-previa-encuesta', { state: this.nuevaEncuesta }); //pasándole la encuesta creada
   }
 
 
-  // guardarEncuesta(respuesta: string) {
-  //   this._crearEncuestaService.submitEncuesta(respuesta)
-  //     .subscribe(respuestaSubmit => this.encuestaSubmit = respuestaSubmit,
-  //       errmess => this.errMess = <any>errmess);
-  // }
+  guardarEncuestaEditada(encuesta: IEncuesta) {
+    this._crearEncuestaService.submitEncuestaEditada(encuesta)
+      .subscribe(respuestaSubmit => this.encuestaSubmit = respuestaSubmit,
+        errmess => this.errMess = <any>errmess);
+  }
 
 }

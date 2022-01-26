@@ -19,7 +19,6 @@ export class NuevaEncuestaComponent implements OnInit {
   nuevaEncuesta!: IEncuesta;
   encuestaSubmit!: IEncuesta;
   errMess!: string;
-  // data: any;
 
   rango = new FormGroup({
     comienzo: new FormControl(),
@@ -76,6 +75,8 @@ export class NuevaEncuestaComponent implements OnInit {
   onSubmit(formNuevaEncuesta: NgForm) {
 
     this.ordenarPreguntas();
+
+    
 
     this.nuevaEncuesta = {
       EncuestaID: 0,

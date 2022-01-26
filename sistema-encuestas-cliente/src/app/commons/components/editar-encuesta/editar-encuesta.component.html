@@ -3,12 +3,13 @@
     <h4>Cargando encuestas...</h4>
 </div>
 
-<div *ngIf="encuesta" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-around center"
-    fxLayoutGap="10px" fxLayoutGap.xs="0">
-    <h1>Editar encuesta</h1>
-
+<div fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-around center" fxLayoutGap="10px"
+    fxLayoutGap.xs="0">
+    <h1 [hidden]="!encuesta">Editar encuesta</h1>
+    
+    <form *ngIf="encuesta && encuesta.CantidadEncuestados == 0;else tiene_resultados" #formNuevaEncuesta="ngForm"
+    #eform="ngForm">
     <h2>Aquí se puede editar una encuesta</h2>
-    <form #formNuevaEncuesta="ngForm" #eform="ngForm">
         <mat-card>
             <label for="nombreEncuesta">
                 <h3>Nombre: {{encuesta.Denominacion}}</h3>
@@ -46,22 +47,38 @@
             <h2>Preguntas</h2>
             <mat-card cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
                 <div class="example-box" *ngFor="let pregunta of clonPreguntas" cdkDrag [cdkDragData]="pregunta">
-                    
-                    <input matInput class="texto-pregunta" #preguntaEditada name="preguntaEditada" id="preguntaEditada" value="{{pregunta.TextoPregunta}}"
-                    (blur)="update(preguntaEditada.value, pregunta)">
+
+                    <input matInput class="texto-pregunta" #preguntaEditada name="preguntaEditada" id="preguntaEditada"
+                        value="{{pregunta.TextoPregunta}}" (blur)="update(preguntaEditada.value, pregunta)">
 
                     <button class="btn-borrar-pregunta-icon" mat-mini-fab (click)="borrarPregunta(pregunta)">
                         <mat-icon class="borrar-pregunta-icon">delete_outline</mat-icon>
                     </button>
-                    <div class="opciones">
-                        <ul *ngFor="let opcion of pregunta.Opciones">
-                            <li>{{opcion.OpcionTexto}}
-                                <button mat-icon-button>
-                                    <mat-icon class="borrar-opcion-icon">clear</mat-icon>
-                                </button>
-                            </li>
-                        </ul>
+                    <div *ngIf="pregunta.Tipo == 'OPCIONSIMPLE' || pregunta.Tipo == 'OPCIONMULTIPLE'">
+                        <div>
+                            <mat-form-field class="chip-list" appearance="fill">
+                                <mat-label for="opcion">Agregar Opción</mat-label>
+                                <mat-chip-list #listaOpciones aria-label="Opciones">
+                                    <mat-chip *ngFor="let opcion of pregunta.Opciones"
+                                        (removed)="borrarOpcion(opcion, pregunta)">
+                                        {{opcion.OpcionTexto}}
+                                        <button matChipRemove>
+                                            <mat-icon>cancel</mat-icon>
+                                        </button>
+                                    </mat-chip>
+                                    <input placeholder="Nueva opción..." [matChipInputFor]="listaOpciones"
+                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                        [matChipInputAddOnBlur]="addOnBlur"
+                                        (matChipInputTokenEnd)="agregarOpcion($event, pregunta)">
+                                </mat-chip-list>
+                            </mat-form-field>
+                        </div>
                     </div>
+                    <p>
+                        <mat-slide-toggle (change)="onChangeRequerida(pregunta)" [checked]="pregunta.Requerida">
+                            Requerida
+                        </mat-slide-toggle>
+                    </p>
                 </div>
             </mat-card>
         </div>
@@ -76,4 +93,9 @@
             </button>
         </div>
     </form>
+    <ng-template #tiene_resultados>
+        <p class="tiene_resultados" [hidden]="!encuesta">
+            La encuesta ya cuenta con resultados. No se puede editar.
+        </p>
+    </ng-template>
 </div>
