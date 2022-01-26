@@ -3,10 +3,10 @@
     <h4>Cargando encuestas...</h4>
 </div>
 
-<div *ngIf="encuesta" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-around center" fxLayoutGap="10px"
-    fxLayoutGap.xs="0">
+<div *ngIf="encuesta" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-around center"
+    fxLayoutGap="10px" fxLayoutGap.xs="0">
     <h1>Editar encuesta</h1>
-    
+
     <h2>Aquí se puede editar una encuesta</h2>
     <form #formNuevaEncuesta="ngForm" #eform="ngForm">
         <mat-card>
@@ -23,11 +23,11 @@
                 <h3>Objetivo: {{encuesta.Objetivo}}</h3>
             </label>
             <mat-form-field class="full-width">
-                <textarea matInput placeholder="Nuevo objetivo..." id="objetivoEncuesta" name="objetivoEncuesta"
-                    ngModel required></textarea>
+                <textarea matInput placeholder="Nuevo objetivo..." id="objetivoEncuesta" name="objetivoEncuesta" ngModel
+                    required></textarea>
             </mat-form-field>
         </mat-card>
-        
+
         <mat-form-field appearance="fill">
             <mat-label>Período: {{encuesta.FechaInicio | date}} - {{encuesta.FechaFin}}</mat-label>
             <mat-date-range-input [formGroup]="rango" [rangePicker]="picker">
@@ -41,18 +41,25 @@
             </mat-error>
             <mat-error *ngIf="rango.controls.fin.hasError('matEndDateInvalid')">Ingrese un fin válido</mat-error>
         </mat-form-field>
-        
-          <div>
-              <h2>Preguntas</h2>
+
+        <div>
+            <h2>Preguntas</h2>
             <mat-card cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
                 <div class="example-box" *ngFor="let pregunta of clonPreguntas" cdkDrag [cdkDragData]="pregunta">
-                    <input matInput class="texto-pregunta" value="{{ pregunta.TextoPregunta }}">
-                        <button class="btn-borrar-pregunta" mat-mini-fab (click)="borrarPregunta(pregunta)">
-                            <mat-icon class="icon-papelera">delete_outline</mat-icon>
-                        </button>
+                    
+                    <input matInput class="texto-pregunta" #preguntaEditada name="preguntaEditada" id="preguntaEditada" value="{{pregunta.TextoPregunta}}"
+                    (blur)="update(preguntaEditada.value, pregunta)">
+
+                    <button class="btn-borrar-pregunta-icon" mat-mini-fab (click)="borrarPregunta(pregunta)">
+                        <mat-icon class="borrar-pregunta-icon">delete_outline</mat-icon>
+                    </button>
                     <div class="opciones">
                         <ul *ngFor="let opcion of pregunta.Opciones">
-                            <li>{{opcion.OpcionTexto}}</li> 
+                            <li>{{opcion.OpcionTexto}}
+                                <button mat-icon-button>
+                                    <mat-icon class="borrar-opcion-icon">clear</mat-icon>
+                                </button>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -61,10 +68,6 @@
 
         <!-- COMPONENTE AGREGAR PREGUNTA -->
         <app-agregar-pregunta (preguntaEmitida)="agregarNuevaPreguntaEmitida($event)"></app-agregar-pregunta>
-
-      
-
-      
 
         <div>
             <button [disabled]="!validarEncuesta(formNuevaEncuesta)" class="button-submit" mat-raised-button

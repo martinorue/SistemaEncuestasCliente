@@ -95,7 +95,10 @@ export class EditarEncuestaComponent implements OnInit {
     });
   }
 
-
+  update(value: string, pregunta: IPregunta) {
+    const index = this.clonPreguntas.indexOf(pregunta);
+    this.clonPreguntas[index].TextoPregunta = value;
+  }
 
   onSubmit(formNuevaEncuesta: NgForm) {
 
@@ -109,7 +112,7 @@ export class EditarEncuestaComponent implements OnInit {
       CantidadEncuestados: 0,
       Estado: 'BORRADOR',
       Objetivo: formNuevaEncuesta.value.objetivoEncuesta,
-      Preguntas: this.nuevasPreguntas
+      Preguntas: this.clonPreguntas
     }
 
     const json_encuesta = JSON.stringify(this.nuevaEncuesta);
@@ -117,14 +120,15 @@ export class EditarEncuestaComponent implements OnInit {
     this.nuevasPreguntas = [];
     this.orden = 1;
     this.encuestaFormDirective.resetForm();
-    this.guardarEncuesta(json_encuesta);
+    //this.guardarEncuesta(json_encuesta);
     void this._router.navigateByUrl('/crear-encuesta/vista-previa-encuesta', { state: this.nuevaEncuesta }); //pasándole la encuesta creada
   }
 
-  guardarEncuesta(respuesta: string) {
-    this._crearEncuestaService.submitEncuesta(respuesta)
-      .subscribe(respuestaSubmit => this.encuestaSubmit = respuestaSubmit,
-        errmess => this.errMess = <any>errmess);
-  }
+
+  // guardarEncuesta(respuesta: string) {
+  //   this._crearEncuestaService.submitEncuesta(respuesta)
+  //     .subscribe(respuestaSubmit => this.encuestaSubmit = respuestaSubmit,
+  //       errmess => this.errMess = <any>errmess);
+  // }
 
 }

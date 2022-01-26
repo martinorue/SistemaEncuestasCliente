@@ -20,7 +20,6 @@
 
             <mat-form-field class="chip-list" appearance="fill">
                 <mat-label for="opcion">Agregar Opción</mat-label>
-                <!-- <input matInput placeholder="Texto opción..." id="opcion" name="opcion" [(ngModel)]="opcion" required> -->
                 <mat-chip-list #listaOpciones aria-label="Opciones">
                     <mat-chip *ngFor="let opcion of opciones" (removed)="borrarOpcion(opcion)">
                         {{opcion.OpcionTexto}}

@@ -43,8 +43,8 @@
             <mat-card cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
                 <div class="example-box" *ngFor="let pregunta of nuevasPreguntas" cdkDrag [cdkDragData]="pregunta">
                     <span class="texto-pregunta">{{ pregunta.TextoPregunta }}</span>
-                        <button class="btn-borrar-pregunta" mat-mini-fab (click)="borrarPregunta(pregunta)">
-                            <mat-icon class="icon-papelera">delete_outline</mat-icon>
+                        <button class="btn-borrar-pregunta-icon" mat-mini-fab (click)="borrarPregunta(pregunta)">
+                            <mat-icon class="borrar-pregunta-icon">delete_outline</mat-icon>
                         </button>
                     <div class="opciones">
                         <ul *ngFor="let opcion of pregunta.Opciones">
