@@ -24,7 +24,7 @@ export class EditarEncuestaComponent implements OnInit {
   nuevaEncuesta!: IEncuesta;
   encuestaSubmit!: IEncuesta;
   errMess!: string;
-  encuestaIds!: string[];
+  // encuestaIds!: string[];
   encuesta!: IEncuesta;
   clonPreguntas: IPregunta[] = [];
   multiple: boolean = false;
@@ -53,8 +53,8 @@ export class EditarEncuestaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._encuestasService.getEncuestaIds()
-      .subscribe(encuestaIds => this.encuestaIds = encuestaIds);
+    // this._encuestasService.getEncuestaIds()
+    //   .subscribe(encuestaIds => this.encuestaIds = encuestaIds);
 
     this._route.params.pipe(switchMap((params: Params) => {
       return this._encuestasService.getEncuesta(params['id']);

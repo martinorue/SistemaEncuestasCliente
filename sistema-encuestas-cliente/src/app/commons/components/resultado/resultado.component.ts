@@ -16,7 +16,7 @@ import { IResultadoComprehend, ISentColor } from 'src/app/domain/pie-chart';
 export class ResultadoComponent implements OnInit {
 
   resultadoEncuesta!: IResultadoEncuesta;
-  encuestaIds!: string[];
+  // encuestaIds!: string[];
   encuesta!: IEncuesta;
   sent_color: ISentColor[] = [];
   resultadosComprehend: IResultadoComprehend[] = [];
@@ -30,8 +30,8 @@ export class ResultadoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._encuestasService.getEncuestaIds()
-      .subscribe(encuestaIds => this.encuestaIds = encuestaIds);
+    // this._encuestasService.getEncuestaIds()
+    //   .subscribe(encuestaIds => this.encuestaIds = encuestaIds);
     this._route.params
       .pipe(switchMap((params: Params) => {
         this._resultadosService.getResultados(params['id'])
