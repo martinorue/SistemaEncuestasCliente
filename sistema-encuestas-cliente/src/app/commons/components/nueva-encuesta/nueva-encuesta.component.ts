@@ -73,10 +73,7 @@ export class NuevaEncuestaComponent implements OnInit {
  
 
   onSubmit(formNuevaEncuesta: NgForm) {
-
     this.ordenarPreguntas();
-
-    
 
     this.nuevaEncuesta = {
       EncuestaID: 0,
@@ -84,7 +81,7 @@ export class NuevaEncuestaComponent implements OnInit {
       FechaInicio: this.rango.value.comienzo,
       FechaFin: this.rango.value.fin,
       CantidadEncuestados: 0,
-      Estado: 'BORRADOR',
+      Estado: 'PUBLICADA',
       Objetivo: formNuevaEncuesta.value.objetivoEncuesta,
       Preguntas: this.nuevasPreguntas
     }
