@@ -156,4 +156,8 @@ export class EditarEncuestaComponent implements OnInit {
         errmess => this.errMess = <any>errmess);
   }
 
+  validarOpciones() {
+    return this.clonPreguntas.filter(pregunta => pregunta.Opciones?.length! < 2).length == 0;
+  }
+
 }

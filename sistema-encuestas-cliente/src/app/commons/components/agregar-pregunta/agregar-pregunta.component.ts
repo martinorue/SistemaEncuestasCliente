@@ -1,8 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { IOpcion, IPregunta } from '../../../domain/pregunta';
 import { ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TiposPregunta } from 'src/app/domain/tiposPregunta';
 
 @Component({
@@ -16,13 +16,15 @@ export class AgregarPreguntaComponent implements OnInit {
   tiposPregunta = TiposPregunta;
   pregunta: string = '';
   nuevasPreguntas: IPregunta[] = [];
-  requerida: boolean = true;
+  requerida: boolean = false;
   orden: number = 1;
   opcion: string = '';
   opciones: IOpcion[] = [];
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER] as const;
   agregarPreguntaForm!: FormGroup;
+
+  @ViewChild('apform') agregarPreguntaFormDirective: any;
 
   constructor(private _fb: FormBuilder) { }
 
@@ -32,12 +34,19 @@ export class AgregarPreguntaComponent implements OnInit {
 
   crearFormulario() {
     this.agregarPreguntaForm = this._fb.group({
-      pregunta: ['', [Validators.required]],
+      pregunta: ['', [Validators.required, this.noWhitespaceValidator]],
       tiposPregunta: ['', [Validators.required]],
-      requerida: [this.requerida],
-      opciones: [this.opciones, [Validators.required]]
+      requerida: [this.requerida = false],
+      opciones: [this.opciones]
     });
   }
+
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
+  }
+
 
   onChangeRequerida() {
     !this.requerida;
@@ -57,32 +66,33 @@ export class AgregarPreguntaComponent implements OnInit {
     }
     this.nuevasPreguntas.push(nuevaPregunta);
     this.preguntaEmitida.emit(nuevaPregunta);
-    this.pregunta = '';
     this.opciones = [];
-    // this.tipoPregunta = '';
+    if(nuevaPregunta.Tipo == 'TEXTOLIBRE'){
+      nuevaPregunta.Opciones = null;
+    }
+
+    this.agregarPreguntaFormDirective.resetForm();
   }
 
   validarPregunta(): boolean {
-    // let ok = false;
-    // if (this.pregunta != null) {
-    //   ok = true;
-    // }
-    // if (this.tipoPregunta == '') {
-    //   ok = false;
-    // }
-    // if (this.tipoPregunta == 'OPCIONSIMPLE'
-    //   && (this.opciones == null || this.opciones.length == 0)) {
-    //   ok = false;
-    // }
-    // if (this.tipoPregunta == 'OPCIONMULTIPLE'
-    //   && (this.opciones == null || this.opciones.length == 0)) {
-    //   ok = false;
-    // }
-    // if (this.pregunta.trim() == '') {
-    //   ok = false;
-    // }
-    // return ok;
-    return true;
+    let ok = false;
+
+    if (this.agregarPreguntaForm.value.tiposPregunta == 'OPCIONSIMPLE'){
+      if(this.opciones.length < 2){
+        ok = false;
+      }else{
+        ok = true;
+      }
+    }else if(this.agregarPreguntaForm.value.tiposPregunta == 'OPCIONMULTIPLE'){
+      if(this.opciones.length < 2){
+        ok = false;
+      }else{
+        ok = true;
+      }
+    }else{
+      ok = true;
+    }
+    return ok;
   }
 
   borrarPregunta(pregunta: IPregunta) {
@@ -111,3 +121,4 @@ export class AgregarPreguntaComponent implements OnInit {
   }
 
 }
+

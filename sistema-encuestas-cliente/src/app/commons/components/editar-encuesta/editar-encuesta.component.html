@@ -85,7 +85,7 @@
         <app-agregar-pregunta (preguntaEmitida)="agregarNuevaPreguntaEmitida($event)"></app-agregar-pregunta>
 
         <div>
-            <button [disabled]="!datosEncuestaForm.valid || clonPreguntas.length == 0" class="button-submit" mat-raised-button
+            <button [disabled]="!datosEncuestaForm.valid || clonPreguntas.length == 0 || !validarOpciones()" class="button-submit" mat-raised-button
                 type="submit" color="accent" (click)="onSubmit()">
                 Finalizar
             </button>
