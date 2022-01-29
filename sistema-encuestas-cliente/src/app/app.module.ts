@@ -7,6 +7,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthModule } from './pages/auth/auth.module';
 
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeEsUY from '@angular/common/locales/es-UY';
+
+registerLocaleData(localeEsUY, 'es-UY');
+
 
 @NgModule({
   declarations: [
@@ -20,6 +26,7 @@ import { AuthModule } from './pages/auth/auth.module';
     HttpClientModule,
     MatSnackBarModule,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [ { provide: LOCALE_ID, useValue: 'es-UY' } ],
 })
 export class AppModule { }

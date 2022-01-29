@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm, FormGroup, FormControl } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { IOpcion, IPregunta } from '../../../domain/pregunta';
@@ -9,6 +9,8 @@ import { EncuestasService } from '../../../services/encuestas.service';
 import { switchMap } from 'rxjs/operators';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ENTER } from '@angular/cdk/keycodes';
+import { FechaService } from 'src/app/services/fecha.service';
+import { IRango } from 'src/app/domain/rango';
 
 @Component({
   selector: 'app-editar-encuesta',
@@ -17,7 +19,7 @@ import { ENTER } from '@angular/cdk/keycodes';
 })
 export class EditarEncuestaComponent implements OnInit {
 
-
+  readonly separatorKeysCodes = [ENTER] as const;
   nuevasPreguntas: IPregunta[] = [];
   tipoPregunta: string = '';
   orden: number = 1;
@@ -29,52 +31,49 @@ export class EditarEncuestaComponent implements OnInit {
   multiple: boolean = false;
   opciones: IOpcion[] = [] || null;
   addOnBlur = true;
-  readonly separatorKeysCodes = [ENTER] as const;
-
-
-  rango = new FormGroup({
-    comienzo: new FormControl(),
-    fin: new FormControl(),
-  });
-
+  rango!: IRango;
+  datosEncuestaForm!: FormGroup;
+  
   @ViewChild('eform') encuestaFormDirective: any
-
+  
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.clonPreguntas, event.previousIndex, event.currentIndex);
     // const draggedPregunta: IPregunta = event.item.data;
   }
-
+  
   constructor(
     private _router: Router,
     private _crearEncuestaService: CrearEncuestaService,
     private _encuestasService: EncuestasService,
-    private _route: ActivatedRoute
-  ) { }
+    private _route: ActivatedRoute,
+    private _fechaService: FechaService,
+    private _fb: FormBuilder
+    ) { }
+    
+    ngOnInit(): void {
+      
+      this._route.params.pipe(switchMap((params: Params) => {
+        return this._encuestasService.getEncuesta(params['id']);
+      })).subscribe(encuesta => {
+        this.encuesta = encuesta
+        this.clonPreguntas = encuesta.Preguntas
+        
+        this.rango = this._fechaService.getRango(encuesta.FechaInicio, encuesta.FechaFin)
 
-  ngOnInit(): void {
+        this.crearFormulario();
+        
+      });
+      
+    }
 
-    this._route.params.pipe(switchMap((params: Params) => {
-      return this._encuestasService.getEncuesta(params['id']);
-    })).subscribe(encuesta => {
-      this.encuesta = encuesta
-      this.clonPreguntas = encuesta.Preguntas
+  crearFormulario(){
+    this.datosEncuestaForm = this._fb.group({
+      comienzo: [new Date(this.rango.anioInicio, this.rango.mesInicio, this.rango.diaInicio)],
+      fin: [new Date(this.rango.anioFin, this.rango.mesFin, this.rango.diaFin)],
+      nombreEncuesta: [this.encuesta.Denominacion, [Validators.required]],
+      objetivoEncuesta: [this.encuesta.Objetivo, [Validators.required]],
     });
-
-  }
-
-  validarEncuesta(formNuevaEncuesta: NgForm) {
-
-    if (formNuevaEncuesta != null || formNuevaEncuesta != undefined) {
-      if (formNuevaEncuesta.value.nombreEncuesta != undefined
-        && formNuevaEncuesta.value.objetivoEncuesta != undefined) {
-        return formNuevaEncuesta.value.nombreEncuesta.trim() != ''
-          && formNuevaEncuesta.value.objetivoEncuesta.trim() != ''
-          && this.rango.value.comienzo != null
-          && this.rango.value.fin != null
-          && this.clonPreguntas.length != 0;
-      } else return;
-    } else return;
-  }
+  }  
 
   agregarNuevaPreguntaEmitida(value: IPregunta) {
     value.EncuestaID = this.encuesta.EncuestaID;
@@ -128,18 +127,18 @@ export class EditarEncuestaComponent implements OnInit {
     }
   }
 
-  onSubmit(formNuevaEncuesta: NgForm) {
+  onSubmit() {
 
     this.ordenarPreguntas();
 
     this.nuevaEncuesta = {
       EncuestaID: this.encuesta.EncuestaID,
-      Denominacion: formNuevaEncuesta.value.nombreEncuesta,
-      FechaInicio: this.rango.value.comienzo,
-      FechaFin: this.rango.value.fin,
+      Denominacion: this.datosEncuestaForm.value.nombreEncuesta,
+      FechaInicio: this.datosEncuestaForm.value.comienzo,
+      FechaFin: this.datosEncuestaForm.value.fin,
       CantidadEncuestados: 0,
       Estado: 'BORRADOR',
-      Objetivo: formNuevaEncuesta.value.objetivoEncuesta,
+      Objetivo: this.datosEncuestaForm.value.objetivoEncuesta,
       Preguntas: this.clonPreguntas
     }
 

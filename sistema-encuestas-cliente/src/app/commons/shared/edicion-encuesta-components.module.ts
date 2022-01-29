@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -60,6 +60,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     },
     MatDatepickerModule,
     MatNativeDateModule,
+    {provide: MAT_DATE_LOCALE, useValue: 'es-UY'},
   ]
 })
 export class EdicionEncuestaComponentsModule { }

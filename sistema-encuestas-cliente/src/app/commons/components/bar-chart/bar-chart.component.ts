@@ -9,6 +9,7 @@ import { OpcionesBarChart } from '../../../domain/bar-chart';
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.css']
 })
+
 export class BarChartComponent implements OnInit {
   @Input() preguntaResultadosML: IResultadoML[] | null = [];
   data: BarChart[] = [];
@@ -40,6 +41,10 @@ export class BarChartComponent implements OnInit {
 
     this.opciones.yScaleMax = this.getMaximoMenciones(series.map(serie => serie.value));
     this.data = datos
+    
+    // console.log(this.data);
+    // console.log(series);
+    
   }
 
   colorScheme = {

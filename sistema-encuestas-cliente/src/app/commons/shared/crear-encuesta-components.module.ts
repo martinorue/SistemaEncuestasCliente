@@ -52,7 +52,7 @@ import { CrearEncuestaRoutingModule } from 'src/app/pages/crear-encuesta-routing
   providers: [
     MatDatepickerModule,
     MatNativeDateModule,
-    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
+    {provide: MAT_DATE_LOCALE, useValue: 'es-UY'},
   ]
 })
 export class CrearEncuestaComponentsModule { }
