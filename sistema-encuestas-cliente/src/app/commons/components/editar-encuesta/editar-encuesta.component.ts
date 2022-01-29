@@ -33,14 +33,14 @@ export class EditarEncuestaComponent implements OnInit {
   addOnBlur = true;
   rango!: IRango;
   datosEncuestaForm!: FormGroup;
-  
+
   @ViewChild('eform') encuestaFormDirective: any
-  
+
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.clonPreguntas, event.previousIndex, event.currentIndex);
     // const draggedPregunta: IPregunta = event.item.data;
   }
-  
+
   constructor(
     private _router: Router,
     private _crearEncuestaService: CrearEncuestaService,
@@ -48,36 +48,36 @@ export class EditarEncuestaComponent implements OnInit {
     private _route: ActivatedRoute,
     private _fechaService: FechaService,
     private _fb: FormBuilder
-    ) { }
-    
-    ngOnInit(): void {
-      
-      this._route.params.pipe(switchMap((params: Params) => {
-        return this._encuestasService.getEncuesta(params['id']);
-      })).subscribe(encuesta => {
-        this.encuesta = encuesta
-        this.clonPreguntas = encuesta.Preguntas
-        
-        this.rango = this._fechaService.getRango(encuesta.FechaInicio, encuesta.FechaFin)
+  ) { }
 
-        this.crearFormulario();
-        
-      });
-      
-    }
+  ngOnInit(): void {
 
-  crearFormulario(){
+    this._route.params.pipe(switchMap((params: Params) => {
+      return this._encuestasService.getEncuesta(params['id']);
+    })).subscribe(encuesta => {
+      this.encuesta = encuesta
+      this.clonPreguntas = encuesta.Preguntas.sort((a, b) => a.Orden - b.Orden)
+
+      this.rango = this._fechaService.getRango(encuesta.FechaInicio, encuesta.FechaFin)
+
+      this.crearFormulario();
+
+    });
+
+  }
+
+  crearFormulario() {
     this.datosEncuestaForm = this._fb.group({
       comienzo: [new Date(this.rango.anioInicio, this.rango.mesInicio, this.rango.diaInicio)],
       fin: [new Date(this.rango.anioFin, this.rango.mesFin, this.rango.diaFin)],
       nombreEncuesta: [this.encuesta.Denominacion, [Validators.required]],
       objetivoEncuesta: [this.encuesta.Objetivo, [Validators.required]],
     });
-  }  
+  }
 
   agregarNuevaPreguntaEmitida(value: IPregunta) {
     value.EncuestaID = this.encuesta.EncuestaID;
-    if(value.Opciones?.length == 0){
+    if (value.Opciones?.length == 0) {
       value.Opciones = null;
     }
     this.clonPreguntas.push(value);
@@ -122,9 +122,7 @@ export class EditarEncuestaComponent implements OnInit {
   }
 
   onChangeRequerida(pregunta: IPregunta) {
-    if (pregunta.Requerida) {
-      pregunta.Requerida = false;
-    }
+    pregunta.Requerida = !pregunta.Requerida
   }
 
   onSubmit() {
