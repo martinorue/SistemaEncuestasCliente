@@ -11,7 +11,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { AgregarPreguntaComponent } from '../components/agregar-pregunta/agregar-pregunta.component';
@@ -52,6 +52,7 @@ import { CrearEncuestaRoutingModule } from 'src/app/pages/crear-encuesta-routing
   providers: [
     MatDatepickerModule,
     MatNativeDateModule,
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
   ]
 })
 export class CrearEncuestaComponentsModule { }
