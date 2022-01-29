@@ -26,25 +26,25 @@ export class BarChartComponent implements OnInit {
     let datos: BarChart[] = [];
 
     this.preguntaResultadosML?.map(resultado => {
+
+      const dato: BarChart = {
+        name: resultado.Texto,
+        series: []
+      }
+
+      datos.push(dato);
+      
       const serie: Serie = {
         name: resultado.Etiqueta,
         value: resultado.Valor
       }
-      series.push(serie);
 
-      const dato: BarChart = {
-        name: resultado.Texto,
-        series: series
-      }
-      datos.push(dato);
+      dato.series.push(serie);
+
     })
 
     this.opciones.yScaleMax = this.getMaximoMenciones(series.map(serie => serie.value));
     this.data = datos
-    
-    // console.log(this.data);
-    // console.log(series);
-    
   }
 
   colorScheme = {
