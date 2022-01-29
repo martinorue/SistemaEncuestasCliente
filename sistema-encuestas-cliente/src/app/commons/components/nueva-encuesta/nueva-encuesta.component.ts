@@ -81,7 +81,7 @@ export class NuevaEncuestaComponent implements OnInit {
       FechaInicio: this.rango.value.comienzo,
       FechaFin: this.rango.value.fin,
       CantidadEncuestados: 0,
-      Estado: 'PUBLICADA',
+      Estado: 'BORRADOR',
       Objetivo: formNuevaEncuesta.value.objetivoEncuesta,
       Preguntas: this.nuevasPreguntas
     }
