@@ -5,24 +5,35 @@
 
 <div *ngIf="encuestas" class="dashboard-container">
 
-    <h1>Seleccione una encuesta</h1>
-    
-    <div  fxLayout="row wrap" fxLayoutGap="25px" fxLayout="row wrap" fxLayoutAlign="flex-start"
-    fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap.xs="0">
-    <mat-card fxFlex="0 1 calc(33.3% - 25px)" fxFlex.lt-md="0 1 calc(50% - 35px)" fxFlex.lt-sm="100%"
-    class="card-encuesta" *ngFor="let encuesta of encuestas" appHighlight
-            >
+    <h1>
+        Seleccione una encuesta
+    </h1>
+
+    <div fxLayout="row wrap" fxLayoutGap="25px" fxLayout="row wrap" fxLayoutAlign="flex-start" fxLayout.sm="column"
+        fxLayout.xs="column" fxLayoutGap.xs="0">
+        <mat-card fxFlex="0 1 calc(33.3% - 25px)" fxFlex.lt-md="0 1 calc(50% - 35px)" fxFlex.lt-sm="100%"
+            class="card-encuesta" *ngFor="let encuesta of encuestas" appHighlight>
             <mat-card-title>{{ encuesta.Denominacion}}</mat-card-title>
-            <mat-card-subtitle>Estado: {{encuesta.Estado}}</mat-card-subtitle>
+            <mat-card-subtitle>Estado: {{encuesta.Estado}}
+            </mat-card-subtitle>
             <mat-card-content>
                 <p>
                     Inicio: {{encuesta.FechaInicio | date}}
                     Finalización: {{encuesta.FechaFin | date}}
+                    <button class="boton-publicar" mat-button *ngIf="encuesta.Estado == 'BORRADOR'" (click)="publicarEncuesta(encuesta)">
+                        <span> Publicar</span>
+                        <mat-icon>rocket_launch</mat-icon>
+                    </button>
                 </p>
             </mat-card-content>
             <mat-card-actions class="botones-encuesta" fxLayoutAlign="space-between end">
-                <button mat-button [routerLink]="['/dashboard/Resultados', encuesta.EncuestaID]"><mat-icon>bar_chart</mat-icon></button>
-                <button class="boton-editar" mat-button [routerLink]="['/dashboard/editar-encuesta', encuesta.EncuestaID]"><mat-icon>edit</mat-icon></button>
+                <button mat-button [routerLink]="['/dashboard/Resultados', encuesta.EncuestaID]">
+                    <mat-icon>bar_chart</mat-icon>
+                </button>
+                <button class="boton-editar" mat-button
+                    [routerLink]="['/dashboard/editar-encuesta', encuesta.EncuestaID]">
+                    <mat-icon>edit</mat-icon>
+                </button>
             </mat-card-actions>
         </mat-card>
     </div>
