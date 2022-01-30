@@ -28,4 +28,12 @@ export class EncuestaComponent implements OnInit {
         errmess => this.errMess = <any>errmess);
   }
 
+  desactivarEncuesta(encuesta: IEncuesta) {
+    encuesta.Estado = 'BORRADOR';
+    
+    this._crearEncuestaService.submitEncuestaEditada(encuesta)
+      .subscribe(respuestaSubmit => encuesta = respuestaSubmit,
+        errmess => this.errMess = <any>errmess);
+  }
+
 }

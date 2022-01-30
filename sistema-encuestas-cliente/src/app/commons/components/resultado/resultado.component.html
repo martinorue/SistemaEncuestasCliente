@@ -31,13 +31,13 @@
                 class="card-resultado">
                 <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly start">
                     <div>
-                        <p class="icon-text" *ngFor="let result of pregunta.Resultados">
+                        <button mat-raised-button class="icon-text" *ngFor="let result of pregunta.Resultados">
                             <mat-icon *ngIf="result.Texto == 'POSITIVO'">sentiment_very_satisfied</mat-icon>
                             <mat-icon *ngIf="result.Texto == 'NEGATIVO'">sentiment_very_dissatisfied</mat-icon>
-                            <mat-icon *ngIf="result.Texto == 'MIXTO' || result.Texto == 'NEUTRO'">sentiment_satisfied
-                            </mat-icon>
+                            <mat-icon *ngIf="result.Texto == 'MIXTO'">sentiment_satisfied</mat-icon>
+                            <mat-icon *ngIf="result.Texto == 'NEUTRO'">sentiment_satisfied</mat-icon>
                             <span>{{ result.Texto }}: {{ result.Valor }}</span>
-                        </p>
+                        </button>
                     </div>
                     <div class="pie-chart-parent"
                         *ngIf="pregunta.Resultados != null && pregunta.Resultados != undefined && pregunta.Resultados.length > 0">

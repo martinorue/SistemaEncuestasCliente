@@ -24,6 +24,10 @@
                         <span> Publicar</span>
                         <mat-icon>rocket_launch</mat-icon>
                     </button>
+                    <button class="boton-publicar" mat-button *ngIf="encuesta.Estado == 'PUBLICADA'" (click)="desactivarEncuesta(encuesta)">
+                        <span> Desactivar</span>
+                        <mat-icon>rocket</mat-icon>
+                    </button>
                 </p>
             </mat-card-content>
             <mat-card-actions class="botones-encuesta" fxLayoutAlign="space-between end">

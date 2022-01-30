@@ -18,7 +18,6 @@ export interface IResultadoML {
 }
 
 export interface IResultado {
-  Texto: string;
-  Valor: number;
-  //color
+  Texto: string; //Sentiment
+  Valor: number; //Cantidad de respuestas asociadas a ese sentiment
 }

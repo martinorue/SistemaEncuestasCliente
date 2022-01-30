@@ -72,6 +72,10 @@ h1, h2{
     line-height: 40px;
   }
 
+  
+  mat-icon{
+    vertical-align: -8px;
+  }
 
   .borrar-pregunta-icon{
     width: 30px;

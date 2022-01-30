@@ -77,6 +77,15 @@
                             Requerida
                         </mat-slide-toggle>
                     </p>
+                    <p *ngIf="pregunta.Tipo == 'TEXTOLIBRE'">
+                        <span>Tipo: Texto libre <mat-icon>article</mat-icon></span> 
+                    </p>
+                    <p *ngIf="pregunta.Tipo == 'OPCIONSIMPLE'">
+                        <span>Tipo: Opción simple <mat-icon>format_list_bulleted</mat-icon></span> 
+                    </p>
+                    <p *ngIf="pregunta.Tipo == 'OPCIONMULTIPLE'">
+                        <span>Tipo: Opción múltiple <mat-icon>library_add_check</mat-icon></span>
+                    </p>
                 </div>
             </mat-card>
         </div>
