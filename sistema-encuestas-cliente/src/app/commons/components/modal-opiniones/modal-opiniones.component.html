@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Opiniones</h1>
+<div mat-dialog-content>
+	<div>
+		<!-- <app-anime *ngFor="let item of listPokemons" [anime]="item"> </app-anime> -->
+        <app-textos-respuestas *ngFor="let respuesta of listRespuestasTL" [respuesta]="respuesta"></app-textos-respuestas>
+        <!-- <div *ngFor="let respuesta of listRespuestasTL">
+            {{respuesta.TextoRespuesta}}
+        </div> -->
+	</div>
+</div>
+<div mat-dialog-actions>
+	<button mat-raised-button mat-dialog-close (click)="cerrarDialog()">Cerrar</button>
+</div>

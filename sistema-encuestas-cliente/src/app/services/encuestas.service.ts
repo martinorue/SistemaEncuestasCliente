@@ -23,6 +23,8 @@ export class EncuestasService {
   }
 
   getEncuestaIds(): Observable<string[] | any> {
+    console.log('estoy en servicio encuestas');
+    
     return this.getEncuestas()
       .pipe(map(encuestas => encuestas.map(encuesta => encuesta.EncuestaID)));
   }

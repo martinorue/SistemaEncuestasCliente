@@ -10,14 +10,15 @@ import { BarChartComponent } from '../components/bar-chart/bar-chart.component';
 import { PieChartComponent } from '../components/pie-chart/pie-chart.component';
 import { HighlightDirective } from '../../highlight.directive';
 import { MatButtonModule } from '@angular/material/button';
-import { EncuestasService } from '../../services/encuestas.service';
 import { ResultadoComponent } from '../components/resultado/resultado.component';
 import { EncuestaComponent } from '../components/encuesta/encuesta.component';
-import { ResultadosService } from '../../services/resultados.service';
 import { DashBoardRoutingModule } from '../../pages/dashboard-routing.module';
 import { HeaderComponentModule } from './header-component.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EncuestasInterceptor } from 'src/app/interceptors/encuestas-interceptor';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModalOpinionesComponent } from '../components/modal-opiniones/modal-opiniones.component';
+import { TextosRespuestasComponent } from '../components/textos-respuestas/textos-respuestas.component';
 
 
 @NgModule({
@@ -27,6 +28,8 @@ import { EncuestasInterceptor } from 'src/app/interceptors/encuestas-interceptor
     BarChartComponent,
     EncuestaComponent,
     ResultadoComponent,
+    ModalOpinionesComponent,
+    TextosRespuestasComponent
   ],
   imports: [
     CommonModule,
@@ -39,6 +42,7 @@ import { EncuestasInterceptor } from 'src/app/interceptors/encuestas-interceptor
     MatButtonModule,
     MatProgressSpinnerModule,
     MatIconModule,
+    MatDialogModule,
     FlexLayoutModule,
   ],
   exports: [
