@@ -50,15 +50,10 @@ export class ResultadoComponent implements OnInit {
             this.resultadoEncuesta = resultadoEncuesta;
             this.pregTextoLibre = this.resultadoEncuesta.Preguntas?.filter(p => p.Tipo == 'TEXTOLIBRE');
 
-            console.log(this.pregTextoLibre);
-            
             this.pregTextoLibre.forEach(p => this.preguntasIds.push(p.PreguntaID));
 
             this.preguntasIds.forEach(id => this._respuestasTLService.getTextosRespuestas(id)
-            .subscribe(resTL => this.respuestasTL = resTL));
-
-            console.log(this.respuestasTL);
-
+              .subscribe(resTL => this.respuestasTL = resTL));
 
 
             this.resultadoEncuesta.Preguntas
@@ -86,13 +81,6 @@ export class ResultadoComponent implements OnInit {
         this.encuesta = encuesta;
       });
 
-    console.log('onInit resultado');
-    // let textos: IRespuestaTL[] = [];
-    // this.encuestasIds.forEach(id => this._respuestasTLService.getTextosRespuestas(id)
-    // .subscribe(textosRespuestas => 
-    //   textos.push(textosRespuestas[id])
-
-    //   ))
   }
 
   definirColor(Texto: string) {
@@ -121,14 +109,9 @@ export class ResultadoComponent implements OnInit {
   }
 
   verOpiniones(sentiment: string, preguntaId: number): void {
-    console.log(this.pregTextoLibre);
-    this.isModalOpen = true;
-    console.log(this.isModalOpen);
-    console.log('sentiment', sentiment);
-    console.log('preguntaId', preguntaId);
     let opinionesDeSentiment: IRespuestaTL[] = [];
     let sentimentNumber!: number;
-    //0 pos, 1 neg, 2 neutro, 3 mixto
+
     switch (sentiment) {
       case 'POSITIVO':
         sentimentNumber = 0;
@@ -145,7 +128,6 @@ export class ResultadoComponent implements OnInit {
     }
 
     opinionesDeSentiment = this.respuestasTL.filter(tr => tr.Sentimiento == sentimentNumber);
-
 
     this.dialog.open(ModalOpinionesComponent, {
       data: opinionesDeSentiment
