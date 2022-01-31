@@ -1,7 +1,3 @@
-<div *ngIf="!dataLoginForm" class="spinner-wrapper">
-    <mat-spinner color="warn" class="mat-spinner"></mat-spinner>
-    <h4>Cargando resultados...</h4>
-</div>
 
 <div *ngIf="mostrarProgreso">
 	<mat-progress-bar mode="indeterminate"></mat-progress-bar>
@@ -54,7 +50,13 @@ fxLayoutAlign="center center" fxLayoutGap.xs="0">
 		>
 			Ingresar
 		</button>
-		
+		<label
+			routerLinkActive="router-link-active"
+			class="registrate"
+			routerLinkActive="router-link-active"
+			(click)="onClickRegister()"
+			>Registrar usuario</label
+		>
 	</form>
 </div>
 

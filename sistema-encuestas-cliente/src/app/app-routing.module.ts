@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EditarEncuestaComponent } from './commons/components/editar-encuesta/editar-encuesta.component';
 import { EncuestaGuard } from './guards/encuesta.guard';
 import { LoginPageComponent } from './pages/auth/login-page/login-page.component';
+import { RegisterPageComponent } from './pages/auth/register-page/register-page.component';
 
 export const routes: Routes = [
   {
@@ -14,6 +15,10 @@ export const routes: Routes = [
     redirectTo: '/login',
     pathMatch: 'full'
   },
+	{
+		path: 'register',
+		component: RegisterPageComponent
+	},
   {
     path: 'dashboard',
     loadChildren: () => import('./pages/dashboard-page.module').then((m) => m.PageModule),
@@ -22,6 +27,10 @@ export const routes: Routes = [
   {
     path: 'crear-encuesta',
     loadChildren: () => import('./pages/crear-encuesta-page.module').then((m) => m.CrearEncuestaPageModule)
+  },
+  {
+    path: 'encuestados',
+    loadChildren: () => import('./pages/encuestados-page.module').then((m) => m.EncuestadosPageModule)
   }, 
   {
     path: 'dashboard/editar-encuesta/:id',

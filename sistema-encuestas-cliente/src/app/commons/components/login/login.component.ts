@@ -42,7 +42,15 @@ export class LoginComponent {
 			this._jwtAuthService.login(token);
 			void this._router.navigateByUrl('/dashboard');
 		})
-	};
+	}
+
+	onClickRegister(): void {
+		/**
+		 * En caso no desees hacer el "ruteo" con codigo entonces usar
+		 *  [routerLink]="['/register']"
+		 */
+		void this._router.navigateByUrl('/register');
+	}
 
 }
 

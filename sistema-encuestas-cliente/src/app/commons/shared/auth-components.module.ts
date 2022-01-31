@@ -7,13 +7,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from '../components/login/login.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { RegisterComponent } from '../components/register/register.component';
 
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -23,10 +23,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule,
     MatProgressBarModule,
     FlexLayoutModule
   ],
-  exports: [LoginComponent],
+  exports: [LoginComponent, RegisterComponent],
 })
 export class AuthComponentsModule { }
