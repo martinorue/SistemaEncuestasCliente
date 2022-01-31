@@ -146,25 +146,10 @@ export class ResultadoComponent implements OnInit {
 
     opinionesDeSentiment = this.respuestasTL.filter(tr => tr.Sentimiento == sentimentNumber);
 
-    // this._respuestasTLService.getTextosRespuestas(preguntaId)
-    //   .subscribe(textosRespuestas => {
-    //     opinionesDeSentiment = textosRespuestas.filter(tr => tr.Sentimiento == sentimentNumber);
-    //     this.respuestasTL = opinionesDeSentiment
-    //   });
-
-
 
     this.dialog.open(ModalOpinionesComponent, {
       data: opinionesDeSentiment
     });
-
-
-
-    // this.dialog.afterOpened.subscribe(result => {
-    //   this.isModalOpen = true;
-    //   console.log('abrió');
-    // });
-
 
   }
 
