@@ -10,9 +10,11 @@ export interface IValidator {
     message: string;
 }
 
+
+
 export function customValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-        const value = control.value as string;
+        // const value = control.value as string;
         // if (!value.includes('*')) {
         //     return { custom1: true };
         // }
@@ -20,7 +22,12 @@ export function customValidator(): ValidatorFn {
         // if (!value.includes('$')) {
         //     return { custom2: true };
         // }
-        return null;
+
+        const password = control.get('password');
+        const confirmPassword = control.get('repeatPassword');
+
+        return password?.value === confirmPassword?.value ? null : { notmatched: true };
+
     };
 }
 

@@ -1,12 +1,12 @@
 <div class="container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center center"
-    fxLayoutGap.xs="0">
-    <div>
-        <img src="https://winenot.com.uy/wp-content/uploads/2020/12/Transp-1.png" alt="Wine Not?" height="300px"
-            width="300px" />
-    </div>
-    <form novalidate fxLayout="column" [formGroup]="myRegisterForm!" (ngSubmit)="clickRegister()">
-        <mat-form-field appearance="outline">
-            <mat-label>Nombre de usuario</mat-label>
+fxLayoutGap.xs="0">
+<div>
+    <img src="https://winenot.com.uy/wp-content/uploads/2020/12/Transp-1.png" alt="Wine Not?" height="250px"
+    width="250px" />
+</div>
+<form novalidate fxLayout="column" [formGroup]="myRegisterForm!" (ngSubmit)="clickRegister()">
+    <mat-form-field appearance="outline">
+        <mat-label>Nombre de usuario</mat-label>
             <input matInput formControlName="username" />
             <mat-icon class="material-icons-outlined" matSuffix>account_circle_outline</mat-icon>
             <mat-error>
@@ -21,12 +21,21 @@
                 {{ getError('password') }}
             </mat-error>
         </mat-form-field>
-
+        
         <mat-form-field appearance="outline">
             <mat-label>Repetir contrase&ntilde;a</mat-label>
             <input type="password" matInput formControlName="repeatPassword" />
             <mat-icon matSuffix>password</mat-icon>
+            <mat-error>
+                {{ getError('repeatPassword') }}
+            </mat-error>
         </mat-form-field>
         <button mat-raised-button color="warn" type="submit" [disabled]="myRegisterForm!.invalid">Registrar</button>
     </form>
+    <!-- GO BACK -->
+    <p>
+        <button mat-raised-button class="volver-button" (click)="volver()">
+            Volver
+        </button>
+    </p>
 </div>
