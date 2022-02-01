@@ -42,9 +42,7 @@ export class PieChartComponent implements OnInit {
   }
 
   onSelect(event: any){
-    // console.log(event);
-    // const resultado = this.preguntaResultados?.map(resultado => resultado.Texto == event.name);
-    //console.log(this.preguntaResultados);
+    
   }
 
 }

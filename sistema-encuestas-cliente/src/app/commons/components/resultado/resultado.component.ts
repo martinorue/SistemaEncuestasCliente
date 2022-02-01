@@ -125,13 +125,10 @@ export class ResultadoComponent implements OnInit {
         sentiment = 'MIXED';
         break;
     }
-    console.log(this.respuestasTL);
-    console.log(sentiment);
 
     opinionesDeSentiment = this.respuestasTL.filter(tr =>
       tr.Sentimiento === sentiment
     );
-    console.log(opinionesDeSentiment);
 
 
     this.dialog.open(ModalOpinionesComponent, {

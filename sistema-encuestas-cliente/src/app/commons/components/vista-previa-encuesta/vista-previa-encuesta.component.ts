@@ -15,7 +15,6 @@ export class VistaPreviaEncuestaComponent implements OnInit {
 
   ngOnInit(): void {
     this.nuevaEncuesta = this._location.getState();
-    console.log(this.nuevaEncuesta);
   }
 
   volverCrearEncuesta(): void {

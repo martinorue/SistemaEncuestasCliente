@@ -15,7 +15,6 @@ export class EncuestaGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    console.log('**CanActivate**');
     const isLoggedIn = this._jwtAuthService.isLoggedIn();
 
     if (!isLoggedIn) {

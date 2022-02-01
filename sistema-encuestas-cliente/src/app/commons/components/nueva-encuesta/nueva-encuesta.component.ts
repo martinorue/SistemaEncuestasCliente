@@ -87,7 +87,6 @@ export class NuevaEncuestaComponent implements OnInit {
     }
 
     const json_encuesta = JSON.stringify(this.nuevaEncuesta);
-    console.log(json_encuesta);
     this.nuevasPreguntas = [];
     this.orden = 1;
     this.encuestaFormDirective.resetForm();

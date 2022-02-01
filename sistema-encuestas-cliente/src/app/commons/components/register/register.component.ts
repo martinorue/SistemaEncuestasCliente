@@ -40,7 +40,6 @@ export class RegisterComponent {
       Nombre: this.formRegistro?.value.username
     }
     const usuario_json = JSON.stringify(usuario);
-    console.log(usuario_json);
     
     this._AuthService.registro(usuario);
   }

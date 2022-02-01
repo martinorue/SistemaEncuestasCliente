@@ -13,7 +13,6 @@ export class RespuestasTLService {
   constructor(private http: HttpClient) { }
   
   getTextosRespuestas(preguntaId: number): Observable<IRespuestaTL[]>{
-    console.log('estoy en el servicio con', preguntaId);
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-type': 'application/json',
