@@ -1,18 +1,30 @@
 <div class="container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center center"
-fxLayoutGap.xs="0">
-<div>
-    <img src="https://winenot.com.uy/wp-content/uploads/2020/12/Transp-1.png" alt="Wine Not?" height="250px"
-    width="250px" />
-</div>
-<form novalidate fxLayout="column" [formGroup]="myRegisterForm!" (ngSubmit)="clickRegister()">
-    <mat-form-field appearance="outline">
-        <mat-label>Nombre de usuario</mat-label>
+    fxLayoutGap.xs="0">
+    <div>
+        <img src="https://winenot.com.uy/wp-content/uploads/2020/12/Transp-1.png" alt="Wine Not?" height="250px"
+            width="250px" />
+    </div>
+    <form novalidate fxLayout="column" [formGroup]="formRegistro!" (ngSubmit)="clickRegister()">
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre de usuario</mat-label>
             <input matInput formControlName="username" />
             <mat-icon class="material-icons-outlined" matSuffix>account_circle_outline</mat-icon>
             <mat-error>
                 {{ getError('username') }}
             </mat-error>
         </mat-form-field>
+
+        <!--email  -->
+        <mat-form-field  appearance="outline" color="primary">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="email" [errorStateMatcher]="matcher"
+                placeholder="Ej. ejemplo@ejemplo.com">
+                <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="formRegistro!.controls['email'].hasError('email')">
+                Por favor, ingrese una dirección de correo válida
+            </mat-error>
+        </mat-form-field>
+
         <mat-form-field appearance="outline">
             <mat-label>Contrase&ntilde;a</mat-label>
             <input type="password" matInput formControlName="password" />
@@ -21,7 +33,7 @@ fxLayoutGap.xs="0">
                 {{ getError('password') }}
             </mat-error>
         </mat-form-field>
-        
+
         <mat-form-field appearance="outline">
             <mat-label>Repetir contrase&ntilde;a</mat-label>
             <input type="password" matInput formControlName="repeatPassword" />
@@ -30,7 +42,7 @@ fxLayoutGap.xs="0">
                 {{ getError('repeatPassword') }}
             </mat-error>
         </mat-form-field>
-        <button mat-raised-button color="warn" type="submit" [disabled]="myRegisterForm!.invalid">Registrar</button>
+        <button mat-raised-button color="warn" type="submit" [disabled]="formRegistro!.invalid">Registrar</button>
     </form>
     <!-- GO BACK -->
     <p>

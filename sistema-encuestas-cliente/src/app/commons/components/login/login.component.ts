@@ -44,13 +44,6 @@ export class LoginComponent {
 		})
 	}
 
-	onClickRegister(): void {
-		/**
-		 * En caso no desees hacer el "ruteo" con codigo entonces usar
-		 *  [routerLink]="['/register']"
-		 */
-		void this._router.navigateByUrl('/register');
-	}
 
 }
 

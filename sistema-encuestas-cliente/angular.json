@@ -94,9 +94,12 @@
             },
             "development": {
               "browserTarget": "sistema-encuestas-cliente:build:development"
+            },
+            "local": {
+              "browserTarget": "sistema-encuestas-cliente:build:local"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "local"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
