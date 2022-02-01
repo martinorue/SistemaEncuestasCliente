@@ -108,26 +108,31 @@ export class ResultadoComponent implements OnInit {
     return color;
   }
 
-  verOpiniones(sentiment: string, preguntaId: number): void {
+  verOpiniones(sentimento: string, preguntaId: number): void {
     let opinionesDeSentiment: IRespuestaTL[] = [];
-    let sentimentNumber!: number;
-
-    switch (sentiment) {
+    let sentiment!: string;
+    switch (sentimento) {
       case 'POSITIVO':
-        sentimentNumber = 0;
+        sentiment = "POSITIVE";
         break;
       case 'NEGATIVO':
-        sentimentNumber = 1;
+        sentiment = 'NEGATIVE';
         break;
       case 'NEUTRO':
-        sentimentNumber = 2;
+        sentiment = 'NEUTRAL';
         break;
       case 'MIXTO':
-        sentimentNumber = 3;
+        sentiment = 'MIXED';
         break;
     }
+    console.log(this.respuestasTL);
+    console.log(sentiment);
 
-    opinionesDeSentiment = this.respuestasTL.filter(tr => tr.Sentimiento == sentimentNumber);
+    opinionesDeSentiment = this.respuestasTL.filter(tr =>
+      tr.Sentimiento === sentiment
+    );
+    console.log(opinionesDeSentiment);
+
 
     this.dialog.open(ModalOpinionesComponent, {
       data: opinionesDeSentiment

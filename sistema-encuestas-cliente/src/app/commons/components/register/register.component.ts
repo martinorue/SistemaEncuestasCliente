@@ -26,11 +26,7 @@ export class RegisterComponent {
 	}
 
 	clickRegister(): void {
-		if (this.myRegisterForm?.valid) {
-			console.log('******VALIDADO*****');
-		} else {
-			console.log('******SIGUE VALIDANDO*****');
-		}
+		
 	}
 
 	private _loadBuilder(): void {
@@ -40,7 +36,7 @@ export class RegisterComponent {
 				Validators.minLength(5),
 				customValidator()
 			]),
-			password: new FormControl('', [Validators.required]),
+			password: new FormControl('', [Validators.required, Validators.minLength(8)]),
 			repeatPassword: new FormControl('')
 		});
 		this.myRegisterForm.get('')?.valid;
@@ -55,13 +51,6 @@ export class RegisterComponent {
 			);
 			return validator!.message;
 		}
-		// if (control?.invalid && control?.hasError('required')) {
-		// 	return 'El usuario es requerido';
-		// }
-
-		// if (control?.invalid && control?.hasError('minlength')) {
-		// 	return 'La cantidad minima es 5';
-		// }
 		return '';
 	}
 

@@ -13,13 +13,13 @@ export interface IValidator {
 export function customValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
         const value = control.value as string;
-        if (!value.includes('*')) {
-            return { custom1: true };
-        }
+        // if (!value.includes('*')) {
+        //     return { custom1: true };
+        // }
 
-        if (!value.includes('$')) {
-            return { custom2: true };
-        }
+        // if (!value.includes('$')) {
+        //     return { custom2: true };
+        // }
         return null;
     };
 }
@@ -36,14 +36,14 @@ export const MODEL_REGISTER_ERRORS: IAtribute[] = [
                 name: 'minlength',
                 message: 'La cantidad minima es 5'
             },
-            {
-                name: 'custom1',
-                message: 'El texto debe contener un asterisco "*"'
-            },
-            {
-                name: 'custom2',
-                message: 'El texto debe contener un sigo de dolar "$"'
-            }
+            // {
+            //     name: 'custom1',
+            //     message: 'El texto debe contener un asterisco "*"'
+            // },
+            // {
+            //     name: 'custom2',
+            //     message: 'El texto debe contener un sigo de dolar "$"'
+            // }
         ]
     },
     {
@@ -51,8 +51,12 @@ export const MODEL_REGISTER_ERRORS: IAtribute[] = [
         validators: [
             {
                 name: 'required',
-                message: 'La contraseña es requerida'
-            }
+                message: 'Ingrese contraseña'
+            },
+            {
+                name: 'minlength',
+                message: 'La cantidad mínima es 8'
+            },
         ]
     }
 ];

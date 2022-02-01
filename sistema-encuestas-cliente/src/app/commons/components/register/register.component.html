@@ -1,38 +1,32 @@
-<div class="container">
-	<div>
-		<img src="assets/img/logo-fuckyncode-boom.png" alt="funckyn code" />
-	</div>
-	<form
-		novalidate
-		class="container__form"
-		[formGroup]="myRegisterForm!"
-		(ngSubmit)="clickRegister()"
-	>
-		<mat-form-field appearance="outline">
-			<mat-label>User Name</mat-label>
-			<input matInput placeholder="Placeholder" formControlName="username" />
-			<mat-icon class="material-icons-outlined" matSuffix>account_circle_outline</mat-icon>
-			<mat-error>
-				{{ getError('username') }}
-			</mat-error>
-		</mat-form-field>
-		<mat-form-field appearance="outline">
-			<mat-label>Password</mat-label>
-			<input type="password" matInput placeholder="Placeholder" formControlName="password" />
-			<mat-icon matSuffix>password</mat-icon>
-			<mat-error>
-				{{ getError('password') }}
-			</mat-error>
-		</mat-form-field>
+<div class="container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center center"
+    fxLayoutGap.xs="0">
+    <div>
+        <img src="https://winenot.com.uy/wp-content/uploads/2020/12/Transp-1.png" alt="Wine Not?" height="300px"
+            width="300px" />
+    </div>
+    <form novalidate fxLayout="column" [formGroup]="myRegisterForm!" (ngSubmit)="clickRegister()">
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre de usuario</mat-label>
+            <input matInput formControlName="username" />
+            <mat-icon class="material-icons-outlined" matSuffix>account_circle_outline</mat-icon>
+            <mat-error>
+                {{ getError('username') }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Contrase&ntilde;a</mat-label>
+            <input type="password" matInput formControlName="password" />
+            <mat-icon matSuffix>password</mat-icon>
+            <mat-error>
+                {{ getError('password') }}
+            </mat-error>
+        </mat-form-field>
 
-		<mat-form-field appearance="outline">
-			<mat-label>Repeat Password</mat-label>
-			<input type="password" matInput placeholder="Placeholder" formControlName="repeatPassword" />
-			<mat-icon matSuffix>password</mat-icon>
-		</mat-form-field>
-		<button mat-raised-button color="primary" type="button">Register</button>
-		<button mat-raised-button color="primary" [disabled]="myRegisterForm!.invalid" type="submit">
-			Register 2
-		</button>
-	</form>
+        <mat-form-field appearance="outline">
+            <mat-label>Repetir contrase&ntilde;a</mat-label>
+            <input type="password" matInput formControlName="repeatPassword" />
+            <mat-icon matSuffix>password</mat-icon>
+        </mat-form-field>
+        <button mat-raised-button color="warn" type="submit" [disabled]="myRegisterForm!.invalid">Registrar</button>
+    </form>
 </div>
