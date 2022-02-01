@@ -92,3 +92,8 @@ h1, h2{
   li{
     display: flex;
   }
+
+  .warn-icon{
+    font-size: 27px;
+    color: #bc1710;
+  }

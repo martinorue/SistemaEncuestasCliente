@@ -6,10 +6,12 @@
 <div fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-around center" fxLayoutGap="10px"
     fxLayoutGap.xs="0">
     <h1 [hidden]="!encuesta">Editar encuesta</h1>
-    
-    <form *ngIf="encuesta && encuesta.CantidadEncuestados == 0;else tiene_resultados"
+    <form *ngIf="encuesta"
     #eform="ngForm">
     <h2>Aquí se puede editar una encuesta</h2>
+    <p *ngIf="encuesta.CantidadEncuestados != 0">
+        <mat-icon class="warn-icon">warning</mat-icon> Modificar una encuesta que tiene respuestas podría alterar el análisis actual de los resultados.
+    </p>
         <mat-card>
             <label for="nombreEncuesta">
             </label>
@@ -100,9 +102,5 @@
             </button>
         </div>
     </form>
-    <ng-template #tiene_resultados>
-        <p class="tiene_resultados" [hidden]="!encuesta">
-            La encuesta ya cuenta con resultados. No se puede editar.
-        </p>
-    </ng-template>
+    
 </div>
