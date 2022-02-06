@@ -38,9 +38,7 @@
             <mat-label>Repetir contrase&ntilde;a</mat-label>
             <input type="password" matInput formControlName="repeatPassword" />
             <mat-icon matSuffix>password</mat-icon>
-            <mat-error>
-                {{ getError('repeatPassword') }}
-            </mat-error>
+            
         </mat-form-field>
         <button mat-raised-button color="warn" type="submit" [disabled]="formRegistro!.invalid">Registrar</button>
     </form>

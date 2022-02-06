@@ -5,6 +5,7 @@ import { IRegister } from 'src/app/domain/register';
 import { Location } from '@angular/common';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { RegistrarService } from 'src/app/services/registrar.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,8 @@ export class RegisterComponent {
 
   constructor(
     private _location: Location,
-    private _AuthService: AuthService
+    private _AuthService: AuthService,
+    private _registrarService: RegistrarService
   ) {
     this._loadBuilder();
   }
@@ -36,12 +38,12 @@ export class RegisterComponent {
       UsuarioID: 0,
       Email: this.formRegistro?.value.email,
       Clave: this.formRegistro?.value.password,
-      RolSeguridad: '',
+      RolSeguridad: 'ADMINISTRADOR',
       Nombre: this.formRegistro?.value.username
     }
     const usuario_json = JSON.stringify(usuario);
     
-    this._AuthService.registro(usuario);
+    this._registrarService.registro(usuario_json);
   }
 
   passwordMatchingValidatior: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {

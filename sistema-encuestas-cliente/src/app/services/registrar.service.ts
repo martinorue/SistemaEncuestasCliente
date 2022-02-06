@@ -1,25 +1,20 @@
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
-import { IRQLogin } from '../domain/auth';
+import { environment } from 'src/environments/environment';
 import { IRegister } from '../domain/register';
 import { ProcessHttpmsgService } from './process-httpmsg.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class RegistrarService {
 
   constructor(private http: HttpClient, private processHttpmsgService: ProcessHttpmsgService) { }
-  
   token = localStorage.getItem('access_token')!;
-  
-  login(login: IRQLogin): Observable<HttpResponse<string>> {
-    return this.http.post<string>(`${environment.baseUri}/api/login`, login, { observe: 'response' }).pipe(catchError((error) => this.processHttpmsgService.handleError(error)));
-  }
-  
+
+
   registro(usuario: string): Observable<IRegister> {
     console.log('estoy en service con:', usuario);
     const httpOptions = {
@@ -28,10 +23,7 @@ export class AuthService {
         'Authorization': `Bearer ${this.token}`
       })
     };
-    return this.http.post<IRegister>(`${environment.baseUri}/api/Cuentas/registrar`, usuario)
-    .pipe(catchError((error) => this.processHttpmsgService.handleError(error)));
+    return this.http.post<IRegister>(`${environment.baseUri}/api/Cuentas/registrar`, usuario, httpOptions)
+      .pipe(catchError((error) => this.processHttpmsgService.handleError(error)));
   }
-
-
-  
 }
