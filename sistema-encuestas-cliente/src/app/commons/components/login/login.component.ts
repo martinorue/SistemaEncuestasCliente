@@ -22,8 +22,8 @@ export class LoginComponent {
 
 
 	dataLoginForm = {
-		userName: 'rivero.info@gmail.com',
-		password: '123456'
+		userName: '',
+		password: ''
 	};
 
 
