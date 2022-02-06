@@ -16,6 +16,9 @@ export class RegisterComponent {
 
   registerUser: IRegister = <IRegister>{};
   formRegistro: FormGroup | undefined;
+  errMess!: string;
+  respuesta!: IRegister;
+
 
   constructor(
     private _location: Location,
@@ -24,14 +27,6 @@ export class RegisterComponent {
   ) {
     this._loadBuilder();
   }
-
-//   export interface IRegister {
-//     UsuarioID: number;
-//     Email: string;
-//     Clave: string;
-//     RolSeguridad: string;
-//     Nombre: string;
-// }
 
   clickRegister(): void {
     const usuario: IRegister = {
@@ -42,8 +37,15 @@ export class RegisterComponent {
       Nombre: this.formRegistro?.value.username
     }
     const usuario_json = JSON.stringify(usuario);
+    console.log(usuario_json);
+    this.guardarUsuario(usuario_json)
     
-    this._registrarService.registro(usuario_json);
+  }
+
+  guardarUsuario(usuario_json: string) {
+    this._registrarService.registro(usuario_json)
+      .subscribe(respuestaSubmit => this.respuesta = respuestaSubmit,
+        errmess => this.errMess = <any>errmess);
   }
 
   passwordMatchingValidatior: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
@@ -54,7 +56,6 @@ export class RegisterComponent {
     return password?.value === confirmPassword?.value ? null : { notmatched: true };
   };
 
-  
 
   private _loadBuilder(): void {
     this.formRegistro = new FormGroup({

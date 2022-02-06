@@ -17,6 +17,7 @@ export class RegistrarService {
 
   registro(usuario: string): Observable<IRegister> {
     console.log('estoy en service con:', usuario);
+    debugger
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

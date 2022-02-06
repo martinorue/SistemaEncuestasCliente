@@ -20,17 +20,17 @@ export class AuthService {
     return this.http.post<string>(`${environment.baseUri}/api/login`, login, { observe: 'response' }).pipe(catchError((error) => this.processHttpmsgService.handleError(error)));
   }
   
-  registro(usuario: string): Observable<IRegister> {
-    console.log('estoy en service con:', usuario);
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.token}`
-      })
-    };
-    return this.http.post<IRegister>(`${environment.baseUri}/api/Cuentas/registrar`, usuario)
-    .pipe(catchError((error) => this.processHttpmsgService.handleError(error)));
-  }
+  // registro(usuario: string): Observable<IRegister> {
+  //   console.log('estoy en service con:', usuario);
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Bearer ${this.token}`
+  //     })
+  //   };
+  //   return this.http.post<IRegister>(`${environment.baseUri}/api/Cuentas/registrar`, usuario)
+  //   .pipe(catchError((error) => this.processHttpmsgService.handleError(error)));
+  // }
 
 
   
