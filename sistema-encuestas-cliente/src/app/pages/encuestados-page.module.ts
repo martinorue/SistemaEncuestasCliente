@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponentModule } from '../commons/shared/header-component.module';
-import { EncuestadoComponent } from '../commons/components/encuestado/encuestado.component';
 import { EncuestadoComponentsModule } from '../commons/shared/encuestado-components.module';
 import { EncuestadosComponent } from './encuestados/encuestados.component';
 import { EncuestadosRoutingModule } from './encuestados-routing.module';
 import { EncuestadoService } from '../services/encuestado.service';
-
-
 
 @NgModule({
   declarations: [

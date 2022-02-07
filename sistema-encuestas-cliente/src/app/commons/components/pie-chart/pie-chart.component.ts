@@ -17,6 +17,7 @@ export class PieChartComponent implements OnInit {
   opciones = OPCIONES_PIE_CHART;
   orden_colores: string[] = [];
   colorScheme: any;
+  
   constructor() {
   }
 
