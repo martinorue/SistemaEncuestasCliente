@@ -40,9 +40,9 @@
 
     </div>
     <span class="flex-spacer"></span>
-    <a mat-button routerLink="/login" routerLinkActive="active">
+    <a mat-button routerLink="/login" routerLinkActive="active" (click)="salir()">
       <mat-icon>exit_to_app</mat-icon>
-      Cerrar sesión
+      <span fxShow.gt-xs="true" fxHide.lt-sm="true">Cerrar sesión</span>
     </a>
 
   </mat-toolbar>

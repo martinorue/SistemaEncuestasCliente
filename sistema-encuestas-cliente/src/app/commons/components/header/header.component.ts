@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { JwtAuthService } from 'src/app/services/jwt-auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent {
 
-  constructor() { }
-
+  constructor(private _jwtAuthService: JwtAuthService) { }
+  salir(){
+    this._jwtAuthService.logout()
+  }
 }

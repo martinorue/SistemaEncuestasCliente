@@ -10,6 +10,7 @@ import { AuthModule } from './pages/auth/auth.module';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeEsUY from '@angular/common/locales/es-UY';
+import { EncuestaGuard } from './guards/encuesta.guard';
 
 registerLocaleData(localeEsUY, 'es-UY');
 
@@ -27,6 +28,6 @@ registerLocaleData(localeEsUY, 'es-UY');
     MatSnackBarModule,
   ],
   bootstrap: [AppComponent],
-  providers: [ { provide: LOCALE_ID, useValue: 'es-UY' } ],
+  providers: [ { provide: LOCALE_ID, useValue: 'es-UY' }, EncuestaGuard ],
 })
 export class AppModule { }

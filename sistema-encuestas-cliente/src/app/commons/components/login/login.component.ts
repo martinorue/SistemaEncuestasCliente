@@ -38,7 +38,7 @@ export class LoginComponent {
 			this.respuestaHttp = response.status
 			const token: any = response.body;
 
-			this._jwtAuthService.login(token);
+			this._jwtAuthService.login(token, user);
 			void this._router.navigateByUrl('/dashboard');
 		})
 	}
