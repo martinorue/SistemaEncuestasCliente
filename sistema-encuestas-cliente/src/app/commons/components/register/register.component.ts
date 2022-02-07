@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { customValidator, MODEL_REGISTER_ERRORS } from 'src/app/domain/model-message-error';
 import { IRegister } from 'src/app/domain/register';
 import { Location } from '@angular/common';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { RegistrarService } from 'src/app/services/registrar.service';
 
 @Component({
@@ -19,10 +18,8 @@ export class RegisterComponent {
   errMess!: string;
   respuesta!: IRegister;
 
-
   constructor(
     private _location: Location,
-    private _AuthService: AuthService,
     private _registrarService: RegistrarService
   ) {
     this._loadBuilder();
@@ -39,7 +36,7 @@ export class RegisterComponent {
     const usuario_json = JSON.stringify(usuario);
     console.log(usuario_json);
     this.guardarUsuario(usuario_json)
-    
+
   }
 
   guardarUsuario(usuario_json: string) {
@@ -51,7 +48,7 @@ export class RegisterComponent {
   passwordMatchingValidatior: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     const password = control.get('password');
     const confirmPassword = control.get('repeatPassword');
-    
+
 
     return password?.value === confirmPassword?.value ? null : { notmatched: true };
   };
@@ -68,22 +65,19 @@ export class RegisterComponent {
       repeatPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
       email: new FormControl('', [Validators.required, Validators.email])
     }, { validators: this.passwordMatchingValidatior });
-    
+
     this.formRegistro.get('')?.valid;
   }
 
   getError(controlName: string): string {
     const control = this.formRegistro?.get(controlName);
-    
+
     if (control?.invalid && control?.touched) {
       const atributeError = MODEL_REGISTER_ERRORS.find((x) => x.formControlName == controlName);
-      const validators = atributeError?.validators;
-      
       const validator = atributeError?.validators.find(
-        
         (validator) => control.errors![validator.name]
       );
-      
+
       return validator!.message;
     }
     return '';

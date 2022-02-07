@@ -28,6 +28,6 @@ registerLocaleData(localeEsUY, 'es-UY');
     MatSnackBarModule,
   ],
   bootstrap: [AppComponent],
-  providers: [ { provide: LOCALE_ID, useValue: 'es-UY' }, EncuestaGuard ],
+  providers: [ { provide: LOCALE_ID, useValue: 'es-UY' }],
 })
 export class AppModule { }
