@@ -36,7 +36,7 @@ export class RegisterComponent {
     const usuario_json = JSON.stringify(usuario);
     console.log(usuario_json);
     this.guardarUsuario(usuario_json)
-
+    
   }
 
   guardarUsuario(usuario_json: string) {
