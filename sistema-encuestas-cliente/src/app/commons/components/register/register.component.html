@@ -18,8 +18,8 @@
             <input type="email" matInput formControlName="email" [errorStateMatcher]="matcher"
                 placeholder="Ej. ejemplo@ejemplo.com">
                 <mat-icon matSuffix>email</mat-icon>
-            <mat-error *ngIf="formRegistro!.controls['email'].hasError('email')">
-                Por favor, ingrese una dirección de correo válida
+            <mat-error>
+                {{ getError('email') }}
             </mat-error>
         </mat-form-field>
 
@@ -36,7 +36,9 @@
             <mat-label>Repetir contrase&ntilde;a</mat-label>
             <input type="password" matInput formControlName="repeatPassword" />
             <mat-icon matSuffix>password</mat-icon>
-            
+            <mat-error>
+                {{ getError('repeatPassword')}}
+            </mat-error>
         </mat-form-field>
         <button mat-raised-button color="warn" type="submit" [disabled]="formRegistro!.invalid">Registrar</button>
     </form>

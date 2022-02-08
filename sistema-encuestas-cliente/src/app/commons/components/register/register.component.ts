@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { customValidator, MODEL_REGISTER_ERRORS } from 'src/app/domain/model-message-error';
-import { IRegister } from 'src/app/domain/register';
+import { IRegister } from '../../../domain/register';
 import { Location } from '@angular/common';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { RegistrarService } from 'src/app/services/registrar.service';
-import { MessageService } from 'src/app/services/message.service';
+import { RegistrarService } from '../../../services/registrar.service';
+import { MessageService } from '../../../services/message.service';
+import { MODEL_REGISTER_ERRORS } from './model-message-error';
 
 @Component({
   selector: 'app-register',
@@ -19,6 +19,7 @@ export class RegisterComponent {
   errMess!: string;
   respuesta!: IRegister;
   respuestaHttp!: number;
+  noMatch!: boolean;
 
   constructor(
     private _location: Location,
@@ -37,7 +38,6 @@ export class RegisterComponent {
       Nombre: this.formRegistro?.value.username
     }
     const usuario_json = JSON.stringify(usuario);
-    console.log(usuario_json);
     this.guardarUsuario(usuario_json)
     
     
@@ -54,39 +54,40 @@ export class RegisterComponent {
     
   }
 
-  passwordMatchingValidatior: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    const password = control.get('password');
-    const confirmPassword = control.get('repeatPassword');
-
-
-    return password?.value === confirmPassword?.value ? null : { notmatched: true };
-  };
-
-
   private _loadBuilder(): void {
     this.formRegistro = new FormGroup({
       username: new FormControl('', [
         Validators.required,
-        Validators.minLength(5),
-        customValidator()
+        Validators.minLength(5)
       ]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      repeatPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      email: new FormControl('', [Validators.required, Validators.email])
-    }, { validators: this.passwordMatchingValidatior });
+      repeatPassword: new FormControl('', [Validators.required, Validators.minLength(8), this.customValidator()]),
+    });
 
     this.formRegistro.get('')?.valid;
   }
+
+  customValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+        
+        const password = this.formRegistro?.get('password');
+        
+        const confirmPassword = this.formRegistro?.get('repeatPassword');
+
+        return password?.value === confirmPassword?.value ? null : { notmatched: true };
+    };
+}
 
   getError(controlName: string): string {
     const control = this.formRegistro?.get(controlName);
 
     if (control?.invalid && control?.touched) {
       const atributeError = MODEL_REGISTER_ERRORS.find((x) => x.formControlName == controlName);
+      
       const validator = atributeError?.validators.find(
         (validator) => control.errors![validator.name]
       );
-
       return validator!.message;
     }
     return '';

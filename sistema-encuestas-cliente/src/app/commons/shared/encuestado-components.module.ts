@@ -7,6 +7,9 @@ import { EncuestadoComponent } from '../components/encuestado/encuestado.compone
 import { EncuestadosRoutingModule } from '../../pages/encuestados-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EncuestasInterceptor } from 'src/app/interceptors/encuestas-interceptor';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { RequestInterceptor } from 'src/app/interceptors/request.interceptor';
 
 
 
@@ -20,7 +23,10 @@ import { EncuestasInterceptor } from 'src/app/interceptors/encuestas-interceptor
     RouterModule,
     MatTableModule,
     EncuestadosRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+
   ],
   exports:[
     EncuestadoComponent
@@ -28,6 +34,11 @@ import { EncuestasInterceptor } from 'src/app/interceptors/encuestas-interceptor
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: EncuestasInterceptor,
+    multi: true
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: RequestInterceptor,
     multi: true
   }],
 })

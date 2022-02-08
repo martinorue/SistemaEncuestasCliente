@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoadingService } from 'src/app/services/loading.service';
 import { IRQLogin } from '../../../domain/auth';
 import { AuthService } from '../../../services/auth.service';
 import { JwtAuthService } from '../../../services/jwt-auth.service';
@@ -14,10 +15,14 @@ export class LoginComponent {
 	@ViewChild('myFormLogin') myFormLogin: NgForm | undefined;
 	mostrarProgreso: boolean = false;
 	respuestaHttp!: number;
+	loading$ = this.loader.loading$;
+
 
 	constructor(private _router: Router,
 		private _authService: AuthService,
-		private _jwtAuthService: JwtAuthService
+		private _jwtAuthService: JwtAuthService,
+		public loader: LoadingService
+		
 	) { }
 
 

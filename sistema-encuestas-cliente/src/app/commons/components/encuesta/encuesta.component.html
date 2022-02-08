@@ -30,11 +30,11 @@
                     </button>
                 </p>
             </mat-card-content>
-            <mat-card-actions class="botones-encuesta" fxLayoutAlign="space-between end">
-                <button mat-button [routerLink]="['/dashboard/Resultados', encuesta.EncuestaID]">
+            <mat-card-actions class="boton-resultados" fxLayoutAlign="space-between end">
+                <button mat-button class="boton-encuesta" [routerLink]="['/dashboard/Resultados', encuesta.EncuestaID]">
                     <mat-icon>bar_chart</mat-icon>
                 </button>
-                <button class="boton-editar" mat-button
+                <button class="boton-editar boton-encuesta" mat-button 
                     [routerLink]="['/dashboard/editar-encuesta', encuesta.EncuestaID]">
                     <mat-icon>edit</mat-icon>
                 </button>

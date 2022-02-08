@@ -1,5 +1,5 @@
 
-<div *ngIf="mostrarProgreso">
+<div *ngIf="loading$ | async">
 	<mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
 

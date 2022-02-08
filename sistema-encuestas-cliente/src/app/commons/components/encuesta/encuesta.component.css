@@ -18,10 +18,14 @@ h1{
     justify-content: space-around;
 }
 
-.botones-encuesta{
+.boton-resultados{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.boton-encuesta:hover{
+    color: #bc1710;
 }
 
 .boton-publicar:hover{

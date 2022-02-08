@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthComponentsModule } from '../../commons/shared/auth-components.module';
-import { RegisterPageComponent } from './register-page/register-page.component';
-
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @NgModule({
@@ -11,6 +10,7 @@ import { RegisterPageComponent } from './register-page/register-page.component';
   imports: [
     CommonModule, AuthComponentsModule
   ],
-  exports: [LoginPageComponent]
+  exports: [LoginPageComponent],
+  providers:[AuthService]
 })
 export class AuthModule { }

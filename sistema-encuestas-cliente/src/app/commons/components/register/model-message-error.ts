@@ -1,4 +1,3 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export interface IAtribute {
     formControlName: string;
@@ -8,14 +7,6 @@ export interface IAtribute {
 export interface IValidator {
     name: string;
     message: string;
-}
-
-
-
-export function customValidator(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-		return null;
-    };
 }
 
 export const MODEL_REGISTER_ERRORS: IAtribute[] = [
@@ -30,7 +21,20 @@ export const MODEL_REGISTER_ERRORS: IAtribute[] = [
                 name: 'minlength',
                 message: 'La cantidad minima es 5'
             },
-            
+
+        ]
+    },
+    {
+        formControlName: 'email',
+        validators: [
+            {
+                name: 'required',
+                message: 'Ingrese una dirección de correo válida'
+            },
+            {
+                name: 'minlength',
+                message: 'La cantidad mínima es 8'
+            },
         ]
     },
     {
@@ -45,5 +49,22 @@ export const MODEL_REGISTER_ERRORS: IAtribute[] = [
                 message: 'La cantidad mínima es 8'
             },
         ]
-    }
+    },
+    {
+        formControlName: 'repeatPassword',
+        validators: [
+            {
+                name: 'required',
+                message: 'Repita la contraseña'
+            },
+            {
+                name: 'minlength',
+                message: 'La cantidad mínima es 8'
+            },
+            {
+                name: 'notmatched',
+                message: 'Las contraseñas no coinciden'
+            },
+        ]
+    },
 ];

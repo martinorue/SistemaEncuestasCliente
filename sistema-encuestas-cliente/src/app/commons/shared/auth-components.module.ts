@@ -9,12 +9,15 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from '../components/login/login.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RequestInterceptor } from 'src/app/interceptors/request.interceptor';
 
 
 @NgModule({
   declarations: [LoginComponent],
   imports: [
     CommonModule,
+    HttpClientModule,
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
@@ -26,5 +29,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     FlexLayoutModule
   ],
   exports: [LoginComponent],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: RequestInterceptor,
+    multi: true
+  }],
 })
 export class AuthComponentsModule { }
