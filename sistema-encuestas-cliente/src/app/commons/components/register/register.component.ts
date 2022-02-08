@@ -47,7 +47,8 @@ export class RegisterComponent {
     this._registrarService.registro(usuario_json)
       .subscribe(response => {this.respuestaHttp = response.status
         if(this.respuestaHttp == 200){
-          this._messageService.showInfo('Registro exitoso', 'top right')
+          this._messageService.showInfo('Registro exitoso', 'top right');
+          this.formRegistro?.reset();
         }
       })
     

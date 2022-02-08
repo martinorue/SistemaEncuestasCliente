@@ -7,10 +7,10 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 
 
 @NgModule({
-  declarations: [LoginPageComponent, RegisterPageComponent],
+  declarations: [LoginPageComponent],
   imports: [
     CommonModule, AuthComponentsModule
   ],
-  exports: [LoginPageComponent, RegisterPageComponent]
+  exports: [LoginPageComponent]
 })
 export class AuthModule { }

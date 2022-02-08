@@ -22,8 +22,6 @@ export class ProcessHttpmsgService {
         } 
         else {
           this.messageService.showError('Error de servidor', 'top right');
-          console.log(error.error);
-          
         }
       }
     } else {

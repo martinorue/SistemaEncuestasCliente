@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EncuestaGuard } from './guards/encuesta.guard';
-import { RegistroGuard } from './guards/registro.guard';
 import { LoginPageComponent } from './pages/auth/login-page/login-page.component';
-import { RegisterPageComponent } from './pages/auth/register-page/register-page.component';
 
 export const routes: Routes = [
   {
@@ -17,8 +15,8 @@ export const routes: Routes = [
   },
 	{
 		path: 'register',
-		component: RegisterPageComponent,
-    canActivate: [RegistroGuard]
+    loadChildren: () => import('./pages/registro-page.module').then((m) => m.RegistroPageModule),
+    canLoad: [EncuestaGuard]
 	},
   {
     path: 'dashboard',
