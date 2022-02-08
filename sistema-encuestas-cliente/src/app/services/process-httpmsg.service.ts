@@ -17,8 +17,13 @@ export class ProcessHttpmsgService {
       } else {
         if (error.status === 401) {
           this.messageService.showError('No cuenta con permisos para ingresar', 'top right');
-        } else {
+        }if(error.status == 400){
+          this.messageService.showError(error.error['Message'], 'top right');
+        } 
+        else {
           this.messageService.showError('Error de servidor', 'top right');
+          console.log(error.error);
+          
         }
       }
     } else {

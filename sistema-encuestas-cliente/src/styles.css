@@ -55,3 +55,14 @@ mat-card {
   height: 30px;
   padding: 0 !important;
 }
+
+.snackbar-error{
+  background: #F44336;
+  color: white;
+}
+
+.snackbar-info{
+  background-color: #4caf50;
+    color: white;
+    border: none;
+}

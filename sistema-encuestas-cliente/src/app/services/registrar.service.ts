@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -15,16 +15,15 @@ export class RegistrarService {
   token = localStorage.getItem('access_token')!;
 
 
-  registro(usuario: string): Observable<IRegister> {
-    console.log('estoy en service con:', usuario);
-    debugger
+  registro(usuario: string): Observable<HttpResponse<string>> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.token}`
-      })
+        'Authorization': `Bearer ${this.token}`,
+      }),
+      observe: 'response' as 'body'
     };
-    return this.http.post<IRegister>(`${environment.baseUri}/api/Cuentas/registrar`, usuario, httpOptions)
+    return this.http.post<HttpResponse<string>>(`${environment.baseUri}/api/Cuentas/registrar`, usuario, httpOptions)
       .pipe(catchError((error) => this.processHttpmsgService.handleError(error)));
   }
 }

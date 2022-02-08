@@ -5,6 +5,7 @@ import { IRegister } from 'src/app/domain/register';
 import { Location } from '@angular/common';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { RegistrarService } from 'src/app/services/registrar.service';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-register',
@@ -17,10 +18,12 @@ export class RegisterComponent {
   formRegistro: FormGroup | undefined;
   errMess!: string;
   respuesta!: IRegister;
+  respuestaHttp!: number;
 
   constructor(
     private _location: Location,
-    private _registrarService: RegistrarService
+    private _registrarService: RegistrarService,
+    private _messageService: MessageService
   ) {
     this._loadBuilder();
   }
@@ -37,12 +40,17 @@ export class RegisterComponent {
     console.log(usuario_json);
     this.guardarUsuario(usuario_json)
     
+    
   }
 
   guardarUsuario(usuario_json: string) {
     this._registrarService.registro(usuario_json)
-      .subscribe(respuestaSubmit => this.respuesta = respuestaSubmit,
-        errmess => this.errMess = <any>errmess);
+      .subscribe(response => {this.respuestaHttp = response.status
+        if(this.respuestaHttp == 200){
+          this._messageService.showInfo('Registro exitoso', 'top right')
+        }
+      })
+    
   }
 
   passwordMatchingValidatior: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
