@@ -40,6 +40,7 @@ export class LoginComponent {
 		};
 
 		this._authService.login(user).subscribe((response) => {
+			 
 			this.respuestaHttp = response.status
 			const token: any = response.body;
 
