@@ -3,6 +3,15 @@ h1{
     text-align: center;
 }
 
+.card-header{
+    text-align: center;
+    display: block;
+}
+
+.card-subtitle{
+    text-align: center;
+}
+
 mat-card-actions {
     margin-bottom: 0px !important;
 }
@@ -12,6 +21,9 @@ mat-card-actions {
     margin: 0 auto;
 }
 
+.card-content{
+    text-align: center;
+}
 
 .card-encuesta{
     cursor: auto;
@@ -34,5 +46,14 @@ mat-card-actions {
 
 .boton-publicar:hover{
     color: #bc1710;
+}
+
+.mat-card-actions{
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+}
+
+.mat-card-actions .mat-button, .mat-card-actions .mat-raised-button, .mat-card-actions .mat-stroked-button {
+    margin: 0px !important;
 }
 

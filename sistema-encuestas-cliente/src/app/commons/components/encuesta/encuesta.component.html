@@ -14,20 +14,20 @@
         <mat-card fxFlex="0 1 calc(33.3% - 25px)" fxFlex.lt-md="0 1 calc(50% - 35px)" fxFlex.lt-sm="100%"
             class="card-encuesta" *ngFor="let encuesta of encuestas" appHighlight>
             <div class="card-header">
-                <mat-card-header>
+                <mat-card-header class="card-header">
                     <mat-card-title>{{ encuesta.Denominacion}}</mat-card-title>
                 </mat-card-header>
                 <div>
-                    <mat-card-subtitle>Estado: {{encuesta.Estado}}</mat-card-subtitle>
+                    <mat-card-subtitle class="card-subtitle">Estado: {{encuesta.Estado}}</mat-card-subtitle>
                 </div>
                 
             </div>    
-            <mat-card-content>
+            <mat-card-content class="card-content">
                 <p>
-                    Inicio: {{encuesta.FechaInicio | date}}
+                    Inicio: {{encuesta.FechaInicio | date:'shortDate'}}
                 </p>
                 <p>
-                    Finalización: {{encuesta.FechaFin | date}}
+                    Fin: {{encuesta.FechaFin | date: 'shortDate'}}
                 </p>
             </mat-card-content>
             
@@ -49,7 +49,7 @@
                         [routerLink]="['/dashboard/Resultados', encuesta.EncuestaID]">
                         <mat-icon>bar_chart</mat-icon>
                     </button>
-                    <button class="boton-editar boton-encuesta" mat-button
+                    <button class="boton-encuesta" mat-button
                         [routerLink]="['/dashboard/editar-encuesta', encuesta.EncuestaID]">
                         <mat-icon>edit</mat-icon>
                     </button>
