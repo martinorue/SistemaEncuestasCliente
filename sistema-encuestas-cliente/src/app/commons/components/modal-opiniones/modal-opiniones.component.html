@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Opiniones</h1>
+<div mat-dialog-content>
+	<div>
+        <app-textos-respuestas *ngFor="let respuesta of listRespuestasTL" [respuesta]="respuesta"></app-textos-respuestas>
+	</div>
+</div>
+<div mat-dialog-actions>
+	<button mat-raised-button mat-dialog-close (click)="cerrarDialog()">Cerrar</button>
+</div>

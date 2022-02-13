@@ -1,0 +1,68 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 20px);
+}
+
+.mat-spinner {
+  color: white;
+  padding: 12px;
+}
+
+.highlight {
+  z-index: 1;
+  transform: scale(1.01);
+}
+
+.flex-spacer {
+  flex: 1 1 auto;
+}
+
+.chart-legend .legend-labels {
+  white-space: normal !important;
+  width: auto !important;
+}
+
+.full-width{
+  width: 75%;
+}
+
+.medium-width{
+  width: 60%;
+}
+
+mat-card {
+  margin-bottom: 15px !important;
+}
+
+.btn-borrar-pregunta-icon{
+  float: right;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  padding: 0 !important;
+}
+
+.snackbar-error{
+  background: #F44336;
+  color: white;
+}
+
+.snackbar-info{
+  background-color: #4caf50;
+    color: white;
+    border: none;
+}

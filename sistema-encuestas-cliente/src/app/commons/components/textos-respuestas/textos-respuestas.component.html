@@ -1,0 +1,14 @@
+<mat-card>
+    <mat-card-title>{{respuesta.Persona?.Nombre}}</mat-card-title>
+    <mat-card-subtitle>{{respuesta.Persona?.Correo}}</mat-card-subtitle>
+    <mat-card-content>{{respuesta.TextoRespuesta}}</mat-card-content>
+    <div class="chip-etiqueta-container">
+        <mat-chip-list aria-label="etiquetas" class="chip-etiqueta" *ngFor="let etiqueta of respuesta.Etiquetas; let i = index">
+            <mat-chip *ngIf="etiqueta == 'ATENCION'" class="etiqueta-atencion" [attr.data-index]="i">{{etiqueta}}</mat-chip>
+            <mat-chip *ngIf="etiqueta == 'AMBIENTE'" class="etiqueta-ambiente" [attr.data-index]="i">{{etiqueta}}</mat-chip>
+            <mat-chip *ngIf="etiqueta == 'COMIDA'" class="etiqueta-comida" [attr.data-index]="i">{{etiqueta}}</mat-chip>
+            <mat-chip *ngIf="etiqueta == 'PRECIO'" class="etiqueta-precio" [attr.data-index]="i">{{etiqueta}}</mat-chip>
+            <mat-chip *ngIf="etiqueta == 'VINO'" class="etiqueta-vino" [attr.data-index]="i">{{etiqueta}}</mat-chip>
+        </mat-chip-list>
+    </div>
+</mat-card>

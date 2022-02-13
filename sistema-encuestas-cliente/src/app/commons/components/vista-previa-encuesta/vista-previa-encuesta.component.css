@@ -1,0 +1,11 @@
+.opcion{
+    margin: 5px;
+    border: 1px solid rgb(207, 205, 205);
+    border-radius: 30px;
+    padding: 11px;
+    line-height: 48px;
+}
+
+a{
+    cursor: auto;
+}

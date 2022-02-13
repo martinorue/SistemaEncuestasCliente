@@ -1,0 +1,112 @@
+{
+    "id": 1,
+    "EncuestaID": 1,
+    "Denominacion": "Encuesta Opinión General",
+    "FechaInicio": "2021-12-05T00:00:00",
+    "FechaFin": "2021-12-24T00:00:00",
+    "CantidadEncuestados": 287,
+    "Estado": "BORRADOR",
+    "Objetivo": "Comprobar el estado de satisfacción de nuestros comensales.",
+    "Preguntas": [
+        {
+            "id": 1,
+            "PreguntaID": 1,
+            "TextoPregunta": "¿Cómo te atendimos hoy?",
+            "Tipo": "TEXTOLIBRE",
+            "Orden": 1,
+            "EncuestaID": 1,
+            "Requerida": true,
+            "Opciones": null,
+            "Resultados": [
+                {
+                    "Texto": "Positivo",
+                    "Valor": 5
+                },
+                {
+                    "Texto": "Negativo",
+                    "Valor": 3
+                },
+                {
+                    "Texto": "Mixto",
+                    "Valor": 2
+                },
+                {
+                    "Texto": "Neutro",
+                    "Valor": 1
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "PreguntaID": 2,
+            "TextoPregunta": "¿Qué platillos te gustaron más?",
+            "Tipo": "OPCIONMULTIPLE",
+            "Orden": 2,
+            "EncuestaID": 1,
+            "Requerida": true,
+            "Opciones": null,
+            "Resultados": [
+                {
+                    "Texto": "Huevos Rotos",
+                    "Valor": 14
+                },
+                {
+                    "Texto": "Tapas de Jamón Serrano",
+                    "Valor": 5
+                },
+                {
+                    "Texto": "Tapas de Jamón Serrano",
+                    "Valor": 3
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "PreguntaID": 3,
+            "TextoPregunta": "¿Qué cepas de vino te gustaron más?",
+            "Tipo": "OPCIONMULTIPLE",
+            "Orden": 3,
+            "EncuestaID": 1,
+            "Requerida": true,
+            "Opciones": null,
+            "Resultados": [
+                {
+                    "Texto": "Tannat",
+                    "Valor": 17
+                },
+                {
+                    "Texto": "Carmenere",
+                    "Valor": 7
+                },
+                {
+                    "Texto": "Syrah",
+                    "Valor": 5
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "PreguntaID": 4,
+            "TextoPregunta": "¿Qué mozo te atendió?",
+            "Tipo": "OPCIONSIMPLE",
+            "Orden": 4,
+            "EncuestaID": 1,
+            "Requerida": true,
+            "Opciones": null,
+            "Resultados": [
+                {
+                    "Texto": "Tatiana",
+                    "Valor": 5
+                },
+                {
+                    "Texto": "Roberto",
+                    "Valor": 3
+                },
+                {
+                    "Texto": "Matías",
+                    "Valor": 2
+                }
+            ]
+        }
+    ]
+}

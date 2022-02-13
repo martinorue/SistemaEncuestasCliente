@@ -1,0 +1,3 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/2f641108-6171-4924-b288-925749d22fcb/resourceGroups/gr1/providers/Microsoft.Web/sites/SistemaEncuestasCliente"
+}

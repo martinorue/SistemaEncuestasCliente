@@ -1,0 +1,49 @@
+<form [formGroup]="agregarPreguntaForm" #apform="ngForm">
+    <mat-card>
+        <label for="pregunta">
+            <h3>Agregar Preguntas</h3>
+        </label>
+        <mat-form-field appearance="fill" class="full-width" [formGroup]="agregarPreguntaForm">
+            <textarea matInput placeholder="Texto pregunta..." id="pregunta" formControlName="pregunta"
+                ></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width" [formGroup]="agregarPreguntaForm">
+            <mat-label>Tipo Pregunta</mat-label>
+            <mat-select name="tipoPregunta" formControlName="tiposPregunta" required>
+                <mat-option *ngFor="let tipo of tiposPregunta" [value]="tipo.value">
+                    {{ tipo.viewValue }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div *ngIf="agregarPreguntaForm.value.tiposPregunta == 'OPCIONSIMPLE' || agregarPreguntaForm.value.tiposPregunta == 'OPCIONMULTIPLE'">
+            <div>
+                <mat-form-field class="chip-list" appearance="fill" [formGroup]="agregarPreguntaForm">
+                    <mat-label for="opcion">Agregar Opción</mat-label>
+                    <mat-chip-list #listaOpciones aria-label="Opciones" formControlName="opciones">
+                        <mat-chip *ngFor="let opcion of opciones" (removed)="borrarOpcion(opcion)">
+                            {{opcion.OpcionTexto}}
+                            <button matChipRemove>
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </mat-chip>
+                        <input placeholder="Nueva opción..." [matChipInputFor]="listaOpciones"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                            (matChipInputTokenEnd)="agregarOpcion($event)">
+                    </mat-chip-list>
+                </mat-form-field>
+            </div>
+        </div>
+        <p [formGroup]="agregarPreguntaForm">
+            <mat-slide-toggle formControlName="requerida" (change)="onChangeRequerida()" name="requerida" [checked]="requerida">Requerida
+            </mat-slide-toggle>
+        </p>
+        <p [formGroup]="agregarPreguntaForm">
+            <button mat-raised-button mat-mini-fab [disabled]="agregarPreguntaForm.invalid || !validarPregunta()"
+                (click)="agregarNuevaPregunta()">
+                <mat-icon> add </mat-icon>
+            </button>
+        </p>
+    </mat-card>
+</form>

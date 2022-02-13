@@ -1,0 +1,106 @@
+<div *ngIf="!encuesta" class="spinner-wrapper">
+    <mat-spinner color="warn" class="mat-spinner"></mat-spinner>
+    <h4>Cargando editar encuestas...</h4>
+</div>
+
+<div fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-around center" fxLayoutGap="10px"
+    fxLayoutGap.xs="0">
+    <h1 [hidden]="!encuesta">Editar encuesta</h1>
+    <form *ngIf="encuesta"
+    #eform="ngForm">
+    <h2>Aquí se puede editar una encuesta</h2>
+    <p *ngIf="encuesta.CantidadEncuestados != 0">
+        <mat-icon class="warn-icon">warning</mat-icon> Modificar una encuesta que tiene respuestas podría alterar el análisis actual de los resultados.
+    </p>
+        <mat-card>
+            <label for="nombreEncuesta">
+            </label>
+            <mat-form-field class="full-width" [formGroup]="datosEncuestaForm">
+                <textarea matInput placeholder="Editar nombre..." id="nombreEncuesta" name="nombreEncuesta"
+                    required formControlName="nombreEncuesta" ></textarea>
+            </mat-form-field>
+        </mat-card>
+        <mat-card>
+            <label for="objetivoEncuesta">
+            </label>
+            <mat-form-field class="full-width" [formGroup]="datosEncuestaForm">
+                <textarea matInput placeholder="Editar objetivo..." id="objetivoEncuesta" name="objetivoEncuesta"
+                    required formControlName="objetivoEncuesta"></textarea>
+            </mat-form-field>
+        </mat-card>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Período: {{encuesta.FechaInicio | date}} - {{encuesta.FechaFin | date}}</mat-label>
+            <mat-date-range-input [formGroup]="datosEncuestaForm" [rangePicker]="picker">
+                <input matStartDate formControlName="comienzo" placeholder="Comienzo" />
+                <input matEndDate formControlName="fin" placeholder="Fin" />
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+
+            <mat-error *ngIf="datosEncuestaForm.controls.comienzo.hasError('matStartDateInvalid')">Ingrese un comienzo válido
+            </mat-error>
+            <mat-error *ngIf="datosEncuestaForm.controls.fin.hasError('matEndDateInvalid')">Ingrese un fin válido</mat-error>
+        </mat-form-field>
+
+        <div>
+            <h2>Preguntas</h2>
+            <mat-card cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let pregunta of clonPreguntas" cdkDrag [cdkDragData]="pregunta">
+
+                    <input matInput class="texto-pregunta" #preguntaEditada name="preguntaEditada" id="preguntaEditada"
+                        value="{{pregunta.TextoPregunta}}" (blur)="update(preguntaEditada.value, pregunta)">
+
+                    <button class="btn-borrar-pregunta-icon" mat-mini-fab (click)="borrarPregunta(pregunta)">
+                        <mat-icon class="borrar-pregunta-icon">delete_outline</mat-icon>
+                    </button>
+                    <div *ngIf="pregunta.Tipo == 'OPCIONSIMPLE' || pregunta.Tipo == 'OPCIONMULTIPLE'">
+                        <div>
+                            <mat-form-field class="chip-list" appearance="fill">
+                                <mat-label for="opcion">Agregar Opción</mat-label>
+                                <mat-chip-list #listaOpciones aria-label="Opciones">
+                                    <mat-chip *ngFor="let opcion of pregunta.Opciones"
+                                        (removed)="borrarOpcion(opcion, pregunta)">
+                                        {{opcion.OpcionTexto}}
+                                        <button matChipRemove>
+                                            <mat-icon>cancel</mat-icon>
+                                        </button>
+                                    </mat-chip>
+                                    <input placeholder="Nueva opción..." [matChipInputFor]="listaOpciones"
+                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                        [matChipInputAddOnBlur]="addOnBlur"
+                                        (matChipInputTokenEnd)="agregarOpcion($event, pregunta)">
+                                </mat-chip-list>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <p>
+                        <mat-slide-toggle (change)="onChangeRequerida(pregunta)" [checked]="pregunta.Requerida">
+                            Requerida
+                        </mat-slide-toggle>
+                    </p>
+                    <p *ngIf="pregunta.Tipo == 'TEXTOLIBRE'">
+                        <span>Tipo: Texto libre <mat-icon>article</mat-icon></span> 
+                    </p>
+                    <p *ngIf="pregunta.Tipo == 'OPCIONSIMPLE'">
+                        <span>Tipo: Opción simple <mat-icon>format_list_bulleted</mat-icon></span> 
+                    </p>
+                    <p *ngIf="pregunta.Tipo == 'OPCIONMULTIPLE'">
+                        <span>Tipo: Opción múltiple <mat-icon>library_add_check</mat-icon></span>
+                    </p>
+                </div>
+            </mat-card>
+        </div>
+
+        <!-- COMPONENTE AGREGAR PREGUNTA -->
+        <app-agregar-pregunta (preguntaEmitida)="agregarNuevaPreguntaEmitida($event)"></app-agregar-pregunta>
+
+        <div>
+            <button [disabled]="!datosEncuestaForm.valid || clonPreguntas.length == 0 || !validarOpciones()" class="button-submit" mat-raised-button
+                type="submit" color="accent" (click)="onSubmit()">
+                Finalizar
+            </button>
+        </div>
+    </form>
+    
+</div>

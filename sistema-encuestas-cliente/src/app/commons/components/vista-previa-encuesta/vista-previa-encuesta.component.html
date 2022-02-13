@@ -1,0 +1,29 @@
+<div class="container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-around center"
+    fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <!-- COMPONENTE VISTA PREVIA ENCUESTA CREADA -->
+        <!-- GO BACK -->
+        <h1>Vista Previa de la encuesta</h1>
+        <h2>Denominación: {{nuevaEncuesta.Denominacion}}</h2>
+        <a mat-button>
+            <mat-icon>outlined_flag</mat-icon>Objetivo: {{nuevaEncuesta.Objetivo}}
+        </a>
+        <a mat-button>
+            <mat-icon>date_range</mat-icon>Período: {{nuevaEncuesta.FechaInicio | date}} - {{nuevaEncuesta.FechaFin |
+            date}}
+        </a>
+        <a mat-button>
+            <mat-icon>quiz</mat-icon>
+            <span>Preguntas:</span>
+        </a>
+        <mat-card *ngFor="let pregunta of nuevaEncuesta.Preguntas" class="medium-width">
+            <mat-card-title>{{pregunta.TextoPregunta}}</mat-card-title>
+            <div *ngIf="pregunta.Tipo != 'TEXTOLIBRE'">
+                <span class="opcion" *ngFor="let opcion of pregunta.Opciones">
+                    {{opcion.OpcionTexto}}
+                </span>
+            </div>
+        </mat-card>
+        <button mat-raised-button (click)="volverCrearEncuesta()">
+            Volver
+        </button>
+</div>
