@@ -7,10 +7,18 @@ import { IRespuestaTL } from 'src/app/domain/respuestaTL';
   styleUrls: ['./textos-respuestas.component.css']
 })
 export class TextosRespuestasComponent implements OnInit {
-  @Input() respuesta = <IRespuestaTL>{};
+  @Input() respuesta!: IRespuestaTL;
   constructor() { }
 
   ngOnInit(): void {
+    this.respuesta.Etiquetas = eliminarDuplicados(this.respuesta.Etiquetas); 
   }
 
 }
+
+export function eliminarDuplicados(array: string[]) {
+  return array.sort().filter(function(item: any, pos: any, ary:any) {
+      return !pos || item != ary[pos - 1];
+  });
+}
+

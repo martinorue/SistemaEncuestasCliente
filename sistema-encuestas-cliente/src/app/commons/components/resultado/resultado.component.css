@@ -21,9 +21,18 @@
     text-align: center;
 }
 
-.icon-text {
+.boton-comentarios {
     display: flex;
     align-items: flex-end;
+    margin: 2px;
+}
+
+.boton-comentarios:hover{
+    background-color: #f37d79;
+}
+
+button:not(:hover) {
+    background: transparent !important;
 }
 
 .sentiment{

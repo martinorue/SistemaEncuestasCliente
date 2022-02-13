@@ -23,41 +23,41 @@
                 <h1>{{ pregunta.TextoPregunta }}</h1>
                 <mat-card-subtitle>Tipo: {{ pregunta.Tipo }}</mat-card-subtitle>
             </div>
-
-            <mat-card *ngIf="pregunta.Resultados != null && 
-                pregunta.Resultados != undefined 
-                && pregunta.Resultados.length > 0;else no_resultados" class="card-resultado">
-                <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly start">
-                    <div>
-
-                        <div *ngFor="let result of pregunta.Resultados" fxLayout="column">
-                            <div>
-                                <button *ngIf="pregunta.Tipo == 'TEXTOLIBRE'" mat-button (click)="verOpiniones(result.Texto, pregunta.PreguntaID)" class="icon-text">
-                                    <mat-icon *ngIf="result.Texto == 'POSITIVO'">sentiment_very_satisfied</mat-icon>
-                                    <mat-icon *ngIf="result.Texto == 'NEGATIVO'">sentiment_very_dissatisfied</mat-icon>
-                                    <mat-icon *ngIf="result.Texto == 'MIXTO'">sentiment_satisfied</mat-icon>
-                                    <mat-icon *ngIf="result.Texto == 'NEUTRO'">sentiment_satisfied</mat-icon>
-                                    <span>{{ result.Texto }}: {{ result.Valor }}</span>
-                                </button>
+            <div fxLayoutAlign="center center">
+                <mat-card *ngIf="pregunta.Resultados != null && 
+                    pregunta.Resultados != undefined 
+                    && pregunta.Resultados.length > 0;else no_resultados" class="card-resultado">
+                    <div fxLayout="row" fxLayout.lt-md="column"  fxLayoutAlign="space-evenly start">
+                        <div>
+                            <div *ngFor="let result of pregunta.Resultados" fxLayout="column">
+                                <div class="boton-comentarios-containter">
+                                    <button *ngIf="pregunta.Tipo == 'TEXTOLIBRE'" [style.backgroundColor]="definirColorHover(result)" mat-raised-button (click)="verOpiniones(result.Texto, pregunta.PreguntaID)" class="boton-comentarios">
+                                        <mat-icon *ngIf="result.Texto == 'POSITIVO'">sentiment_very_satisfied</mat-icon>
+                                        <mat-icon *ngIf="result.Texto == 'NEGATIVO'">sentiment_very_dissatisfied</mat-icon>
+                                        <mat-icon *ngIf="result.Texto == 'MIXTO'">sentiment_satisfied</mat-icon>
+                                        <mat-icon *ngIf="result.Texto == 'NEUTRO'">sentiment_satisfied</mat-icon>
+                                        <span>{{ result.Texto }}: {{ result.Valor }}</span>
+                                    </button>
+                                </div>
+                                <div>
+                                    <span *ngIf="pregunta.Tipo != 'TEXTOLIBRE'">{{ result.Texto }}: {{ result.Valor }}</span>
+                                </div>
                             </div>
-                            <div>
-                                <span *ngIf="pregunta.Tipo != 'TEXTOLIBRE'">{{ result.Texto }}: {{ result.Valor }}</span>
-                            </div>
+    
                         </div>
-
+    
+                        <div class="pie-chart-parent"
+                            *ngIf="pregunta.Resultados != null && pregunta.Resultados != undefined && pregunta.Resultados.length > 0">
+                            <app-pie-chart [preguntaResultados]="pregunta.Resultados"
+                                [resultadosComprehend]="resultadosComprehend"></app-pie-chart>
+                        </div>
+                        <div *ngIf="pregunta.Tipo == 'TEXTOLIBRE' && pregunta.ResultadosML != null && pregunta.ResultadosML != undefined && pregunta.ResultadosML.length > 0"
+                            class="bar-chart-parent">
+                            <app-bar-chart [preguntaResultadosML]="pregunta.ResultadosML"></app-bar-chart>
+                        </div>
                     </div>
-
-                    <div class="pie-chart-parent"
-                        *ngIf="pregunta.Resultados != null && pregunta.Resultados != undefined && pregunta.Resultados.length > 0">
-                        <app-pie-chart [preguntaResultados]="pregunta.Resultados"
-                            [resultadosComprehend]="resultadosComprehend"></app-pie-chart>
-                    </div>
-                    <div *ngIf="pregunta.Tipo == 'TEXTOLIBRE' && pregunta.ResultadosML != null && pregunta.ResultadosML != undefined && pregunta.ResultadosML.length > 0"
-                        class="bar-chart-parent">
-                        <app-bar-chart [preguntaResultadosML]="pregunta.ResultadosML"></app-bar-chart>
-                    </div>
-                </div>
-            </mat-card>
+                </mat-card>
+            </div>
         </div>
     </div>
     <ng-template #no_resultados>

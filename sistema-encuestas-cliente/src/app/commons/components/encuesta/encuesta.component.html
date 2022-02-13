@@ -13,32 +13,49 @@
         fxLayout.xs="column" fxLayoutGap.xs="0">
         <mat-card fxFlex="0 1 calc(33.3% - 25px)" fxFlex.lt-md="0 1 calc(50% - 35px)" fxFlex.lt-sm="100%"
             class="card-encuesta" *ngFor="let encuesta of encuestas" appHighlight>
-            <mat-card-title>{{ encuesta.Denominacion}}</mat-card-title>
-            <mat-card-subtitle>Estado: {{encuesta.Estado}}
-            </mat-card-subtitle>
+            <div class="card-header">
+                <mat-card-header>
+                    <mat-card-title>{{ encuesta.Denominacion}}</mat-card-title>
+                </mat-card-header>
+                <div>
+                    <mat-card-subtitle>Estado: {{encuesta.Estado}}</mat-card-subtitle>
+                </div>
+                
+            </div>    
             <mat-card-content>
                 <p>
                     Inicio: {{encuesta.FechaInicio | date}}
+                </p>
+                <p>
                     Finalización: {{encuesta.FechaFin | date}}
-                    <button class="boton-publicar" mat-button *ngIf="encuesta.Estado == 'BORRADOR'" (click)="publicarEncuesta(encuesta)">
+                </p>
+            </mat-card-content>
+            
+            <div>
+                <mat-card-actions>
+                    <button class="boton-publicar" mat-button *ngIf="encuesta.Estado == 'BORRADOR'"
+                        (click)="publicarEncuesta(encuesta)">
                         <span> Publicar</span>
                         <mat-icon>rocket_launch</mat-icon>
                     </button>
-                    <button class="boton-publicar" mat-button *ngIf="encuesta.Estado == 'PUBLICADA'" (click)="desactivarEncuesta(encuesta)">
+                    <button class="boton-publicar" mat-button *ngIf="encuesta.Estado == 'PUBLICADA'"
+                        (click)="desactivarEncuesta(encuesta)">
                         <span> Desactivar</span>
                         <mat-icon>rocket</mat-icon>
                     </button>
-                </p>
-            </mat-card-content>
-            <mat-card-actions class="boton-resultados" fxLayoutAlign="space-between end">
-                <button mat-button class="boton-encuesta" [routerLink]="['/dashboard/Resultados', encuesta.EncuestaID]">
-                    <mat-icon>bar_chart</mat-icon>
-                </button>
-                <button class="boton-editar boton-encuesta" mat-button 
-                    [routerLink]="['/dashboard/editar-encuesta', encuesta.EncuestaID]">
-                    <mat-icon>edit</mat-icon>
-                </button>
-            </mat-card-actions>
+                </mat-card-actions>
+                <mat-card-actions class="boton-resultados" fxLayoutAlign="space-between end">
+                    <button mat-button class="boton-encuesta"
+                        [routerLink]="['/dashboard/Resultados', encuesta.EncuestaID]">
+                        <mat-icon>bar_chart</mat-icon>
+                    </button>
+                    <button class="boton-editar boton-encuesta" mat-button
+                        [routerLink]="['/dashboard/editar-encuesta', encuesta.EncuestaID]">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </div>
+
         </mat-card>
     </div>
 </div>

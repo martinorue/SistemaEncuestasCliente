@@ -8,15 +8,11 @@ export interface IRespuestaTL {
   Idioma: string;
   Sentimiento: string;
   FechaHoraAnalisis: string;
-  FechaHoraContestada: string;  
+  FechaHoraContestada: string;
   PreguntaID: number;
   Persona?: Persona;
-  //Etiquetas: IEtiqueta[]; <-- agregar al JSON
+  Etiquetas: string[];
 }
-
-// export interface IEtiqueta{
-//   NombreEtiqueta: string;
-// }
 
 export interface Persona {
   PersonaId: number;

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { IEncuesta } from '../../../domain/encuesta';
-import { IResultadoEncuesta } from '../../../domain/resultadoEncuesta';
+import { IResultado, IResultadoEncuesta } from '../../../domain/resultadoEncuesta';
 import { EncuestasService } from '../../../services/encuestas.service';
 import { ResultadosService } from '../../../services/resultados.service';
 import { Location } from '@angular/common';
@@ -30,6 +30,7 @@ export class ResultadoComponent implements OnInit {
   encuestasIds: number[] = [];
   pregTextoLibre: IPregunta[] = [];
   preguntasIds: number[] = [];
+  green: string = '#5AA454'
 
   constructor(
     private _resultadosService: ResultadosService,
@@ -54,7 +55,6 @@ export class ResultadoComponent implements OnInit {
 
             this.preguntasIds.forEach(id => this._respuestasTLService.getTextosRespuestas(id)
               .subscribe(resTL => this.respuestasTL = resTL));
-
 
             this.resultadoEncuesta.Preguntas
               .map(pregunta => pregunta.Resultados?.map(result => {
@@ -129,12 +129,30 @@ export class ResultadoComponent implements OnInit {
     opinionesDeSentiment = this.respuestasTL.filter(tr =>
       tr.Sentimiento === sentiment
     );
-
-
+    
     this.dialog.open(ModalOpinionesComponent, {
       data: opinionesDeSentiment
     });
 
+  }
+
+  definirColorHover(result: IResultado){
+    let color: string = '';
+    switch (result.Texto) {
+      case 'POSITIVO':
+        color = "#5AA454";
+        break;
+      case 'NEGATIVO':
+        color = '#A10A28';
+        break;
+      case 'NEUTRO':
+        color = '#AAAAAA';
+        break;
+      case 'MIXTO':
+        color = '#C7B42C';
+        break;
+    }
+    return color;
   }
 
   volver(): void {

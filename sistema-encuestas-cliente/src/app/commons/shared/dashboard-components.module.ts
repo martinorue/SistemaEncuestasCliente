@@ -19,6 +19,7 @@ import { EncuestasInterceptor } from 'src/app/interceptors/encuestas-interceptor
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModalOpinionesComponent } from '../components/modal-opiniones/modal-opiniones.component';
 import { TextosRespuestasComponent } from '../components/textos-respuestas/textos-respuestas.component';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { TextosRespuestasComponent } from '../components/textos-respuestas/texto
     MatProgressSpinnerModule,
     MatIconModule,
     MatDialogModule,
+    MatChipsModule,
     FlexLayoutModule,
   ],
   exports: [
