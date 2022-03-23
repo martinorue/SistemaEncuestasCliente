@@ -17,7 +17,13 @@ export class BarChartComponent implements OnInit {
   opciones = OpcionesBarChart;
 
   constructor() {
-    this.view = [innerWidth / 2, 400];
+    console.log(innerWidth);
+    if (innerWidth > 960) {
+      this.view = [innerWidth / 2, 400];
+    } else {
+      this.view = [innerWidth / 1.2, 400];
+    }
+
   }
 
   ngOnInit(): void {
@@ -33,7 +39,7 @@ export class BarChartComponent implements OnInit {
       }
 
       datos.push(dato);
-      
+
       const serie: Serie = {
         name: resultado.Etiqueta,
         value: resultado.Valor
@@ -47,9 +53,18 @@ export class BarChartComponent implements OnInit {
     this.data = datos
   }
 
-  colorScheme = {
-    domain: ['#5AA454', '#C7B42C', '#AAAAAA', '#FF5733', '#33A4FF']
-  };
+  // colorScheme = {
+  //   name: "verde", value: '#5AA454', name: "b", value: '#C7B42C', c: '#AAAAAA', d: '#FF5733', e: '#33A4FF'
+  // };
+
+  barChartcustomColors =
+    [
+      { name: "ATENCION", value: 'rgb(238, 100, 144)' },
+      { name: "COMIDA", value: 'rgb(0, 172, 193)' },
+      { name: "AMBIENTE", value: 'rgb(233, 107, 86)' },
+      { name: "VINO", value: 'rgb(168, 56, 93)' },
+      { name: "PRECIO", value: 'rgb(250, 160, 38)' },
+    ]
 
   onResize(event: UIEvent) {
     const w = event.target as Window;

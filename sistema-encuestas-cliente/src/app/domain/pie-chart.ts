@@ -1,3 +1,5 @@
+import { LegendPosition } from '@swimlane/ngx-charts';
+
 export interface IPieChart {
     name: string;
     value: number;
@@ -9,7 +11,7 @@ export const OPCIONES_PIE_CHART = {
     showLabels: true,
     isDoughnut: true,
     legendTitle: "",
-    legendPosition: 'below'
+    legendPosition: LegendPosition.Below
 }
 
 export interface ISentColor{
