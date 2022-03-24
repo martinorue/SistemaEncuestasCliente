@@ -20,6 +20,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ModalOpinionesComponent } from '../components/modal-opiniones/modal-opiniones.component';
 import { TextosRespuestasComponent } from '../components/textos-respuestas/textos-respuestas.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatIconModule,
     MatDialogModule,
     MatChipsModule,
+    MatMenuModule,
     FlexLayoutModule,
   ],
   exports: [
