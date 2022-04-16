@@ -5,7 +5,6 @@ import { DashboardComponentsModule } from '../commons/shared/dashboard-component
 import { DashBoardRoutingModule } from './dashboard-routing.module';
 import { EncuestasService } from '../services/encuestas.service';
 import { CrearEncuestaService } from '../services/crear-encuesta.service';
-import { EncuestaResultadoComponent } from './encuesta-resultado/encuesta-resultado.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ResultadosService } from '../services/resultados.service';
 import { HeaderComponentModule } from '../commons/shared/header-component.module';
@@ -14,7 +13,6 @@ import { HeaderComponentModule } from '../commons/shared/header-component.module
 @NgModule({
   declarations: [
     DashboardEncuestasComponent,
-    EncuestaResultadoComponent,
   ],
   imports: [
     CommonModule,

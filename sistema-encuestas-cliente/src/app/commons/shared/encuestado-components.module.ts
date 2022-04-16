@@ -6,10 +6,10 @@ import { MatTableModule } from '@angular/material/table';
 import { EncuestadoComponent } from '../components/encuestado/encuestado.component';
 import { EncuestadosRoutingModule } from '../../pages/encuestados-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { EncuestasInterceptor } from 'src/app/interceptors/encuestas-interceptor';
+import { EncuestasInterceptor } from '../../interceptors/encuestas-interceptor';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { RequestInterceptor } from 'src/app/interceptors/request.interceptor';
+import { RequestInterceptor } from '../../interceptors/request.interceptor';
 
 
 

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EdicionEncuestaComponent } from './edicion-encuesta/edicion-encuesta.component';
+import { EncuestaResultadoComponent } from './encuesta-resultado/encuesta-resultado.component';
 import { HeaderComponentModule } from '../commons/shared/header-component.module';
-import { EdicionEncuestaRoutingModule } from './edicion-encuesta-routing.module';
-import { EdicionEncuestaComponentsModule } from '../commons/shared/edicion-encuesta-components.module';
+import { EncuestaResultadoComponentsModule } from '../commons/shared/encuesta-resultado-components.module';
+import { EncuestaResultadoRoutingModule } from './encuesta-resultado-routing.module';
 import { EncuestasService } from '../services/encuestas.service';
 import { ResultadosService } from '../services/resultados.service';
 
@@ -11,18 +11,17 @@ import { ResultadosService } from '../services/resultados.service';
 
 @NgModule({
   declarations: [
-    EdicionEncuestaComponent,
+    EncuestaResultadoComponent
   ],
   imports: [
     CommonModule,
     HeaderComponentModule,
-    EdicionEncuestaRoutingModule,
-    EdicionEncuestaComponentsModule
+    EncuestaResultadoRoutingModule,
+    EncuestaResultadoComponentsModule
   ],
   providers: [
     EncuestasService,
     ResultadosService,
-
   ]
 })
-export class EdicionEncuestaPageModule { }
+export class EncuestaResultadoPageModule { }

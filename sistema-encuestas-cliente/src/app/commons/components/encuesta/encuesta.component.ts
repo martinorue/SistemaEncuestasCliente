@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CrearEncuestaService } from 'src/app/services/crear-encuesta.service';
+import { CrearEncuestaService } from '../../../services/crear-encuesta.service';
 import { IEncuesta } from '../../../domain/encuesta';
 import { EncuestasService } from '../../../services/encuestas.service';
 

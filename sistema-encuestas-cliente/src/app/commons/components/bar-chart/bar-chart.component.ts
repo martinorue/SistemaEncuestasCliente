@@ -17,7 +17,6 @@ export class BarChartComponent implements OnInit {
   opciones = OpcionesBarChart;
 
   constructor() {
-    console.log(innerWidth);
     if (innerWidth > 960) {
       this.view = [innerWidth / 2, 400];
     } else {
@@ -52,10 +51,6 @@ export class BarChartComponent implements OnInit {
     this.opciones.yScaleMax = this.getMaximoMenciones(series.map(serie => serie.value));
     this.data = datos
   }
-
-  // colorScheme = {
-  //   name: "verde", value: '#5AA454', name: "b", value: '#C7B42C', c: '#AAAAAA', d: '#FF5733', e: '#33A4FF'
-  // };
 
   barChartcustomColors =
     [

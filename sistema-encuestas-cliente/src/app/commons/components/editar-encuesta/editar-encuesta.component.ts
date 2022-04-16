@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { IOpcion, IPregunta } from '../../../domain/pregunta';
@@ -9,8 +9,8 @@ import { EncuestasService } from '../../../services/encuestas.service';
 import { switchMap } from 'rxjs/operators';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ENTER } from '@angular/cdk/keycodes';
-import { FechaService } from 'src/app/services/fecha.service';
-import { IRango } from 'src/app/domain/rango';
+import { FechaService } from '../../../services/fecha.service';
+import { IRango } from '../../../domain/rango';
 
 @Component({
   selector: 'app-editar-encuesta',
@@ -38,7 +38,6 @@ export class EditarEncuestaComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.clonPreguntas, event.previousIndex, event.currentIndex);
-    // const draggedPregunta: IPregunta = event.item.data;
   }
 
   constructor(

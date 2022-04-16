@@ -18,7 +18,7 @@ import { HeaderComponentModule } from './header-component.module';
 import { CrearEncuestaComponentsModule } from './crear-encuesta-components.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EncuestasInterceptor } from '../../interceptors/encuestas-interceptor';
-import { EdicionEncuestaRoutingModule } from 'src/app/pages/edicion-encuesta-routing.module';
+import { EdicionEncuestaRoutingModule } from '../../pages/edicion-encuesta-routing.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 

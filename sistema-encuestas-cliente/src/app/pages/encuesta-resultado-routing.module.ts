@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardEncuestasComponent } from './dashboard-encuestas/dashboard-encuestas.component';
 import { EncuestaResultadoComponent } from './encuesta-resultado/encuesta-resultado.component';
+
 
 export const routes: Routes = [
   {
@@ -9,11 +9,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: DashboardEncuestasComponent,
-      },
-      {
-        path: 'Resultados/:id',
-        component: EncuestaResultadoComponent
+        component: EncuestaResultadoComponent,
       },
     ]
   }
@@ -25,4 +21,4 @@ export const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class DashBoardRoutingModule { }
+export class EncuestaResultadoRoutingModule { }

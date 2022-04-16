@@ -17,7 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AgregarPreguntaComponent } from '../components/agregar-pregunta/agregar-pregunta.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { RouterModule } from '@angular/router';
-import { CrearEncuestaRoutingModule } from 'src/app/pages/crear-encuesta-routing.module';
+import { CrearEncuestaRoutingModule } from '../../pages/crear-encuesta-routing.module';
 
 @NgModule({
   declarations: [

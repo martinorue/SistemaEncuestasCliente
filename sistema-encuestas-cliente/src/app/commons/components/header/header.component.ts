@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { JwtAuthService } from 'src/app/services/jwt-auth.service';
+import { Component } from '@angular/core';
+import { JwtAuthService } from '../../../services/jwt-auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +9,7 @@ import { JwtAuthService } from 'src/app/services/jwt-auth.service';
 export class HeaderComponent {
 
   constructor(private _jwtAuthService: JwtAuthService) { }
-  salir(){
+  salir() {
     this._jwtAuthService.logout()
   }
 }
