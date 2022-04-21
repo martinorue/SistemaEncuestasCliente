@@ -10,7 +10,7 @@ import { LoginComponent } from '../components/login/login.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RequestInterceptor } from 'src/app/interceptors/request.interceptor';
+import { RequestInterceptor } from '../.././interceptors/request.interceptor';
 
 
 @NgModule({

@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { RegistroRoutingModule } from 'src/app/pages/registro-routing.module';
+import { RegistroRoutingModule } from '../../pages/registro-routing.module';
 
 
 

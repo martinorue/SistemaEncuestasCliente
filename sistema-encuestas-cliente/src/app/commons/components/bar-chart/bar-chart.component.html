@@ -1,18 +1,23 @@
-  <ngx-charts-bar-vertical-2d
+<ngx-charts-bar-vertical-2d
   (window:resize)="onResize($event)"
-    [scheme]="colorScheme"
-    [view]="view"
-    [results]="data"
-    [gradient]="opciones.gradient"
-    [xAxis]="opciones.showXAxis"
-    [yAxis]="opciones.showYAxis"
-    [legendTitle]="opciones.legendTitle"
-    [legend]="opciones.showLegend"
-    [legendPosition]="opciones.legendPosition"
-    [showXAxisLabel]="opciones.showXAxisLabel"
-    [showYAxisLabel]="opciones.showYAxisLabel"
-    [xAxisLabel]="opciones.xAxisLabel"
-    [yAxisLabel]="opciones.yAxisLabel"
-    [yScaleMax]="opciones.yScaleMax"
-    >
-  </ngx-charts-bar-vertical-2d>
+  [customColors]="barChartcustomColors"
+  [barPadding]="2"
+  [groupPadding]="3"
+  [view]="view"
+  [results]="data"
+  [gradient]="opciones.gradient"
+  [xAxis]="opciones.showXAxis"
+  [yAxis]="opciones.showYAxis"
+  [legendTitle]="opciones.legendTitle"
+  [legend]="opciones.showLegend"
+  [legendPosition]="opciones.legendPosition"
+  [showXAxisLabel]="opciones.showXAxisLabel"
+  [showYAxisLabel]="opciones.showYAxisLabel"
+  [xAxisLabel]="opciones.xAxisLabel"
+  [yAxisLabel]="opciones.yAxisLabel"
+  [yScaleMax]="opciones.yScaleMax"
+>
+</ngx-charts-bar-vertical-2d>
+
+<!-- [scheme]="'picnic'" -->
+<!-- [customColors]="barChartcustomColors" -->

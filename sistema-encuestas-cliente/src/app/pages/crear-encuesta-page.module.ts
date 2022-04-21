@@ -5,8 +5,6 @@ import { HeaderComponentModule } from '../commons/shared/header-component.module
 import { CrearEncuestaComponentsModule } from '../commons/shared/crear-encuesta-components.module';
 import { CrearEncuestaRoutingModule } from './crear-encuesta-routing.module';
 import { VistaPreviaComponent } from './vista-previa/vista-previa.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { EncuestasInterceptor } from '../interceptors/encuestas-interceptor';
 
 
 @NgModule({

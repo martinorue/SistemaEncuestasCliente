@@ -2,8 +2,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
-import { IRegister } from '../domain/register';
+import { environment } from '../../environments/environment';
 import { ProcessHttpmsgService } from './process-httpmsg.service';
 
 @Injectable({

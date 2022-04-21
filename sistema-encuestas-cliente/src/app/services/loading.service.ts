@@ -6,16 +6,16 @@ import { delay } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class LoadingService {
-  private _loading = new BehaviorSubject<boolean>(false);
+  private _loading = new BehaviorSubject<boolean>(false);//cuando alguien se suscriba, automáticamente va a recibir false
   public readonly loading$ = this._loading.asObservable().pipe(delay(1));
 
   constructor() { }
 
-  show(){
+  show() {
     this._loading.next(true);
   }
 
-  hide(){
+  hide() {
     this._loading.next(false);
   }
 

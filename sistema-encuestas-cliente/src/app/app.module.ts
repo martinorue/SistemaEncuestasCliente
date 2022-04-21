@@ -10,7 +10,6 @@ import { AuthModule } from './pages/auth/auth.module';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeEsUY from '@angular/common/locales/es-UY';
-import { EncuestaGuard } from './guards/encuesta.guard';
 
 registerLocaleData(localeEsUY, 'es-UY');
 

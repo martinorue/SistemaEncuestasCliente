@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoadingService } from 'src/app/services/loading.service';
+import { LoadingService } from '../../../services/loading.service';
 import { IRQLogin } from '../../../domain/auth';
 import { AuthService } from '../../../services/auth.service';
 import { JwtAuthService } from '../../../services/jwt-auth.service';
@@ -13,7 +13,6 @@ import { JwtAuthService } from '../../../services/jwt-auth.service';
 })
 export class LoginComponent {
 	@ViewChild('myFormLogin') myFormLogin: NgForm | undefined;
-	mostrarProgreso: boolean = false;
 	respuestaHttp!: number;
 	loading$ = this.loader.loading$;
 
@@ -33,7 +32,6 @@ export class LoginComponent {
 
 
 	clickLogin(): void {
-		this.mostrarProgreso = true;
 		const user: IRQLogin = {
 			Email: this.dataLoginForm.userName,
 			Clave: this.dataLoginForm.password

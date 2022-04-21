@@ -37,6 +37,11 @@ export const routes: Routes = [
     path: 'dashboard/editar-encuesta/:id',
     loadChildren: () => import('./pages/edicion-encuesta-page.module').then((m) => m.EdicionEncuestaPageModule),
     canLoad: [EncuestaGuard]
+  },
+  {
+    path: 'dashboard/resultados/:id',
+    loadChildren: () => import('./pages/encuesta-resultado-page.module').then((m) => m.EncuestaResultadoPageModule),
+    canLoad: [EncuestaGuard]
   }
 ]
 @NgModule({

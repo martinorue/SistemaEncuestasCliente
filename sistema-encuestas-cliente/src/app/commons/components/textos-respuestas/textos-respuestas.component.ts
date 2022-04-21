@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IRespuestaTL } from 'src/app/domain/respuestaTL';
+import { IRespuestaTL } from '../../../domain/respuestaTL';
 
 @Component({
   selector: 'app-textos-respuestas',

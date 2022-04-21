@@ -16,7 +16,6 @@ export class EncuestasInterceptor implements HttpInterceptor {
 	constructor(private processHttpmsgService: ProcessHttpmsgService) { }
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
 		const token = localStorage.getItem('access_token')!;
 		let requestClone = req;
 

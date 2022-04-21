@@ -29,7 +29,6 @@ export class NuevaEncuestaComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.nuevasPreguntas, event.previousIndex, event.currentIndex);
-    // const draggedPregunta: IPregunta = event.item.data;
   }
 
   constructor(private _router: Router,

@@ -1,32 +1,32 @@
-mat-card-title{
-    font-size: 16px;
+mat-card-title {
+  font-size: 16px;
 }
 
-.chip-etiqueta-container{
-    display: flex;
-    flex-direction: row;
+.chip-etiqueta-container {
+  display: flex;
+  flex-direction: row;
 }
 
-.chip-etiqueta{
-    margin-right: 8px;
+.chip-etiqueta {
+  margin-right: 8px;
 }
 
-.etiqueta-atencion{
-    background-color: #5AA454;
+.etiqueta-atencion {
+  background-color: rgb(238, 100, 144);
 }
 
-.etiqueta-ambiente{
-    background-color: #C7B42C;
+.etiqueta-ambiente {
+  background-color: rgb(233, 107, 86);
 }
 
-.etiqueta-comida{
-    background-color: #AAAAAA;
+.etiqueta-comida {
+  background-color: rgb(0, 172, 193);
 }
 
-.etiqueta-precio{
-    background-color: #A10A28;
+.etiqueta-precio {
+  background-color: rgb(250, 160, 38);
 }
 
-.etiqueta-vino{
-    background-color: #33A4FF;
+.etiqueta-vino {
+  background-color: rgb(168, 56, 93);
 }
